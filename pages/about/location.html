@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오시는 길 | 마크로케어</title>
+  <link rel="stylesheet" href="../../css/common.css">
+</head>
+
+<body>
+
+  <!-- 공통 HEADER -->
+  <div id="include-header"></div>
+
+  <main id="main-content" class="sub" tabindex="-1">
+
+    <!-- 서브 비주얼 -->
+    <section class="sub-visual">
+      <div class="sub-visual__box">
+        <div class="sub-visual__inner">
+          <ol class="breadcrumb">
+            <li><img src="../../img/sub/ico-home-white.png" alt="">HOME</li>
+            <li>회사소개</li>
+            <li aria-current="page"><strong>오시는 길</strong></li>
+          </ol>
+          <h1 class="sub-visual__title">오시는 길</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서브 탭 -->
+    <nav class="sub-tab" aria-label="회사소개 메뉴">
+      <ul class="sub-tab__list">
+        <li><a href="overview.html">회사개요</a></li>
+        <li><a href="vision.html">비전</a></li>
+        <li><a href="history.html">연혁</a></li>
+        <li><a href="#">특허·인증·수상</a></li>
+        <li><a href="location.html" class="is-active" aria-current="page">오시는 길</a></li>
+      </ul>
+    </nav>
+
+    <div class="location" data-tabs>
+      <div class="inner">
+        <div class="pill-tab" role="tablist" aria-label="공장 선택">
+          <button type="button" role="tab" id="tab-plant1" aria-controls="panel-plant1" aria-selected="true" class="is-active">제 1공장</button>
+          <button type="button" role="tab" id="tab-plant2" aria-controls="panel-plant2" aria-selected="false" tabindex="-1">제 2공장</button>
+        </div>
+      </div>
+
+      <!-- 제1공장 -->
+      <section class="location__panel" id="panel-plant1" role="tabpanel" aria-labelledby="tab-plant1">
+        <div class="inner">
+          <div class="location__site">
+            <div class="sec-head">
+              <p class="sec-head__en">Ochang</p>
+              <h2 class="sec-head__title">본사 및 제1공장</h2>
+            </div>
+
+            <div class="location__map">
+              <div class="location__map-img"><img src="../../img/sub/location/map-01.png" alt="본사 및 제1공장 위치 지도"></div>
+              <div class="location__addr">
+                <div>
+                  <p class="location__addr-label">ADDRESS</p>
+                  <address>충청북도 청주시 청원구<br>오창읍 각리1길 32</address>
+                  <p class="location__tel">TEL. 043-214-3656<br>FAX. 043-214-3658</p>
+                </div>
+                <a href="https://map.kakao.com/link/search/충청북도 청주시 청원구 오창읍 각리1길 32" target="_blank" rel="noopener" title="새 창 열림" class="btn-direction">지도에서 길찾기<i aria-hidden="true">↗</i></a>
+              </div>
+            </div>
+
+            <ul class="photo-grid photo-grid--label">
+              <li><img src="../../img/sub/about/facility-01.png" alt="본사 및 제1공장 외관"><span>외관</span></li>
+              <li><img src="../../img/sub/about/facility-02.png" alt="본사 및 제1공장 전경"><span>전경</span></li>
+            </ul>
+          </div>
+
+          <div class="parking">
+            <div class="parking__txt">
+              <div>
+                <p class="parking__en">Parking Guide</p>
+                <h3 class="parking__title">제1공장<br>노외주차장 안내</h3>
+                <p class="parking__desc">주차장과 공장 출입 위치를<br>확인해 주세요.</p>
+              </div>
+              <ol class="parking__list">
+                <li><span>01</span>마크로케어 정문주차장</li>
+                <li><span>02</span>오창 노외주차장 입구</li>
+                <li><span>03</span>마크로케어 후문</li>
+              </ol>
+            </div>
+            <div class="parking__map"><img src="../../img/sub/location/parking-01.png" alt="제1공장 노외주차장 약도: 1 마크로케어 정문주차장, 2 오창 노외주차장 입구, 3 마크로케어 후문"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 제2공장 -->
+      <section class="location__panel" id="panel-plant2" role="tabpanel" aria-labelledby="tab-plant2" hidden>
+        <div class="inner">
+          <div class="location__site">
+            <div class="sec-head">
+              <p class="sec-head__en">Jeungpyeong</p>
+              <h2 class="sec-head__title">증평 제2공장</h2>
+            </div>
+
+            <div class="location__map">
+              <div class="location__map-img"><img src="../../img/sub/location/map-02.png" alt="증평 제2공장 위치 지도"></div>
+              <div class="location__addr">
+                <div>
+                  <p class="location__addr-label">ADDRESS</p>
+                  <address>충청북도 증평군 도안면<br>증평2산단로 239</address>
+                  <p class="location__tel">TEL. 043-714-3755</p>
+                </div>
+                <a href="https://map.kakao.com/link/search/충청북도 증평군 도안면 증평2산단로 239" target="_blank" rel="noopener" title="새 창 열림" class="btn-direction">지도에서 길찾기<i aria-hidden="true">↗</i></a>
+              </div>
+            </div>
+
+            <ul class="photo-grid photo-grid--label">
+              <li><img src="../../img/sub/about/facility-03.png" alt="증평 제2공장 외관"><span>외관</span></li>
+              <li><img src="../../img/sub/about/facility-04.png" alt="증평 제2공장 전경"><span>전경</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- 공통 FOOTER -->
+  <div id="include-footer"></div>
+
+  <script src="../../js/include.js" defer></script>
+  <script src="../../js/sub.js" defer></script>
+</body>
+
+</html>
