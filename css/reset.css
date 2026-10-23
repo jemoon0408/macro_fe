@@ -1,0 +1,207 @@
+@charset "UTF-8";
+/* --------------------------------------------------------------------------------
+	reset.css : 브라우저 기본 스타일 초기화
+	(style.css, layout.css 보다 먼저 로드)
+--------------------------------------------------------------------------------- */
+*, *::before, *::after{
+  box-sizing:border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video{
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:100%;
+  font:inherit;
+  vertical-align:baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section{
+  display:block;
+}
+
+html{
+  line-height:1;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+  font-family: 'Kakao Big Sans', Pretendard, sans-serif;
+}
+
+body{
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+ol, ul{
+  list-style:none;
+}
+
+blockquote, q{
+  quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after{
+  content:'';
+  content:none;
+}
+
+table{
+  border-collapse:collapse;
+  border-spacing:0;
+}
+caption{
+  text-align:left;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+  background:transparent;
+}
+
+img, picture, svg, video, canvas{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+
+button, input, select, textarea{
+  font:inherit;
+  color:inherit;
+  background:none;
+  border:0;
+  outline:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+button{
+  cursor:pointer;
+  padding:0;
+}
+input, textarea{
+  outline:none;
+}
+input::placeholder, textarea::placeholder{
+  color:inherit;
+  opacity:.6;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button{
+  -webkit-appearance:none;
+}
+
+address{
+  font-style:normal;
+}
+fieldset{
+  min-width:0;
+}
+legend{
+  padding:0;
+}
+
+sub, sup{
+  font-size:75%;
+  line-height:0;
+  position:relative;
+  vertical-align:baseline;
+}
+sub{ bottom:-0.25em; }
+sup{ top:-0.5em; }
+
+hr{
+  border:0;
+  border-top:1px solid currentColor;
+}
+
+[hidden]{
+  display:none !important;
+}
+
+/* ===== 공통 ===== */
+:root {
+  --ink: #0f2a2a;
+  --ink-deep: #031130;
+  --brand: #007f76;
+  --accent-light: #74ded0;
+  --muted: #566e6b;
+  --line: #c7ded9;
+  --soft: #f3f5f3;
+  --white: #fff;
+
+  --font-en: "Montserrat", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+}
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+html.kbd-nav a:focus-visible,
+html.kbd-nav button:focus-visible,
+html.kbd-nav input:focus-visible,
+html.kbd-nav select:focus-visible,
+html.kbd-nav textarea:focus-visible {
+  outline: 2px solid #2a4fd0;
+  outline-offset: 3px;
+}
+/* 기본 리셋은 reset.css 에서 처리. 여기서는 이 프로젝트 고유 스타일만 정의 */
+
+/* rem 기반 유동 스케일: 화면 폭이 줄어들면 html 기준 font-size가 함께 줄어들어
+   rem 단위로 작성된 폰트/아이콘/여백이 자연스럽게 같이 축소된다. */
+html {
+  font-size: 16px;
+}
+
+@media (max-width:1200px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+
+@media (max-width:876px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width:768px) {
+  html {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width:580px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width:480px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width:320px) {
+  html {
+    font-size: 13px;
+  }
+}
