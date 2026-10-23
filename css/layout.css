@@ -1,0 +1,488 @@
+@charset "UTF-8";
+/* --------------------------------------------------------------------------------
+	layout.css : 공통 레이아웃 (header / footer)
+--------------------------------------------------------------------------------- */
+
+/* =========================================================
+   PAGE : 본문이 짧아도 footer 를 항상 화면 하단에 배치
+========================================================= */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#include-footer {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   HEADER (PC)
+========================================================= */
+.header {
+  position: relative;
+  z-index: 100;
+  background: var(--white);
+}
+
+.header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0 56px;
+}
+
+/* 2depth 열렸을 때 헤더 경계선 */
+.header__inner::after {
+  content: "";
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.header.is-open .header__inner::after {
+  opacity: 1;
+}
+
+.header__logo a,
+.header__logo img {
+  display: block;
+  width: 220px;
+  height: 42px;
+}
+
+/* ----- GNB 1depth ----- */
+.gnb {
+  height: 100%;
+}
+
+.gnb__list {
+  display: flex;
+  gap: 22px;
+  height: 100%;
+}
+
+.gnb__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 24px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink-deep);
+  white-space: nowrap;
+}
+
+/* 활성 1depth 표시 */
+.gnb__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  width: 72px;
+  height: 3px;
+  background: var(--brand);
+  transform: translateX(-50%) scaleX(0);
+  transition: transform .2s;
+}
+
+.gnb__item.is-active .gnb__link::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ----- GNB 2depth ----- */
+.gnb__depth2 {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  padding: 32px 0 84px;
+  background: var(--white);
+  border-radius: 0 0 28px 28px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s, visibility .2s;
+}
+
+.gnb__item.is-active .gnb__depth2 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.gnb__depth2-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  width: 1260px;
+  margin: 0 auto;
+}
+
+.gnb__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 0 0 240px;
+}
+
+.gnb__intro-en {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  line-height: 1.05;
+  color: var(--brand);
+}
+
+.gnb__intro-en--sm {
+  font-size: 42px;
+}
+
+.gnb__intro-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.gnb__intro-desc {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.gnb__sub {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 0 540px;
+}
+
+.gnb__sub a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 23px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+  transition: background-color .2s;
+}
+
+.gnb__sub--en a,
+.gnb__sub a.is-en,
+.gnb__sub i {
+  font-family: var(--font-en);
+}
+
+.gnb__sub i {
+  width: 26px;
+  font-style: normal;
+  color: var(--brand);
+}
+
+.gnb__sub a:hover,
+.gnb__sub a:focus-visible {
+  background: #eef6f4;
+}
+
+.gnb__figure {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 0 0 400px;
+}
+
+.gnb__figure img {
+  width: 400px;
+  height: 224px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.gnb__figure figcaption {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ----- 언어 / YouTube ----- */
+.header__util {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__lang {
+  display: flex;
+  gap: 4px;
+  font-family: var(--font-en);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-deep);
+}
+
+.header__youtube {
+  display: flex;
+  gap: 20px;
+  padding: 17px 24px;
+  border-radius: 32px;
+  background: var(--ink);
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--white);
+}
+
+.header__youtube i {
+  font-style: normal;
+}
+
+/* ----- 본문 dim ----- */
+.header__dim {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s, visibility .2s;
+}
+
+.header__dim.is-show {
+  opacity: .4;
+  visibility: visible;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.footer {
+  padding: 100px 40px 170px;
+  border-radius: 72px 72px 0 0;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 69px;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 77px;
+}
+
+.footer__slogan {
+  font-family: var(--font-en);
+  font-size: 60px;
+  line-height: 1.2;
+}
+
+.footer__slogan-line {
+  display: block;
+}
+
+.footer__slogan-line strong {
+  margin-left: .2em;
+  font-weight: 700;
+}
+
+.footer__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer__cta-text {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--accent-light);
+}
+
+.footer__cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 17px 24px;
+  border-radius: 32px;
+  background: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--brand);
+  white-space: nowrap;
+}
+
+.footer__cta-btn i {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-style: normal;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+}
+
+.footer__info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer__logo img {
+  width: 220px;
+  height: 42px;
+}
+
+.footer__address {
+  font-size: 17px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .8);
+}
+
+.footer__address-line {
+  display: block;
+}
+
+/* 전화번호 사이 구분점 */
+.footer__address-line > span + span::before {
+  content: "·";
+  margin: 0 .6em;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .6);
+}
+
+.footer__links small {
+  font-size: inherit;
+}
+
+/* ----- 태블릿 ----- */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 80px 40px 120px;
+    border-radius: 60px 60px 0 0;
+  }
+
+  .footer__inner {
+    gap: 56px;
+  }
+
+  .footer__top {
+    gap: 56px;
+  }
+
+  .footer__slogan {
+    font-size: 46px;
+  }
+
+  .footer__cta-text {
+    font-size: 24px;
+  }
+
+  .footer__info {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+}
+
+/* ----- 모바일 ----- */
+@media (max-width: 768px) {
+  .footer {
+    padding: 56px 20px 48px;
+  }
+
+  .footer__inner {
+    gap: 24px;
+  }
+
+  .footer__top {
+    gap: 24px;
+  }
+
+  .footer__slogan {
+    font-size: 27px;
+    line-height: 1.28;
+  }
+
+  .footer__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__cta-text {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  .footer__cta-btn {
+    justify-content: space-between;
+    width: 190px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 24px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .footer__bottom {
+    gap: 24px;
+    padding-top: 28px;
+  }
+
+  .footer__info {
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .footer__logo img {
+    width: 137.5px;
+    height: 26.25px;
+  }
+
+  .footer__address {
+    font-size: 12px;
+    line-height: 19px;
+  }
+
+  .footer__links {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
