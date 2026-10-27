@@ -814,9 +814,10 @@
   width: 7px;
   height: 70px;
   margin-left: -3.5px;
+  /* 시안 : 점선(#b0c8c3) + 끝점(#c7ded9) */
   background:
-    linear-gradient(rgba(0, 127, 118, .3), rgba(0, 127, 118, .3)) center top / 1px 64px no-repeat,
-    radial-gradient(circle, var(--brand) 2.5px, transparent 3px) center bottom / 7px 7px no-repeat;
+    repeating-linear-gradient(to bottom, #b0c8c3 0 2.9px, transparent 2.9px 7.7px) center top / 1px 64px no-repeat,
+    radial-gradient(circle, #c7ded9 3px, transparent 3.5px) center bottom / 7px 7px no-repeat;
 }
 
 .mission__card {
@@ -831,14 +832,24 @@
   color: var(--white);
 }
 
+/* 가운데 카드 : 딥그린 (시안 렌더링 색상 기준) */
 .mission__card--deep {
-  background: linear-gradient(173.3deg, var(--brand) 90.97%, var(--ink) 162.85%);
+  background: linear-gradient(166.56deg, #065f59 0%, #0b403e 100%);
 }
 
 .mission__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+}
+
+.mission__icon img {
+  width: 50px;
+  height: 50px;
 }
 
 .mission__txt {
@@ -1021,6 +1032,25 @@
   left: 50%;
   width: 620px;
   transform: translateX(-50%);
+  /* 뒤 원형 선이 계속 회전 (이미지 흰 귀퉁이가 돌며 보이지 않도록 원형으로 자름) */
+  border-radius: 50%;
+  animation: values-rotate 40s linear infinite;
+}
+
+@keyframes values-rotate {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .values__circle {
+    animation: none;
+  }
 }
 
 .values__center {
@@ -1071,10 +1101,19 @@
 }
 
 .values__icon {
+  display: flex;
   flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  background: var(--soft);
+}
+
+.values__icon img {
+  width: 38px;
+  height: 38px;
 }
 
 .values__txt {
@@ -2027,6 +2066,11 @@
     height: 64px;
   }
 
+  .mission__icon img {
+    width: 40px;
+    height: 40px;
+  }
+
   .mission__txt strong {
     font-size: 24px;
   }
@@ -2088,6 +2132,11 @@
   .values__icon {
     width: 56px;
     height: 56px;
+  }
+
+  .values__icon img {
+    width: 30px;
+    height: 30px;
   }
 
   .values__txt {
@@ -2579,6 +2628,11 @@
     height: 60px;
   }
 
+  .mission__icon img {
+    width: 32.5px;
+    height: 32.5px;
+  }
+
   .mission__txt {
     gap: 5px;
   }
@@ -2711,6 +2765,11 @@
   .values__icon {
     width: 32px;
     height: 32px;
+  }
+
+  .values__icon img {
+    width: 17.4px;
+    height: 17.4px;
   }
 
   .values__txt {

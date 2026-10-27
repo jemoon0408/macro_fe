@@ -98,6 +98,58 @@
 
 
   /* =========================================================
+     비전 : 미션 카드 (GSAP ScrollTrigger scrub)
+     - 스크롤하는 만큼 카드가 아래에서 하나씩 스르륵 떠오름 (위로 스크롤 시 되감김)
+  ========================================================= */
+
+  function initMission() {
+    const items = document.querySelectorAll(".mission__item");
+
+    if (!items.length || reduceMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    /* PC·태블릿 : 가로 3열 → 미션 영역 전체 스크롤 구간에서 차례로 */
+    mm.add("(min-width: 769px)", function () {
+      gsap.fromTo(items, { y: 100, opacity: 0 }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "sine.out",
+        stagger: .6,
+        scrollTrigger: {
+          trigger: ".mission",
+          start: "top 100%",
+          end: "bottom 45%",
+          scrub: 2
+        }
+      });
+    });
+
+    /* 모바일 : 세로로 쌓이므로 카드마다 자기 위치에서 떠오름 */
+    mm.add("(max-width: 768px)", function () {
+      items.forEach(function (item) {
+        gsap.fromTo(item, { y: 60, opacity: 0 }, {
+          y: 0,
+          opacity: 1,
+          ease: "sine.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 100%",
+            end: "top 55%",
+            scrub: 2
+          }
+        });
+      });
+    });
+  }
+
+
+  /* =========================================================
      연혁 : 스크롤에 따라 제목 글자 채우기
      - 줄 단위로 순서대로 채워짐 (--fill : 0% ~ 100%)
   ========================================================= */
@@ -283,6 +335,7 @@
   }
 
 
+  initMission();
   initIdentity();
   initCertMarquee();
   initFillText();
