@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | 마크로케어</title>
+  <link rel="stylesheet" href="../../css/common.css">
+</head>
+
+<body>
+
+  <!-- 공통 HEADER -->
+  <div id="include-header"></div>
+
+  <main id="main-content" class="sub" tabindex="-1">
+
+    <!-- 서브 비주얼 -->
+    <section class="sub-visual">
+      <div class="sub-visual__box">
+        <div class="sub-visual__inner">
+          <ol class="breadcrumb">
+            <li><img src="../../img/sub/ico-home-white.png" alt="">HOME</li>
+            <li>소식/홍보</li>
+            <li aria-current="page"><strong>FAQ</strong></li>
+          </ol>
+          <h1 class="sub-visual__title">FAQ</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서브 탭 -->
+    <nav class="sub-tab" aria-label="소식/홍보 메뉴">
+      <ul class="sub-tab__list">
+        <li><a href="news.html">소식</a></li>
+        <li><a href="promotion.html">프로모션</a></li>
+        <li><a href="faq.html" class="is-active" aria-current="page">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <section class="faq">
+      <div class="inner">
+        <div class="faq__head">
+          <p class="faq__en">Frequently Asked Questions</p>
+          <h2 class="faq__title">자주 묻는 질문</h2>
+          <p class="faq__desc">원료와 기술자료, 샘플 문의에 대한 궁금증을 확인해 보세요.</p>
+        </div>
+
+        <ul class="faq__list" data-accordion>
+          <li class="faq__item is-open">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q1" aria-controls="faq-a1" aria-expanded="true">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">원료별 기술자료는 어디에서 확인하나요?</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>원료 상세페이지의 ‘기술자료’ 영역에서 제품 관련 자료를 확인하실 수 있습니다.<br>찾으시는 자료가 없는 경우, 원료명을 기재하여 문의해 주세요.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q2" aria-controls="faq-a2" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">원료 샘플은 어떻게 요청하나요?</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>샘플 요청 버튼을 눌러 요청서를 작성해 주시면 담당자가 확인 후 연락드립니다.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q3" aria-controls="faq-a3" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">원하는 효능에 맞는 원료를 찾고 싶어요.</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>원료소개 페이지의 효능별 필터를 이용하시면 원하시는 효능의 원료를 모아보실 수 있습니다.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q4" aria-controls="faq-a4" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">원료의 적용 제형과 사용 방법이 궁금해요.</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>원료별 권장 함량과 적용 제형은 기술자료에서 확인하실 수 있으며, 추가 문의는 원료·기술 문의로 남겨 주세요.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q5" aria-controls="faq-a5" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">견적이나 구매 관련 문의는 어떻게 하나요?</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>원료명과 필요 수량을 기재하여 원료·기술 문의로 남겨 주시면 담당자가 안내해 드립니다.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q6" aria-controls="faq-a6" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">인증·특허·수상 정보는 어디에서 확인하나요?</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>회사소개 &gt; 특허·인증·수상 메뉴에서 확인하실 수 있습니다.</p>
+            </div>
+          </li>
+          <li class="faq__item">
+            <h3>
+              <button type="button" class="faq__q" id="faq-q7" aria-controls="faq-a7" aria-expanded="false">
+                <span class="faq__mark" aria-hidden="true">Q</span>
+                <span class="faq__q-txt">식품 원료와 화장품 원료는 어떻게 구분하나요?</span>
+                <span class="faq__toggle" aria-hidden="true"><img src="../../img/sub/news/ico-plus.png" alt="" class="faq__plus"><img src="../../img/sub/news/ico-minus.png" alt="" class="faq__minus"></span>
+              </button>
+            </h3>
+            <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7" hidden>
+              <span class="faq__mark" aria-hidden="true">A</span>
+              <p>원료소개 메뉴에서 화장품원료와 식품첨가물 카테고리로 구분하여 안내하고 있습니다.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="faq__inquiry">
+          <div>
+            <p class="faq__inquiry-title">찾으시는 답변이 없으신가요?</p>
+            <p class="faq__inquiry-desc">궁금한 원료와 문의 내용을 남겨 주세요.</p>
+          </div>
+          <a href="#" class="btn-direction">원료 · 기술 문의<i aria-hidden="true">↗</i></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 공통 FOOTER -->
+  <div id="include-footer"></div>
+
+  <script src="../../js/include.js" defer></script>
+  <script src="../../js/sub.js" defer></script>
+</body>
+
+</html>

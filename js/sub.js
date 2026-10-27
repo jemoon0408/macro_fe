@@ -3,6 +3,11 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* sub.js 위치(js/) 기준 프로젝트 루트 → 페이지 깊이와 상관없이 이미지 경로 계산 */
+  const ROOT_URL = document.currentScript
+    ? new URL("../", document.currentScript.src)
+    : new URL("../../", window.location.href);
+
 
   /* =========================================================
      회사개요 : 인증 로고 무한 흐름
@@ -145,6 +150,71 @@
           }
         });
       });
+    });
+  }
+
+
+  /* =========================================================
+     FAQ : 아코디언 (하나만 펼침)
+  ========================================================= */
+
+  function initAccordion() {
+    document.querySelectorAll("[data-accordion]").forEach(function (list) {
+      const items = list.querySelectorAll(".faq__item");
+
+      function setOpen(item, open) {
+        const button = item.querySelector(".faq__q");
+        const panel = document.getElementById(button.getAttribute("aria-controls"));
+
+        item.classList.toggle("is-open", open);
+        button.setAttribute("aria-expanded", String(open));
+        panel.hidden = !open;
+      }
+
+      items.forEach(function (item) {
+        item.querySelector(".faq__q").addEventListener("click", function () {
+          const willOpen = !item.classList.contains("is-open");
+
+          items.forEach(function (other) {
+            setOpen(other, other === item && willOpen);
+          });
+        });
+      });
+    });
+  }
+
+
+  /* =========================================================
+     프로모션 : 썸네일을 불러오지 못하면 대체 이미지
+     - 썸네일 없는 게시물과 같은 모양 (.promo-card__img--empty + 로고)
+  ========================================================= */
+
+  function initPromoFallback() {
+    const logo = new URL("img/common/logo.png", ROOT_URL).href;
+
+    function toEmpty(img) {
+      const box = img.parentElement;
+
+      box.classList.add("promo-card__img--empty");
+      img.classList.add("promo-card__logo");
+      img.src = logo;
+    }
+
+    document.querySelectorAll(".promo-card__img:not(.promo-card__img--empty) img").forEach(function (img) {
+      if (!img.getAttribute("src")) {
+        toEmpty(img);
+        return;
+      }
+
+      /* defer 실행 전에 이미 실패한 경우 (complete + 크기 0) 도 처리 */
+      if (img.complete && !img.naturalWidth) {
+        toEmpty(img);
+        return;
+      }
+
+      img.addEventListener("error", function () {
+        toEmpty(img);
+      }, { once: true });
     });
   }
 
@@ -336,6 +406,8 @@
 
 
   initMission();
+  initAccordion();
+  initPromoFallback();
   initIdentity();
   initCertMarquee();
   initFillText();
