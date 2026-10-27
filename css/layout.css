@@ -80,7 +80,7 @@ main {
   align-items: center;
   height: 100%;
   padding: 0 24px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.45;
   color: var(--ink-deep);
@@ -140,24 +140,24 @@ main {
 
 .gnb__intro-en {
   font-family: var(--font-serif);
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 1.05;
   color: var(--brand);
 }
 
 .gnb__intro-en--sm {
-  font-size: 42px;
+  font-size: 2.625rem;
 }
 
 .gnb__intro-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
 }
 
 .gnb__intro-desc {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -176,7 +176,7 @@ main {
   height: 46px;
   padding: 0 16px;
   border-radius: 23px;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.5;
   color: var(--ink);
   transition: background-color .2s;
@@ -214,7 +214,7 @@ main {
 }
 
 .gnb__figure figcaption {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -230,7 +230,7 @@ main {
   display: flex;
   gap: 4px;
   font-family: var(--font-en);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.45;
   color: var(--ink-deep);
 }
@@ -242,7 +242,7 @@ main {
   border-radius: 32px;
   background: var(--ink);
   font-family: var(--font-en);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.45;
   color: var(--white);
@@ -362,7 +362,7 @@ main {
     height: 36px;
     padding: 0;
     border-radius: 18px;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 15px;
   }
 
@@ -474,7 +474,7 @@ main {
 
   .gnb__intro-en,
   .gnb__intro-en--sm {
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 27px;
     color: var(--white);
   }
@@ -495,7 +495,7 @@ main {
     height: 49px;
     padding: 0;
     border-radius: 0;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 17px;
   }
 
@@ -514,7 +514,7 @@ main {
 
   .gnb__sub i::before {
     content: "→";
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
 }
@@ -552,7 +552,7 @@ html.is-menu-lock body {
 
 .footer__slogan {
   font-family: var(--font-en);
-  font-size: 60px;
+  font-size: 3.75rem;
   line-height: 1.2;
 }
 
@@ -573,7 +573,7 @@ html.is-menu-lock body {
 }
 
 .footer__cta-text {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.4;
   color: var(--accent-light);
@@ -586,7 +586,7 @@ html.is-menu-lock body {
   padding: 17px 24px;
   border-radius: 32px;
   background: var(--white);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.45;
   color: var(--brand);
@@ -595,7 +595,7 @@ html.is-menu-lock body {
 
 .footer__cta-btn i {
   font-family: var(--font-en);
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
 }
 
@@ -620,7 +620,7 @@ html.is-menu-lock body {
 }
 
 .footer__address {
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.4;
   color: rgba(255, 255, 255, .8);
 }
@@ -639,7 +639,7 @@ html.is-menu-lock body {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 22px;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.4;
   color: rgba(255, 255, 255, .6);
 }
@@ -664,11 +664,11 @@ html.is-menu-lock body {
   }
 
   .footer__slogan {
-    font-size: 46px;
+    font-size: 2.875rem;
   }
 
   .footer__cta-text {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .footer__info {
@@ -693,7 +693,7 @@ html.is-menu-lock body {
   }
 
   .footer__slogan {
-    font-size: 27px;
+    font-size: 1.6875rem;
     line-height: 1.28;
   }
 
@@ -703,7 +703,7 @@ html.is-menu-lock body {
   }
 
   .footer__cta-text {
-    font-size: 19px;
+    font-size: 1.1875rem;
     line-height: 1.5;
   }
 
@@ -713,7 +713,7 @@ html.is-menu-lock body {
     height: 44px;
     padding: 0 16px;
     border-radius: 24px;
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.5;
   }
 
@@ -733,12 +733,12 @@ html.is-menu-lock body {
   }
 
   .footer__address {
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 19px;
   }
 
   .footer__links {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
 }

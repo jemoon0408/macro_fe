@@ -164,10 +164,17 @@ html.kbd-nav textarea:focus-visible {
 }
 /* 기본 리셋은 reset.css 에서 처리. 여기서는 이 프로젝트 고유 스타일만 정의 */
 
-/* rem 기반 유동 스케일: 화면 폭이 줄어들면 html 기준 font-size가 함께 줄어들어
-   rem 단위로 작성된 폰트/아이콘/여백이 자연스럽게 같이 축소된다. */
+/* rem 기준 : html 16px (1rem = 16px)
+   모든 font-size 는 rem 으로 작성 → 화면 폭이 줄어들면 html 기준값이 조금씩 줄어들며 함께 축소
+   (각 구간의 모바일 전용 크기와 겹쳐 작아지므로 단계는 완만하게 유지) */
 html {
   font-size: 16px;
+}
+
+@media (max-width:1440px) {
+  html {
+    font-size: 15.75px;
+  }
 }
 
 @media (max-width:1200px) {
@@ -176,32 +183,26 @@ html {
   }
 }
 
-@media (max-width:876px) {
+@media (max-width:1024px) {
   html {
-    font-size: 15px;
+    font-size: 15.25px;
   }
 }
 
 @media (max-width:768px) {
   html {
-    font-size: 14.5px;
-  }
-}
-
-@media (max-width:580px) {
-  html {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
 @media (max-width:480px) {
   html {
-    font-size: 13.5px;
+    font-size: 14.5px;
   }
 }
 
-@media (max-width:320px) {
+@media (max-width:360px) {
   html {
-    font-size: 13px;
+    font-size: 14px;
   }
 }

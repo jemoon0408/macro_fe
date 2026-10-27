@@ -11,7 +11,7 @@
 .c-select {
   --select-h: 56px;
   --select-px: 30px;
-  --select-fs: 16px;
+  --select-fs: 1rem;
   --select-bg: rgba(55, 128, 123, .07);
   --select-color: var(--muted);
   --select-radius: 100px;
@@ -155,7 +155,7 @@ html.kbd-nav .c-select__btn:focus-visible {
   .c-select {
     --select-h: 48px;
     --select-px: 18px;
-    --select-fs: 14px;
+    --select-fs: 0.875rem;
   }
 
   .c-select select {

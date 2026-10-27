@@ -26,13 +26,13 @@
 
 .sec-head__en {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.1;
   color: var(--brand);
 }
 
 .sec-head__title {
-  font-size: 38px;
+  font-size: 2.375rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
@@ -54,7 +54,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .sub-visual__title {
-  font-size: 54px;
+  font-size: 3.375rem;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -141,7 +141,7 @@
   height: 63px;
   padding: 0 38px;
   border-radius: 12px 12px 0 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.5;
   color: #849593;
   white-space: nowrap;
@@ -170,7 +170,7 @@
 .check-list li {
   display: flex;
   gap: 15px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -210,7 +210,7 @@
   border-radius: 12px;
   background: rgba(15, 42, 42, .6);
   box-shadow: inset 0 0 15px rgba(15, 42, 42, .73);
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.2;
   text-align: center;
   color: var(--white);
@@ -225,7 +225,7 @@
   border: 1px solid rgba(0, 127, 118, .2);
   border-radius: 50%;
   background: var(--white);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--brand);
   transition: background-color .2s, color .2s, opacity .2s;
@@ -290,19 +290,19 @@
 
 .ov-identity__en {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.1;
   color: var(--brand);
 }
 
 .ov-identity__title {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .ov-identity__title strong {
-  font-size: 52px;
+  font-size: 3.25rem;
   line-height: 1.3;
 }
 
@@ -374,7 +374,7 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -466,12 +466,12 @@
 }
 
 .ov-facts__card dt {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--muted);
 }
 
 .ov-facts__card dd {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--ink);
 }
@@ -482,7 +482,7 @@
 }
 
 .ov-facts__client h3 {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--ink);
 }
@@ -493,7 +493,7 @@
 }
 
 .ov-facts__client p {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--muted);
 }
 
@@ -554,7 +554,7 @@
 }
 
 .ov-cert__item p {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.5;
   color: var(--ink);
 }
@@ -637,20 +637,20 @@
 
 .ov-expertise__en {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.1;
 }
 
 .ov-expertise__txt h3 {
   margin-top: 8px;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .ov-expertise__desc {
   margin-top: 17px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
 }
 
@@ -700,19 +700,19 @@
 }
 
 .ov-facility__name h3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--ink);
 }
 
 .ov-facility__name p {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--muted);
 }
 
 .ov-facility__area {
   font-family: var(--font-en);
-  font-size: 35px;
+  font-size: 2.1875rem;
   line-height: 1.5;
   color: var(--brand);
   white-space: nowrap;
@@ -746,7 +746,7 @@
 }
 
 .vs-intro__title {
-  font-size: 56px;
+  font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.25;
   color: var(--ink);
@@ -754,7 +754,7 @@
 
 .vs-intro__en {
   font-family: var(--font-serif);
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 1.1;
   color: var(--brand);
 }
@@ -791,7 +791,7 @@
   border-radius: 18px;
   background: var(--white);
   font-family: var(--font-en);
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--brand);
 }
 
@@ -802,7 +802,7 @@
 }
 
 .mission__label b {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 /* 번호와 카드를 잇는 세로 연결선 */
@@ -863,14 +863,14 @@
 }
 
 .mission__txt strong {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .mission__txt em {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   line-height: 1.1;
 }
@@ -993,7 +993,7 @@
 
 .core-ring strong {
   top: calc(50% + var(--txt-gap));
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
@@ -1002,7 +1002,7 @@
 .core-ring em {
   top: calc(50% + var(--txt-gap) + 51px);
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   line-height: 1.1;
   color: var(--brand);
@@ -1067,13 +1067,13 @@
 
 .values__en {
   font-family: var(--font-serif);
-  font-size: 46px;
+  font-size: 2.875rem;
   line-height: 1.1;
   color: var(--brand);
 }
 
 .values__title {
-  font-size: 38px;
+  font-size: 2.375rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
@@ -1124,13 +1124,13 @@
 }
 
 .values__txt h3 {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--ink);
 }
 
 .values__txt p {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: var(--muted);
 }
 
@@ -1158,13 +1158,13 @@
 
 .history__en {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.1;
   color: var(--brand);
 }
 
 .history__title {
-  font-size: 52px;
+  font-size: 3.25rem;
   font-weight: 700;
   line-height: 1.32;
   color: var(--ink);
@@ -1205,13 +1205,13 @@
 }
 
 .history__visual h3 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .history__visual p {
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 1.5;
 }
 
@@ -1265,7 +1265,7 @@
 
 .history__timeline strong {
   display: block;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
@@ -1273,7 +1273,7 @@
 
 .history__timeline p {
   margin-top: 17px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -1297,7 +1297,7 @@
   height: 52px;
   border-radius: 26px;
   background: var(--soft);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--muted);
   transition: background-color .2s, color .2s;
@@ -1353,7 +1353,7 @@
 
 .location__addr-label {
   font-family: var(--font-en);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.5;
   color: var(--brand);
@@ -1361,7 +1361,7 @@
 
 .location__addr address {
   margin-top: 16px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
@@ -1369,7 +1369,7 @@
 
 .location__tel {
   margin-top: 16px;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--muted);
@@ -1384,7 +1384,7 @@
   height: 48px;
   border-radius: 24px;
   background: var(--brand);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--white);
   transition: background-color .2s;
@@ -1413,14 +1413,14 @@
 
 .parking__en {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.1;
   color: var(--brand);
 }
 
 .parking__title {
   margin-top: 18px;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
@@ -1428,7 +1428,7 @@
 
 .parking__desc {
   margin-top: 18px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -1437,7 +1437,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--ink);
 }
@@ -1486,20 +1486,20 @@
 
 .pd-visual__en {
   font-family: var(--font-serif);
-  font-size: 92px;
+  font-size: 5.75rem;
   line-height: 1.05;
   color: var(--brand);
 }
 
 .pd-visual__title {
-  font-size: 54px;
+  font-size: 3.375rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
 }
 
 .pd-visual__desc {
-  font-size: 22px;
+  font-size: 1.375rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -1545,7 +1545,7 @@
   padding: 0 20px;
   border-radius: 26px;
   background: var(--soft);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--muted);
@@ -1562,10 +1562,11 @@
   color: var(--white);
 }
 
+/* 2열 유지 (480px 이하만 1열) · 카드 높이·여백·글자는 화면 폭에 따라 연속으로 축소 */
 .ingredient-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
 }
 
 .ingredient-card {
@@ -1573,9 +1574,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 232px;
-  padding: 30px 28px 28px;
-  border-radius: 28px;
+  height: clamp(10rem, 19vw, 14.5rem);
+  padding: clamp(1rem, 2.2vw, 1.875rem) clamp(1rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.75rem);
+  border-radius: clamp(1rem, 2vw, 1.75rem);
   overflow: hidden;
   background: var(--white) var(--bg) center / cover no-repeat;
   box-shadow: 2px 4px 10px 3px rgba(0, 0, 0, .06);
@@ -1608,32 +1609,33 @@
 }
 
 .ingredient-card__cat {
-  font-size: 16px;
+  font-size: clamp(0.8125rem, 0.6rem + 0.45vw, 1rem);
   font-weight: 700;
   line-height: 1.5;
   color: var(--brand);
 }
 
 .ingredient-card__name {
-  margin-top: 12px;
+  margin-top: clamp(0.125rem, 0.8vw, 0.75rem);
   font-family: var(--font-en);
-  font-size: 32px;
+  font-size: clamp(1.125rem, 0.75rem + 1.3vw, 2rem);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.4;
   color: var(--ink);
+  word-break: keep-all;
 }
 
 .ingredient-card__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 144px;
-  height: 44px;
+  gap: clamp(0.375rem, 0.8vw, 0.75rem);
+  width: clamp(6.75rem, 10vw, 9rem);
+  height: clamp(2.25rem, 3.4vw, 2.75rem);
   margin-top: auto;
   border: 1px solid var(--brand);
-  border-radius: 26px;
-  font-size: 16px;
+  border-radius: 1.625rem;
+  font-size: clamp(0.8125rem, 0.6rem + 0.45vw, 1rem);
   font-weight: 700;
   line-height: 1.5;
   color: var(--brand);
@@ -1670,7 +1672,7 @@
 
 .ingredient-empty {
   padding: 60px 0;
-  font-size: 18px;
+  font-size: 1.125rem;
   text-align: center;
   color: var(--muted);
 }
@@ -1695,7 +1697,7 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -1767,7 +1769,7 @@
   border-radius: 12px;
   background: rgba(15, 42, 42, .6);
   box-shadow: inset 0 0 15px rgba(15, 42, 42, .73);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -1778,7 +1780,7 @@
   padding: 0;
   background: none;
   box-shadow: none;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .feature-card__body {
@@ -1795,14 +1797,14 @@
 
 .feature-card__name {
   font-family: var(--font-en);
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.5;
 }
 
 .feature-card__desc {
   margin-top: 8px;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.5;
   opacity: .84;
 }
@@ -1821,7 +1823,7 @@
   height: 44px;
   border-radius: 22px;
   background: var(--white);
-  font-size: 12px;
+  font-size: 0.85rem;
   line-height: 1.5;
   color: var(--brand);
   transition: background-color .2s, color .2s;
@@ -1849,7 +1851,7 @@
 
 .pd-feature__count {
   font-family: var(--font-en);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--brand);
 }
@@ -1883,7 +1885,7 @@
   width: 100%;
   height: 100%;
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: .04em;
   fill: rgba(255, 255, 255, .55);
   animation: sample-rotate 14s linear infinite;
@@ -1897,7 +1899,7 @@
 
 .sample-btn__txt {
   position: relative;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
@@ -2000,7 +2002,7 @@
 @media (max-width: 1024px) {
   /* 공통 */
   .sec-head__title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .sub-visual {
@@ -2018,12 +2020,12 @@
   }
 
   .sub-visual__title {
-    font-size: 42px;
+    font-size: 2.625rem;
   }
 
   .sub-tab__list a {
     padding: 0 28px;
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   /* 회사개요 */
@@ -2046,7 +2048,7 @@
 
   /* 비전 */
   .vs-intro__title {
-    font-size: 46px;
+    font-size: 2.875rem;
   }
 
   .mission {
@@ -2070,11 +2072,11 @@
   }
 
   .mission__txt strong {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .mission__txt em {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .core-diagram {
@@ -2086,12 +2088,12 @@
   }
 
   .core-ring strong {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .core-ring em {
     top: calc(50% + var(--txt-gap) + 40px);
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .values {
@@ -2108,11 +2110,11 @@
   }
 
   .values__en {
-    font-size: 38px;
+    font-size: 2.375rem;
   }
 
   .values__title {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .values__list {
@@ -2142,16 +2144,16 @@
   }
 
   .values__txt h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .values__txt p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   /* 연혁 */
   .history__title {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   .history__decade {
@@ -2166,11 +2168,11 @@
   }
 
   .history__visual h3 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .history__visual p {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 
   .history__timeline {
@@ -2178,12 +2180,12 @@
   }
 
   .history__timeline strong {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 
   .history__timeline p {
     margin-top: 12px;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   /* 오시는 길 */
@@ -2203,15 +2205,15 @@
 
   /* 원료소개 */
   .pd-visual__en {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .pd-visual__title {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   .pd-visual__desc {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .pd-visual__img {
@@ -2235,10 +2237,6 @@
   .chip {
     padding: 0 26px;
   }
-
-  .ingredient-card__name {
-    font-size: 28px;
-  }
 }
 
 /* =========================================================
@@ -2259,16 +2257,16 @@
   }
 
   .sec-head__en {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.2;
   }
 
   .sec-head__title {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
 
   .breadcrumb {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .breadcrumb li + li::before {
@@ -2295,7 +2293,7 @@
   }
 
   .sub-visual__title {
-    font-size: 30px;
+    font-size: 1.875rem;
     line-height: 44px;
   }
 
@@ -2307,7 +2305,7 @@
   .sub-tab__list a {
     height: 43px;
     padding: 0 15px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .check-list {
@@ -2316,7 +2314,7 @@
 
   .check-list li {
     gap: 10px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .photo-grid {
@@ -2334,7 +2332,7 @@
     min-width: 56px;
     padding: 8px 10px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .circle-btn {
@@ -2344,15 +2342,15 @@
 
   /* 회사개요 */
   .ov-identity__en {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .ov-identity__title {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .ov-identity__title strong {
-    font-size: 34px;
+    font-size: 2.125rem;
   }
 
   .ov-identity__photo {
@@ -2396,7 +2394,7 @@
 
   .ov-identity__list li {
     gap: 10px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ov-identity__ico {
@@ -2441,11 +2439,11 @@
   }
 
   .ov-facts__card dt {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .ov-facts__card dd {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .ov-facts__client .ov-facts__card {
@@ -2453,11 +2451,11 @@
   }
 
   .ov-facts__client h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .ov-facts__client p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ov-cert {
@@ -2488,7 +2486,7 @@
   }
 
   .ov-cert__item p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ov-expertise {
@@ -2518,17 +2516,17 @@
   }
 
   .ov-expertise__en {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ov-expertise__txt h3 {
     margin-top: 4px;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .ov-expertise__desc {
     margin-top: 8px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ov-facility {
@@ -2557,17 +2555,17 @@
   }
 
   .ov-facility__name h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .ov-facility__name p {
     width: 100%;
     padding-left: 30px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .ov-facility__area {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   /* 비전 */
@@ -2591,11 +2589,11 @@
   }
 
   .vs-intro__title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .vs-intro__en {
-    font-size: 23px;
+    font-size: 1.4375rem;
     line-height: 1.2;
   }
 
@@ -2639,18 +2637,18 @@
     display: block;
     margin-bottom: 10px;
     font-family: var(--font-en);
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 12px;
     color: #a9c8c4;
   }
 
   .mission__txt strong {
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 28px;
   }
 
   .mission__txt em {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 21px;
   }
 
@@ -2694,13 +2692,13 @@
   }
 
   .core-ring strong {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.2;
   }
 
   .core-ring em {
     top: calc(50% + var(--txt-gap) + 24px);
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .vs-values {
@@ -2734,12 +2732,12 @@
   }
 
   .values__en {
-    font-size: 25px;
+    font-size: 1.5625rem;
     line-height: 32px;
   }
 
   .values__title {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
 
   .values__list {
@@ -2775,14 +2773,14 @@
   }
 
   .values__txt h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 24px;
   }
 
   .values__txt p {
     grid-column: 1 / -1;
     align-self: start;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 18px;
   }
 
@@ -2802,11 +2800,11 @@
   }
 
   .history__en {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .history__title {
-    font-size: 26px;
+    font-size: 1.625rem;
     line-height: 1.4;
   }
 
@@ -2832,11 +2830,11 @@
   }
 
   .history__visual h3 {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 
   .history__visual p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .history__timeline {
@@ -2845,12 +2843,12 @@
   }
 
   .history__timeline strong {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .history__timeline p {
     margin-top: 6px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .history__timeline li::before {
@@ -2872,7 +2870,7 @@
 
   .pill-tab button {
     height: 44px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .location__panel .inner {
@@ -2899,23 +2897,23 @@
   }
 
   .location__addr-label {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .location__addr address {
     margin-top: 8px;
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .location__tel {
     margin-top: 8px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .btn-direction {
     width: 100%;
     height: 44px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .parking {
@@ -2927,22 +2925,22 @@
   }
 
   .parking__en {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .parking__title {
     margin-top: 10px;
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .parking__desc {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .parking__list {
     gap: 6px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .parking__map {
@@ -2969,15 +2967,15 @@
   }
 
   .pd-visual__en {
-    font-size: 52px;
+    font-size: 3.25rem;
   }
 
   .pd-visual__title {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .pd-visual__desc {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .pd-visual__img {
@@ -3003,34 +3001,7 @@
   .chip {
     height: 42px;
     padding: 0 20px;
-    font-size: 15px;
-  }
-
-  .ingredient-list {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .ingredient-card {
-    height: 180px;
-    padding: 20px;
-    border-radius: 20px;
-  }
-
-  .ingredient-card__cat {
-    font-size: 14px;
-  }
-
-  .ingredient-card__name {
-    margin-top: 4px;
-    font-size: 24px;
-  }
-
-  .ingredient-card__btn {
-    gap: 8px;
-    width: 120px;
-    height: 38px;
-    font-size: 14px;
+    font-size: 0.9375rem;
   }
 
   .pagination {
@@ -3042,7 +3013,7 @@
   .pagination__list a {
     width: 40px;
     height: 40px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .pd-feature {
@@ -3063,14 +3034,14 @@
     top: 14px;
     left: 14px;
     padding: 10px 12px;
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .feature-card__badge--plain {
     top: 20px;
     left: 20px;
     padding: 0;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .feature-card__body {
@@ -3083,12 +3054,12 @@
   }
 
   .feature-card__name {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .feature-card__desc {
     margin-top: 4px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .feature-card__links {
@@ -3099,7 +3070,7 @@
   .feature-card__links a {
     gap: 4px;
     height: 38px;
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 
   .pd-feature__nav {
@@ -3114,17 +3085,34 @@
   }
 
   .sample-btn__ring {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .sample-btn__txt {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 }
 
 .circle-btn.swiper-button-disabled {
   opacity: .4;
   pointer-events: none;
+}
+
+/* =========================================================
+   반응형 : 480px 이하
+========================================================= */
+@media (max-width: 480px) {
+  .ingredient-list {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-card {
+    height: 10.5rem;
+  }
+
+  .ingredient-card__name {
+    font-size: 1.375rem;
+  }
 }
 
 
@@ -3173,7 +3161,7 @@
   width: 300px;
   height: 56px;
   padding: 0 20px 0 30px;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--ink);
 }
@@ -3190,13 +3178,13 @@
 
 .board-total {
   flex-shrink: 0;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
 
 .board-total strong {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--brand);
 }
@@ -3211,7 +3199,7 @@
   position: relative;
   padding: 15px 12px;
   background: #eaf4f2;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
@@ -3240,7 +3228,7 @@
 .board-list td {
   padding: 22px 12px;
   border-bottom: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.4;
   text-align: center;
   color: var(--muted);
@@ -3323,7 +3311,7 @@
   align-items: center;
   gap: 4px;
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.2;
   color: var(--brand);
 }
@@ -3336,7 +3324,7 @@
 .promo-card__title {
   margin-top: 12px;
   overflow: hidden;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.5;
   text-overflow: ellipsis;
@@ -3348,7 +3336,7 @@
   display: flex;
   gap: 8px;
   margin-top: 50px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
   color: var(--brand);
@@ -3399,14 +3387,14 @@
   width: 130px;
   padding: 8px 12px;
   background: #f2f2f2;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--ink);
 }
 
 .board-view td {
   padding: 15px 12px;
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--muted);
 }
 
@@ -3423,7 +3411,7 @@
 }
 
 .board-view__file span {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #c4c4c4;
 }
 
@@ -3454,7 +3442,7 @@
   display: flex;
   flex-direction: column;
   gap: 27px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -3473,7 +3461,7 @@
   width: 214px;
   height: 46px;
   border-radius: 23px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--brand);
   transition: background-color .2s;
@@ -3510,20 +3498,20 @@
 
 .faq__en {
   font-family: var(--font-serif);
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 38px;
   color: var(--brand);
 }
 
 .faq__title {
-  font-size: 46px;
+  font-size: 2.875rem;
   font-weight: 700;
   line-height: 69px;
   color: var(--ink);
 }
 
 .faq__desc {
-  font-size: 19px;
+  font-size: 1.1875rem;
   line-height: 29px;
   color: var(--muted);
 }
@@ -3557,7 +3545,7 @@
   flex-shrink: 0;
   width: 32px;
   font-family: var(--font-en);
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 30px;
   color: var(--brand);
@@ -3566,7 +3554,7 @@
 .faq__q-txt {
   flex: 1;
   padding: 26px 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 36px;
   color: var(--ink);
@@ -3620,7 +3608,7 @@
 }
 
 .faq__a p {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 34px;
   color: var(--muted);
 }
@@ -3636,7 +3624,7 @@
 }
 
 .faq__inquiry-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 36px;
   color: var(--ink);
@@ -3644,7 +3632,7 @@
 
 .faq__inquiry-desc {
   margin-top: 6px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 27px;
   color: var(--muted);
 }
@@ -3670,21 +3658,21 @@
   }
 
   .promo-card__title {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 
   .faq__title {
-    font-size: 38px;
+    font-size: 2.375rem;
     line-height: 1.4;
   }
 
   .faq__q-txt {
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1.5;
   }
 
   .faq__a p {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.7;
   }
 }
@@ -3706,12 +3694,12 @@
   }
 
   .board-total {
-    font-size: 15px;
+    font-size: 0.9375rem;
     text-align: right;
   }
 
   .board-total strong {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .board-search {
@@ -3727,7 +3715,7 @@
     width: 100%;
     height: 48px;
     padding: 0 12px 0 16px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .board-search__btn img {
@@ -3744,7 +3732,7 @@
 
   .board-list thead th {
     padding: 12px 10px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .board-list thead th.board-list__title {
@@ -3762,7 +3750,7 @@
 
   .board-list td {
     padding: 16px 10px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .board-list td.board-list__title {
@@ -3792,17 +3780,17 @@
 
   .promo-card__date {
     margin-top: 14px;
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .promo-card__title {
     margin-top: 6px;
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .promo-card__more {
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   /* 상세 테이블 : 한 줄에 항목 하나 */
@@ -3833,16 +3821,16 @@
   .board-view th {
     justify-content: center;
     width: auto;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .board-view td {
     padding: 12px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .board-view__file span {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .board-view__body {
@@ -3857,7 +3845,7 @@
 
   .board-view__txt {
     gap: 16px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .board-view__btns {
@@ -3877,16 +3865,16 @@
   }
 
   .faq__en {
-    font-size: 19px;
+    font-size: 1.1875rem;
     line-height: 1.3;
   }
 
   .faq__title {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   .faq__desc {
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5;
   }
 
@@ -3907,12 +3895,12 @@
 
   .faq__mark {
     width: 18px;
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .faq__q-txt {
     padding: 16px 0;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .faq__toggle {
@@ -3932,7 +3920,7 @@
   }
 
   .faq__a p {
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.6;
   }
 
@@ -3944,12 +3932,12 @@
   }
 
   .faq__inquiry-title {
-    font-size: 19px;
+    font-size: 1.1875rem;
     line-height: 1.4;
   }
 
   .faq__inquiry-desc {
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5;
   }
 }

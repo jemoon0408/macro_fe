@@ -34,7 +34,7 @@
 
 
   /* =========================================================
-     회사개요 : 기업 정체성 (GSAP ScrollTrigger scrub)
+     회사개요 : 기업 정체성
      - 스테이지를 스크롤하는 동안 화면(sticky)이 고정된 채
        1. 사진 4장이 아래에서 순서대로 제자리로 모임
        2. 슬로건이 왼쪽부터 채워짐
@@ -59,7 +59,6 @@
     const q = gsap.utils.selector(section);
     const stage = q(".ov-identity__stage")[0];
     const wrap = q(".ov-identity__wrap")[0];
-    /* invalidateOnRefresh 사용 시 from() 은 도착값이 숨김 상태로 다시 잡히므로 fromTo 로 도착값 고정 */
     const from = { y: "80vh", opacity: 0 };
     const to = { y: 0, opacity: 1, duration: 1.2 };
 
@@ -103,7 +102,7 @@
 
 
   /* =========================================================
-     비전 : 미션 카드 (GSAP ScrollTrigger scrub)
+     비전 : 미션 카드
      - 스크롤하는 만큼 카드가 아래에서 하나씩 스르륵 떠오름 (위로 스크롤 시 되감김)
   ========================================================= */
 
