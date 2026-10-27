@@ -113,7 +113,6 @@ main {
   width: 100%;
   padding: 32px 0 84px;
   background: var(--white);
-  border-radius: 0 0 28px 28px;
   visibility: hidden;
   opacity: 0;
   transition: opacity .2s, visibility .2s;
@@ -267,6 +266,263 @@ main {
 .header__dim.is-show {
   opacity: .4;
   visibility: visible;
+}
+
+/* 전체 메뉴 버튼 : 1200px 이하에서만 노출 */
+.header__menu-btn {
+  display: none;
+}
+
+
+/* =========================================================
+   HEADER (1200px 이하 : 모바일 메뉴)
+   - 상단 바 : 로고 + 메뉴 버튼 (60px)
+   - 메뉴 열림(.is-menu-open) : 헤더 전체가 화면을 덮는 패널로 전환
+     1행 로고·닫기 / 2행 언어·YouTube / 3행 1depth 아코디언 (세로 스크롤)
+   - PC 와 같은 마크업을 사용, 1depth 클릭 시 2depth 펼침 (header.js)
+========================================================= */
+@media (max-width: 1200px) {
+  .header {
+    height: 60px;
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 60px;
+    height: 60px;
+    padding: 0 20px;
+    background: var(--white);
+  }
+
+  /* 상단 바 하단 경계선 */
+  .header__inner::after {
+    top: 59px;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    background: #ededed;
+    opacity: 1;
+  }
+
+  .header__logo {
+    grid-area: 1 / 1;
+  }
+
+  .header__logo a,
+  .header__logo img {
+    width: 132px;
+    height: 25.2px;
+  }
+
+  .gnb,
+  .header__util,
+  .header__dim {
+    display: none;
+  }
+
+  .header__menu-btn {
+    display: block;
+    grid-area: 1 / 2;
+    width: 44px;
+    height: 44px;
+    background: url("../img/common/ico-menu.png") center / 24px no-repeat;
+  }
+
+  /* ----- 메뉴 열림 ----- */
+  .header.is-menu-open .header__inner {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    grid-template-rows: 60px 52px minmax(0, 1fr);
+    height: auto;
+  }
+
+  .header.is-menu-open .header__menu-btn {
+    background-image: url("../img/common/ico-close.png");
+  }
+
+  /* 언어 / YouTube */
+  .header.is-menu-open .header__util {
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: space-between;
+  }
+
+  .header__lang {
+    gap: 12px;
+  }
+
+  .header__youtube {
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 112px;
+    height: 36px;
+    padding: 0;
+    border-radius: 18px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  /* 1depth 아코디언 */
+  .header.is-menu-open .gnb {
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    align-self: stretch;
+    height: auto;
+    margin: 0 -20px;
+    padding: 10px 20px 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .gnb__list {
+    flex-direction: column;
+    gap: 0;
+    height: auto;
+  }
+
+  .gnb__link {
+    justify-content: space-between;
+    height: 59px;
+    padding: 0 16px;
+    border-radius: 12px;
+    line-height: 32px;
+    color: var(--ink);
+    transition: background-color .2s, color .2s;
+  }
+
+  .gnb__link::after {
+    position: static;
+    width: 24px;
+    height: 24px;
+    background: url("../img/common/ico-plus.png") center / contain no-repeat;
+    transform: none;
+    transition: none;
+  }
+
+  .gnb__item.is-active .gnb__link::after {
+    transform: none;
+  }
+
+  .gnb__item.is-open .gnb__link {
+    background: var(--brand);
+    color: var(--white);
+  }
+
+  .gnb__item.is-open .gnb__link::after {
+    background-image: url("../img/common/ico-minus.png");
+  }
+
+  /* 2depth */
+  .gnb__depth2,
+  .gnb__item.is-active .gnb__depth2 {
+    position: static;
+    display: none;
+    padding: 16px 16px 10px;
+    border-radius: 12px;
+    background: var(--soft);
+    visibility: visible;
+    opacity: 1;
+    transition: none;
+  }
+
+  .gnb__item.is-open .gnb__depth2 {
+    display: block;
+  }
+
+  /* 대표 이미지 위에 영문 타이틀을 겹쳐 배너로 */
+  .gnb__depth2-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: auto;
+  }
+
+  .gnb__figure {
+    position: relative;
+    grid-area: 1 / 1;
+    gap: 0;
+    overflow: hidden;
+    border-radius: 9px;
+  }
+
+  .gnb__figure::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .2);
+  }
+
+  .gnb__figure img {
+    width: 100%;
+    height: 80px;
+    border-radius: 0;
+  }
+
+  .gnb__intro {
+    position: relative;
+    z-index: 1;
+    grid-area: 1 / 1;
+    align-self: center;
+    padding: 0 20px;
+  }
+
+  .gnb__intro-en,
+  .gnb__intro-en--sm {
+    font-size: 22px;
+    line-height: 27px;
+    color: var(--white);
+  }
+
+  .gnb__intro-en br,
+  .gnb__intro-title,
+  .gnb__intro-desc,
+  .gnb__figure figcaption {
+    display: none;
+  }
+
+  .gnb__sub {
+    gap: 0;
+  }
+
+  .gnb__sub a {
+    gap: 12px;
+    height: 49px;
+    padding: 0;
+    border-radius: 0;
+    font-size: 15px;
+    line-height: 17px;
+  }
+
+  .gnb__sub a:hover,
+  .gnb__sub a:focus-visible {
+    background: none;
+    color: var(--brand);
+  }
+
+  /* 화살표 ↗ 대신 → (영문 메뉴도 같은 모양이 나오도록 본문 글꼴로 고정) */
+  .gnb__sub i {
+    width: auto;
+    font-family: 'Kakao Big Sans', sans-serif;
+    font-size: 0;
+  }
+
+  .gnb__sub i::before {
+    content: "→";
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* 메뉴 열린 동안 본문 스크롤 잠금 */
+html.is-menu-lock,
+html.is-menu-lock body {
+  overflow: hidden;
 }
 
 
