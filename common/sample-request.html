@@ -1,0 +1,123 @@
+<!-- 샘플 요청 레이어 : [data-sample-open] 버튼으로 열기 (main.js initSampleModal) -->
+<div class="sample-modal" hidden>
+  <div class="sample-modal__dim" data-sample-close></div>
+
+  <div class="sample-modal__layer" role="dialog" aria-modal="true" aria-labelledby="sample-modal-title" tabindex="-1">
+    <div class="sample-modal__head">
+      <button type="button" class="sample-modal__close" data-sample-close aria-label="샘플 요청 닫기"></button>
+    </div>
+
+    <div class="sample-modal__body">
+      <form class="sample-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+        <h2 class="sample-form__title" id="sample-modal-title">Sample Request</h2>
+
+        <div class="sample-form__fields">
+          <div class="sample-form__field sample-form__field--full">
+            <span class="sample-form__label" aria-hidden="true">원료 선택</span>
+            <div class="c-select sample-form__select" data-select>
+              <select name="material" aria-label="원료 선택">
+                <option value="">선택해주세요.</option>
+                <option value="V2G">V2G</option>
+                <option value="Actigen">Actigen</option>
+                <option value="Whitegen">Whitegen</option>
+                <option value="Vitagen">Vitagen</option>
+                <option value="Tocomide">Tocomide</option>
+                <option value="Biopeptide Cu">Biopeptide Cu</option>
+                <option value="Psuedo Ceramides">Psuedo Ceramides</option>
+                <option value="MC-Glucan">MC-Glucan</option>
+                <option value="MC-Salicare">MC-Salicare</option>
+                <option value="Macrocide-OL">Macrocide-OL</option>
+                <option value="SteviLite">SteviLite</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-company">회사명 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-company" name="company" class="sample-form__input" required autocomplete="organization">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-name">담당자 이름 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-name" name="name" class="sample-form__input" required autocomplete="name">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label" for="sr-tel">전화</label>
+            <input type="tel" id="sr-tel" name="tel" class="sample-form__input" autocomplete="tel">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-mobile">휴대전화 <b aria-hidden="true">*</b></label>
+            <input type="tel" id="sr-mobile" name="mobile" class="sample-form__input" required autocomplete="tel">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-email">이메일 <b aria-hidden="true">*</b></label>
+            <input type="email" id="sr-email" name="email" class="sample-form__input" required autocomplete="email">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label" for="sr-file">파일첨부</label>
+            <div class="sample-form__file">
+              <input type="file" id="sr-file" name="file" class="sample-form__file-input">
+              <span class="sample-form__file-name" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="sample-form__field sample-form__field--full">
+            <label class="sample-form__label is-required" for="sr-message">문의내용 <b aria-hidden="true">*</b></label>
+            <textarea id="sr-message" name="message" class="sample-form__input sample-form__textarea" required></textarea>
+          </div>
+        </div>
+
+        <div class="sample-form__agree">
+          <div class="sample-privacy" tabindex="0" role="region" aria-labelledby="sample-privacy-title">
+            <h3 class="sample-privacy__title" id="sample-privacy-title">개인정보 수집 및 이용 동의</h3>
+
+            <div class="sample-privacy__item">
+              <h4 class="sample-privacy__label">수집하는 개인정보 항목</h4>
+              <ul class="sample-privacy__list">
+                <li>수집항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 문의내용 등</li>
+                <li>개인정보 수집방법 : 홈페이지(macro.coreit.co.kr)</li>
+              </ul>
+              <p class="sample-privacy__note">※ 회사는 회원가입, 상담, Contact Us, 서비스 신청 등등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+            </div>
+
+            <div class="sample-privacy__item">
+              <h4 class="sample-privacy__label">개인정보의 수집 및 이용목적</h4>
+              <ul class="sample-privacy__list">
+                <li>기타 고객의 제품문의에 대한 답변 및 제품자료 안내합니다.</li>
+              </ul>
+              <p class="sample-privacy__note">※ 회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
+            </div>
+
+            <div class="sample-privacy__item">
+              <h4 class="sample-privacy__label">개인정보의 보유 및 이용기간</h4>
+              <ul class="sample-privacy__list">
+                <li>보존 항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 문의내용 등</li>
+                <li>보존 근거 : 사이트 운영 기간내 내용 확인을 위한 보존</li>
+                <li>보존 기간 : 본사이트 운영기간내</li>
+              </ul>
+              <p class="sample-privacy__note">※ 원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.</p>
+            </div>
+          </div>
+
+          <label class="sample-form__check">
+            <input type="checkbox" name="agree" required>
+            <span class="sample-form__check-box" aria-hidden="true"></span>
+            <span class="sample-form__check-txt">고객 문의를 위한 [개인정보 수집 및 이용 동의]에 동의합니다.</span>
+          </label>
+        </div>
+
+        <p class="sample-form__msg" role="alert"></p>
+
+        <div class="sample-form__btns">
+          <button type="submit" class="sample-form__submit">
+            <span>샘플 요청하기</span><i aria-hidden="true">→</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

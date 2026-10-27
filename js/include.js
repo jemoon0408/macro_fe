@@ -377,6 +377,20 @@
       );
 
 
+      /* 샘플 요청 레이어 : 여는 버튼([data-sample-open]) 이 있는 페이지만 body 끝에 삽입 */
+      if (document.querySelector("[data-sample-open]")) {
+        const sampleHolder = document.createElement("div");
+
+        sampleHolder.id = "include-sample-request";
+        document.body.appendChild(sampleHolder);
+
+        await includeHTML(
+          "#include-sample-request",
+          "common/sample-request.html"
+        );
+      }
+
+
       /* 퀵메뉴 HTML 생성 이후 실행 */
       initQuickMenu();
 

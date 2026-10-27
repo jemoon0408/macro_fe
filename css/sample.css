@@ -1,0 +1,503 @@
+/* --------------------------------------------------------------------------------
+	sample.css : 샘플 요청 레이어
+--------------------------------------------------------------------------------- */
+
+html.is-modal-lock,
+html.is-modal-lock body {
+  overflow: hidden;
+}
+
+.sample-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.sample-modal[hidden] {
+  display: none;
+}
+
+.sample-modal__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 42, 42, .6);
+  animation: sample-fade .3s both;
+}
+
+.sample-modal__layer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1060px;
+  max-height: min(100%, 880px);
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--white);
+  outline: none;
+  animation: sample-up .35s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+@keyframes sample-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes sample-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.sample-modal__head {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  height: 66px;
+  padding: 0 20px 0 25px;
+  background: var(--line);
+  box-shadow: 0 5px 7.5px rgba(80, 132, 188, .2);
+}
+
+.sample-modal__close {
+  width: 22px;
+  height: 22px;
+  background: url("../img/common/ico-modal-close.png") center / contain no-repeat;
+}
+
+.sample-modal__body {
+  flex: 1;
+  min-height: 0;
+  padding: 54px 37px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* 레이어 · 개인정보 박스 공통 스크롤바 */
+.sample-modal__body,
+.sample-privacy {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 42, 42, .3) transparent;
+}
+
+.sample-modal__body::-webkit-scrollbar,
+.sample-privacy::-webkit-scrollbar {
+  width: 16px;
+}
+
+.sample-modal__body::-webkit-scrollbar-thumb,
+.sample-privacy::-webkit-scrollbar-thumb {
+  border: 5px solid transparent;
+  border-radius: 20px;
+  background: rgba(15, 42, 42, .3) padding-box;
+}
+
+/* ----- 폼 ----- */
+.sample-form {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.sample-form__title {
+  font-family: var(--font-en);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.sample-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px 20px;
+}
+
+.sample-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sample-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.sample-form__label {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.sample-form__label.is-required {
+  color: var(--brand);
+}
+
+.sample-form__label b {
+  font-weight: 700;
+}
+
+.sample-form__input,
+.sample-form__file {
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--soft);
+  font-size: 1rem;
+  color: var(--ink);
+  transition: border-color .2s, background-color .2s;
+}
+
+.sample-form__input:focus,
+.sample-form__file:focus-within {
+  border-color: var(--brand);
+  background: var(--white);
+}
+
+.sample-form__input.is-error {
+  border-color: #d9534f;
+}
+
+.sample-form__textarea {
+  height: 150px;
+  padding: 14px;
+  line-height: 1.5;
+  resize: none;
+}
+
+/* 원료 선택 : 공통 커스텀 셀렉트를 입력칸 모양으로 */
+.sample-form__select {
+  --select-h: 52px;
+  --select-px: 14px;
+  --select-bg: var(--soft);
+  --select-radius: 6px;
+}
+
+.sample-form__select .c-select__btn:hover,
+.sample-form__select.is-open .c-select__btn {
+  background-color: #e8edea;
+}
+
+.sample-form__select .c-select__list {
+  border-radius: 12px;
+}
+
+/* 파일첨부 : 실제 input 을 박스 전체에 투명하게 덮음 */
+.sample-form__file {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sample-form__file::after {
+  content: "파일 선택";
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.sample-form__file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sample-form__file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+/* ----- 개인정보 동의 ----- */
+.sample-form__agree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.sample-privacy {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  height: 340px;
+  padding: 30px 25px;
+  overflow-y: auto;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  outline: none;
+}
+
+.sample-privacy__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.sample-privacy__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sample-privacy__label {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.sample-privacy__list {
+  padding: 20px 20px 20px 44px;
+  border-radius: 6px;
+  background: var(--soft);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.sample-privacy__list li {
+  list-style: disc;
+}
+
+.sample-privacy__note {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.sample-form__check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.sample-form__check input {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.sample-form__check-box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--line);
+  border-radius: 3px;
+  background: var(--white) url("../img/common/ico-check.png") center / 13.6px no-repeat;
+  background-size: 0;
+  transition: background-color .15s, border-color .15s;
+}
+
+.sample-form__check input:checked + .sample-form__check-box {
+  border-color: var(--brand);
+  background-color: var(--brand);
+  background-size: 13.6px;
+}
+
+.sample-form__check input.is-error + .sample-form__check-box {
+  border-color: #d9534f;
+}
+
+.sample-form__check-txt {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.sample-form__msg {
+  margin: -25px 0 -20px;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: #d9534f;
+}
+
+.sample-form__msg:empty {
+  display: none;
+}
+
+.sample-form__btns {
+  display: flex;
+  justify-content: center;
+}
+
+.sample-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  width: 210px;
+  height: 48px;
+  border-radius: 24px;
+  background: var(--brand);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--white);
+  transition: background-color .2s;
+}
+
+.sample-form__submit i {
+  font-family: 'Kakao Big Sans', sans-serif;
+  font-style: normal;
+}
+
+.sample-form__submit:hover {
+  background: #006a62;
+}
+
+html.kbd-nav .sample-modal__close:focus-visible,
+html.kbd-nav .sample-form__submit:focus-visible,
+html.kbd-nav .sample-privacy:focus-visible,
+html.kbd-nav .sample-form__check input:focus-visible + .sample-form__check-box {
+  outline: 2px solid #2a4fd0;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sample-modal__dim,
+  .sample-modal__layer {
+    animation: none;
+  }
+}
+
+
+/* =========================================================
+   반응형 : 768px 이하
+========================================================= */
+@media (max-width:768px) {
+  .sample-modal {
+    padding: 16px;
+  }
+
+  .sample-modal__layer {
+    max-height: 100%;
+    border-radius: 12px;
+  }
+
+  .sample-modal__head {
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  .sample-modal__close {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sample-modal__body {
+    padding: 32px 20px 36px;
+  }
+
+  .sample-form {
+    gap: 30px;
+  }
+
+  .sample-form__title {
+    font-size: 1.625rem;
+  }
+
+  .sample-form__fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .sample-form__field {
+    gap: 6px;
+  }
+
+  .sample-form__label {
+    font-size: 0.9375rem;
+  }
+
+  .sample-form__input,
+  .sample-form__file {
+    height: 46px;
+    font-size: 0.875rem;
+  }
+
+  .sample-form__textarea {
+    height: 130px;
+  }
+
+  .sample-form__select {
+    --select-h: 46px;
+    --select-px: 14px;
+    --select-fs: 0.875rem;
+  }
+
+  .sample-form__agree {
+    gap: 16px;
+  }
+
+  .sample-privacy {
+    gap: 22px;
+    height: 280px;
+    padding: 22px 16px;
+  }
+
+  .sample-privacy__title {
+    font-size: 1.1875rem;
+  }
+
+  .sample-privacy__label {
+    font-size: 0.9375rem;
+  }
+
+  .sample-privacy__list {
+    padding: 14px 14px 14px 32px;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  .sample-privacy__note {
+    font-size: 0.75rem;
+  }
+
+  .sample-form__check {
+    align-items: flex-start;
+  }
+
+  .sample-form__check-box {
+    margin-top: 1px;
+  }
+
+  .sample-form__check-txt {
+    font-size: 0.875rem;
+  }
+
+  .sample-form__msg {
+    margin: -14px 0 -10px;
+    font-size: 0.8125rem;
+  }
+
+  .sample-form__submit {
+    width: 100%;
+    max-width: 280px;
+  }
+}

@@ -192,4 +192,140 @@
 
   document.querySelectorAll("[data-select]").forEach(initCustomSelect);
 
+
+  /* =========================================================
+     공통 : 샘플 요청 레이어 (common/sample-request.html)
+     - [data-sample-open] 클릭 → 열기 / 닫기 버튼 · 배경 · ESC → 닫기
+     - 열려 있는 동안 본문 스크롤 잠금 + Tab 포커스 레이어 안에서 순환
+     - 제출 시 필수 항목 · 이메일 형식 · 개인정보 동의 확인
+  ========================================================= */
+
+  function initSampleModal() {
+    const modal = document.querySelector(".sample-modal");
+
+    if (!modal) {
+      return;
+    }
+
+    const layer = modal.querySelector(".sample-modal__layer");
+    const body = modal.querySelector(".sample-modal__body");
+    const form = modal.querySelector(".sample-form");
+    const msg = form.querySelector(".sample-form__msg");
+    const fileInput = form.querySelector(".sample-form__file-input");
+    const fileName = form.querySelector(".sample-form__file-name");
+    let opener = null;
+
+    function getFocusable() {
+      return Array.prototype.filter.call(
+        layer.querySelectorAll("button, input, select, textarea, a[href], [tabindex]:not([tabindex='-1'])"),
+        function (el) {
+          return !el.disabled && el.getAttribute("aria-hidden") !== "true" && el.tabIndex !== -1 && el.offsetParent !== null;
+        }
+      );
+    }
+
+    function open(trigger) {
+      opener = trigger;
+      modal.hidden = false;
+      body.scrollTop = 0;
+      document.documentElement.classList.add("is-modal-lock");
+      layer.focus();
+    }
+
+    function close() {
+      modal.hidden = true;
+      document.documentElement.classList.remove("is-modal-lock");
+
+      if (opener) {
+        opener.focus();
+      }
+    }
+
+    document.querySelectorAll("[data-sample-open]").forEach(function (trigger) {
+      trigger.addEventListener("click", function (event) {
+        event.preventDefault();
+        open(trigger);
+      });
+    });
+
+    modal.querySelectorAll("[data-sample-close]").forEach(function (el) {
+      el.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (modal.hidden || event.defaultPrevented) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        close();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusable = getFocusable();
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === layer)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    /* 파일첨부 : 선택한 파일명 표시 */
+    fileInput.addEventListener("change", function () {
+      fileName.textContent = fileInput.files.length ? fileInput.files[0].name : "";
+    });
+
+    /* 입력하면 오류 표시 해제 */
+    form.addEventListener("input", function (event) {
+      event.target.classList.remove("is-error");
+    });
+
+    form.addEventListener("change", function (event) {
+      event.target.classList.remove("is-error");
+    });
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const invalid = Array.prototype.filter.call(form.querySelectorAll("[required]"), function (el) {
+        const bad = !el.checkValidity();
+
+        el.classList.toggle("is-error", bad);
+        return bad;
+      });
+
+      if (invalid.length) {
+        const target = invalid[0];
+
+        if (target.type === "checkbox") {
+          msg.textContent = "개인정보 수집 및 이용에 동의해 주세요.";
+        } else if (target.type === "email" && target.value) {
+          msg.textContent = "이메일 형식을 확인해 주세요.";
+        } else {
+          msg.textContent = "필수 항목(*)을 모두 입력해 주세요.";
+        }
+
+        target.focus();
+        return;
+      }
+
+      msg.textContent = "";
+      alert("샘플 요청이 접수되었습니다. 확인 후 담당자가 연락드리겠습니다.");
+      form.reset();
+      fileName.textContent = "";
+      close();
+    });
+  }
+
+  initSampleModal();
+
 })();
