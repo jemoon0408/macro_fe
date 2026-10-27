@@ -244,25 +244,38 @@
 
 /* =========================================================
    회사개요 : 01 기업 정체성
-   - 스크롤 시 영역을 잠시 고정하고 사진 등장 + 슬로건 채움 (sub.js : initIdentity)
+   - 스테이지 높이만큼 스크롤하는 동안 화면(sticky)을 고정하고
+     사진 등장 → 슬로건 채움 (sub.js : initIdentity)
+   - 소개 문구(체크 목록)는 애니메이션 없이 스테이지 아래에 시안대로 고정 배치
+   - --wrap-h : 고정되는 화면 높이, 스테이지 높이 = 고정 화면 + 스크롤 거리
 ========================================================= */
 .ov-identity {
-  padding: 31px 0 80px;
+  --wrap-h: 640px;
+  padding-bottom: 80px;
+}
+
+.ov-identity__stage {
+  position: relative;
+  height: calc(var(--wrap-h) + 100vh);
+}
+
+.ov-identity__wrap {
+  position: sticky;
+  top: max(0px, calc((100vh - var(--wrap-h)) / 2));
+  height: var(--wrap-h);
   overflow: hidden;
 }
 
-.ov-identity .inner {
-  display: flex;
-  flex-direction: column;
-  gap: 55px;
-}
-
 .ov-identity__visual {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   height: 495px;
   padding-top: 124px;
+  transform: translateY(-50%);
 }
 
 .ov-identity__slogan {
@@ -305,7 +318,7 @@
   color: transparent;
 }
 
-/* 사진 : 1260 컨테이너 중앙 기준 배치 */
+/* 사진 : 화면 중앙 기준 배치 (시안 1260 기준 좌표) */
 .ov-identity__photo {
   position: absolute;
   overflow: hidden;
@@ -347,6 +360,61 @@
   width: 263px;
   height: 295px;
   border-radius: 30px;
+}
+
+/* 소개 문구 : 사진 영역 아래 55px (고정 화면 640 안에서 사진 영역 495 가 가운데 정렬 → 남는 여백만큼 당김) */
+.ov-identity__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: calc(55px - (var(--wrap-h) - 495px) / 2);
+}
+
+.ov-identity__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.ov-identity__ico {
+  display: flex;
+  flex-shrink: 0;
+  width: 15px;
+  margin-top: .3em;
+  color: var(--brand);
+}
+
+.ov-identity__ico svg {
+  width: 100%;
+  height: auto;
+}
+
+/* 동작 줄이기 설정 / 스크립트 미동작 시 : 고정 없이 시안 순서대로 노출 */
+.ov-identity.is-static {
+  padding-top: 31px;
+}
+
+.ov-identity.is-static .ov-identity__stage {
+  height: auto;
+}
+
+.ov-identity.is-static .ov-identity__wrap {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.ov-identity.is-static .ov-identity__visual {
+  position: relative;
+  top: auto;
+  transform: none;
+}
+
+.ov-identity.is-static .ov-identity__list {
+  margin-top: 55px;
 }
 
 /* =========================================================
@@ -1810,39 +1878,73 @@
    반응형 : 1200px 이하
 ========================================================= */
 @media (max-width: 1200px) {
+  /* 기업 정체성 : 사진을 화면 양옆 끝에 붙여 배치 */
+  .ov-identity {
+    --wrap-h: min(100vh, 120vw);
+  }
+
   .ov-identity__visual {
-    flex-direction: column;
+    top: 0;
+    bottom: 0;
     align-items: center;
-    gap: 40px;
     height: auto;
-    padding-top: 40px;
+    padding: 0;
+    transform: none;
   }
 
   .ov-identity__slogan {
-    width: 100%;
-  }
-
-  .ov-identity__photos {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    grid-auto-rows: 200px;
-    gap: 16px;
-    width: 100%;
+    width: min(640px, calc(100% - 40px));
   }
 
   .ov-identity__photo {
-    position: static;
-    width: auto;
     height: auto;
-    border-radius: 24px;
+    border-radius: 20px;
   }
 
   .ov-identity__photo--01 {
-    grid-row: span 2;
+    left: -4%;
+    top: 5%;
+    width: 34vw;
+    aspect-ratio: 465 / 348;
   }
 
   .ov-identity__photo--02 {
-    display: none;
+    left: 5%;
+    top: auto;
+    bottom: 9%;
+    width: 18vw;
+    aspect-ratio: 1;
+  }
+
+  .ov-identity__photo--03 {
+    left: auto;
+    right: -2%;
+    top: 9%;
+    width: 30vw;
+    aspect-ratio: 330 / 140;
+  }
+
+  .ov-identity__photo--04 {
+    left: auto;
+    right: -3%;
+    top: auto;
+    bottom: 4%;
+    width: 24vw;
+    aspect-ratio: 263 / 295;
+  }
+
+  .ov-identity.is-static .ov-identity__wrap {
+    height: var(--wrap-h);
+  }
+
+  .ov-identity.is-static .ov-identity__visual {
+    position: absolute;
+  }
+
+  /* 고정 화면이 뷰포트 높이 → 사진이 화면 끝까지 차므로 목록은 일정 간격만 */
+  .ov-identity__list,
+  .ov-identity.is-static .ov-identity__list {
+    margin-top: 40px;
   }
 
   .values__list {
@@ -2194,23 +2296,6 @@
   }
 
   /* 회사개요 */
-  .ov-identity {
-    padding: 40px 0 56px;
-  }
-
-  .ov-identity .inner {
-    gap: 36px;
-  }
-
-  .ov-identity__visual {
-    gap: 28px;
-    padding-top: 0;
-  }
-
-  .ov-identity__slogan {
-    gap: 14px;
-  }
-
   .ov-identity__en {
     font-size: 17px;
   }
@@ -2223,13 +2308,56 @@
     font-size: 34px;
   }
 
-  .ov-identity__photos {
-    grid-auto-rows: 110px;
-    gap: 10px;
+  .ov-identity__photo {
+    border-radius: 12px;
   }
 
-  .ov-identity__photo {
-    border-radius: 16px;
+  /* 레퍼런스처럼 사진은 네 귀퉁이에 작게 붙이고, 가운데는 문구 자리로 비워둠 */
+  .ov-identity__photo--01 {
+    left: -6%;
+    top: 3%;
+    width: 34vw;
+  }
+
+  .ov-identity__photo--02 {
+    left: 3%;
+    bottom: 4%;
+    width: 20vw;
+  }
+
+  .ov-identity__photo--03 {
+    right: -4%;
+    top: 6%;
+    width: 32vw;
+  }
+
+  .ov-identity__photo--04 {
+    right: -4%;
+    bottom: 2%;
+    width: 26vw;
+  }
+
+  .ov-identity {
+    padding-bottom: 48px;
+  }
+
+  .ov-identity__list,
+  .ov-identity.is-static .ov-identity__list {
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .ov-identity__list li {
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .ov-identity__ico {
+    width: 13px;
+  }
+
+  .ov-identity.is-static {
+    padding-top: 40px;
   }
 
   .ov-facts {

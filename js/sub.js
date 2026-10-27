@@ -30,44 +30,46 @@
 
   /* =========================================================
      회사개요 : 기업 정체성 (GSAP ScrollTrigger scrub)
-     - 레이아웃은 시안 그대로 두고, 페이지 진입 시 절반쯤 진행된 상태에서 스크롤에 따라
+     - 스테이지를 스크롤하는 동안 화면(sticky)이 고정된 채
        1. 사진 4장이 아래에서 순서대로 제자리로 모임
        2. 슬로건이 왼쪽부터 채워짐
+     - 소개 문구(체크 목록)는 애니메이션 없이 스테이지 아래에 고정
+     - 시작 : 섹션 상단이 화면 85% 지점에 닿을 때부터 → 페이지 진입 시 첫 사진만 살짝 올라온 상태
   ========================================================= */
 
   function initIdentity() {
     const section = document.querySelector(".ov-identity");
 
-    if (!section || reduceMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    if (!section) {
+      return;
+    }
+
+    if (reduceMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      section.classList.add("is-static");
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
     const q = gsap.utils.selector(section);
-    const visual = q(".ov-identity__visual")[0];
+    const stage = q(".ov-identity__stage")[0];
+    const wrap = q(".ov-identity__wrap")[0];
     /* invalidateOnRefresh 사용 시 from() 은 도착값이 숨김 상태로 다시 잡히므로 fromTo 로 도착값 고정 */
-    const from = { y: "50vh", opacity: 0 };
+    const from = { y: "80vh", opacity: 0 };
     const to = { y: 0, opacity: 1, duration: 1.2 };
 
-    /*
-      종료 : 사진 영역 중앙이 화면 40% 지점에 왔을 때 (= 다 모인 상태)
-      시작 : 종료 지점의 1.2배만큼 음수로 당겨서, 페이지 맨 위(스크롤 0)에서 약 55% 진행된 상태로 시작
-            (사진 1~2장 도착 + 슬로건 절반 채움)
-    */
+    /* 종료 : 고정이 풀리는 지점 (스테이지 하단 = 고정 화면 하단) */
     function endScroll() {
-      const rect = visual.getBoundingClientRect();
-      const center = rect.top + window.scrollY + rect.height / 2;
+      const stageTop = stage.getBoundingClientRect().top + window.scrollY;
+      const stickyTop = parseFloat(getComputedStyle(wrap).top) || 0;
 
-      return Math.max(center - window.innerHeight * .4, 200);
+      return stageTop + stage.offsetHeight - stickyTop - wrap.offsetHeight;
     }
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: visual,
-        start: function () {
-          return -endScroll() * 1.2;
-        },
+        trigger: stage,
+        start: "top 85%",
         end: endScroll,
         scrub: .5,
         invalidateOnRefresh: true
@@ -77,8 +79,9 @@
       .fromTo(q(".ov-identity__photo--03"), from, to, ">-0.6")
       .fromTo(q(".ov-identity__photo--02"), from, to, ">-0.8")
       .fromTo(q(".ov-identity__photo--04"), from, to, ">-1")
-      .fromTo(q(".ov-identity__en"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .6 }, .3)
-      .fromTo(q(".ov-identity__fill"), { backgroundPositionX: "100%" }, { backgroundPositionX: "0%", duration: 2.1 }, .3);
+      .fromTo(q(".ov-identity__en"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .6 }, .6)
+      .fromTo(q(".ov-identity__fill"), { backgroundPositionX: "100%" }, { backgroundPositionX: "0%", duration: 2 }, .6)
+      .to({}, { duration: .4 });
 
     /* 헤더·푸터 include 로 문서 높이가 바뀌면 트리거 위치 재계산 */
     if (window.ResizeObserver) {

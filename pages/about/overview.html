@@ -40,29 +40,45 @@
       </ul>
     </nav>
 
-    <!-- 01 기업 정체성 : 스크롤 시 사진이 차례로 제자리에 모이고 슬로건이 채워짐 (sub.js : initIdentity) -->
+    <!-- 01 기업 정체성 : 화면에 고정된 채 스크롤에 따라 사진 등장 → 슬로건 채움 (sub.js : initIdentity) / 소개 문구는 아래에 고정 -->
     <section class="ov-identity">
-      <div class="inner">
-        <div class="ov-identity__visual">
-          <div class="ov-identity__slogan">
-            <p class="ov-identity__en">Global Leader for Beauty and Health</p>
-            <h2 class="ov-identity__title">
-              <span class="ov-identity__fill">세계적인 고기능성 화장품 원료 및 식품 원료<br>생산의 선두업체인<br><strong>마크로케어</strong></span>
-            </h2>
+      <div class="ov-identity__stage">
+        <div class="ov-identity__wrap">
+          <div class="ov-identity__visual">
+            <div class="ov-identity__slogan">
+              <p class="ov-identity__en">Global Leader for Beauty and Health</p>
+              <h2 class="ov-identity__title">
+                <span class="ov-identity__fill">세계적인 고기능성 화장품 원료 및 식품 원료<br>생산의 선두업체인<br><strong>마크로케어</strong></span>
+              </h2>
+            </div>
+            <ul class="ov-identity__photos">
+              <li class="ov-identity__photo ov-identity__photo--01"><img src="../../img/sub/about/identity-01.png" alt=""></li>
+              <li class="ov-identity__photo ov-identity__photo--02"><img src="../../img/sub/about/identity-02.png" alt=""></li>
+              <li class="ov-identity__photo ov-identity__photo--03"><img src="../../img/sub/about/identity-03.png" alt=""></li>
+              <li class="ov-identity__photo ov-identity__photo--04"><img src="../../img/sub/about/identity-04.png" alt=""></li>
+            </ul>
           </div>
-          <ul class="ov-identity__photos">
-            <li class="ov-identity__photo ov-identity__photo--01"><img src="../../img/sub/about/identity-01.png" alt=""></li>
-            <li class="ov-identity__photo ov-identity__photo--02"><img src="../../img/sub/about/identity-02.png" alt=""></li>
-            <li class="ov-identity__photo ov-identity__photo--03"><img src="../../img/sub/about/identity-03.png" alt=""></li>
-            <li class="ov-identity__photo ov-identity__photo--04"><img src="../../img/sub/about/identity-04.png" alt=""></li>
-          </ul>
         </div>
+      </div>
 
-        <ul class="check-list">
-          <li>마크로케어는 2002년에 설립되어, 화장품 원료 및 식품 원료생산의 선두 업체로 발전해왔습니다.</li>
-          <li>2004년 충북 오창 테크노밸리에 바이오/천연물/합성의 3개 생산동과 부설 연구소를 건립하여, 원활한 연구 개발 및 제품 생산에 노력을 기울이고 있습니다.</li>
-          <li>당사는 국제규격인증 (ISO 9001, ISO 14001, FSSC 22000)을 보유하고 있으며, 환경 경영 시스템, INNO-BIZ(기술혁신형 중소기업) 2016 우수벤처기업(글로벌 분야)에도 선정되어 글로벌 시대에 맞는 자격을 갖추고 있습니다.</li>
-          <li>당사는 혁신적인 기술을 적용하여 신시장을 개척함으로써 최고의 제품을 위한 최고의 원료를 공급하기 위해 임직원들의 노력을 발판으로 성장해 나가고 있습니다.</li>
+      <div class="inner">
+        <ul class="ov-identity__list">
+          <li>
+            <span class="ov-identity__ico" aria-hidden="true"><svg viewBox="0 0 448 512" fill="none"><path d="M54.6 278.7L160 384 393.4 150.6" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <p>마크로케어는 2002년에 설립되어, 화장품 원료 및 식품 원료생산의 선두 업체로 발전해왔습니다.</p>
+          </li>
+          <li>
+            <span class="ov-identity__ico" aria-hidden="true"><svg viewBox="0 0 448 512" fill="none"><path d="M54.6 278.7L160 384 393.4 150.6" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <p>2004년 충북 오창 테크노밸리에 바이오/천연물/합성의 3개 생산동과 부설 연구소를 건립하여, 원활한 연구 개발 및 제품 생산에 노력을 기울이고 있습니다.</p>
+          </li>
+          <li>
+            <span class="ov-identity__ico" aria-hidden="true"><svg viewBox="0 0 448 512" fill="none"><path d="M54.6 278.7L160 384 393.4 150.6" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <p>당사는 국제규격인증 (ISO 9001, ISO 14001, FSSC 22000)을 보유하고 있으며, 환경 경영 시스템, INNO-BIZ(기술혁신형 중소기업) 2016 우수벤처기업(글로벌 분야)에도 선정되어 글로벌 시대에 맞는 자격을 갖추고 있습니다.</p>
+          </li>
+          <li>
+            <span class="ov-identity__ico" aria-hidden="true"><svg viewBox="0 0 448 512" fill="none"><path d="M54.6 278.7L160 384 393.4 150.6" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <p>당사는 혁신적인 기술을 적용하여 신시장을 개척함으로써 최고의 제품을 위한 최고의 원료를 공급하기 위해 임직원들의 노력을 발판으로 성장해 나가고 있습니다.</p>
+          </li>
         </ul>
       </div>
     </section>
