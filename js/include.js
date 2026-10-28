@@ -366,10 +366,15 @@
         "common/header.html"
       );
 
-      await includeHTML(
-        "#include-quick-menu",
-        "common/quick-menu.html"
-      );
+      /* 퀵메뉴는 선택 영역 : 파일이 없어도 나머지 공통 영역은 계속 불러옴 */
+      try {
+        await includeHTML(
+          "#include-quick-menu",
+          "common/quick-menu.html"
+        );
+      } catch (error) {
+        console.warn(error.message);
+      }
 
       await includeHTML(
         "#include-footer",
