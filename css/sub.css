@@ -1198,6 +1198,7 @@
   padding: 20px 40px;
   border-radius: 20px;
   overflow: hidden;
+  /* --bg : HTML 인라인 지정. url() 은 이 CSS 파일 기준으로 풀리므로 경로는 ../img/... 로 작성 */
   background:
     linear-gradient(rgba(0, 0, 0, var(--dim)), rgba(0, 0, 0, var(--dim))),
     var(--bg) center / cover no-repeat;
@@ -1578,6 +1579,7 @@
   padding: clamp(1rem, 2.2vw, 1.875rem) clamp(1rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.75rem);
   border-radius: clamp(1rem, 2vw, 1.75rem);
   overflow: hidden;
+  /* --bg : HTML 인라인 지정. url() 은 이 CSS 파일 기준으로 풀리므로 경로는 ../img/... 로 작성 */
   background: var(--white) var(--bg) center / cover no-repeat;
   box-shadow: 2px 4px 10px 3px rgba(0, 0, 0, .06);
 }
@@ -1744,6 +1746,7 @@
   height: 500px;
   border-radius: 28px;
   overflow: hidden;
+  /* --bg : HTML 인라인 지정. url() 은 이 CSS 파일 기준으로 풀리므로 경로는 ../img/... 로 작성 */
   background: var(--ink) var(--bg) center / cover no-repeat;
   color: var(--white);
 }
