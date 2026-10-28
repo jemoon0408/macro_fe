@@ -2,6 +2,83 @@
 	sample.css : 샘플 요청 레이어
 --------------------------------------------------------------------------------- */
 
+/* =========================================================
+   플로팅 버튼 (common/footer.html · 전 페이지 공통)
+========================================================= */
+.sample-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: url("../img/common/sample-bg.png") center / cover no-repeat;
+  box-shadow: 0 10px 24px rgba(0, 127, 118, .25);
+}
+
+.sample-btn__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+  letter-spacing: .04em;
+  fill: rgba(255, 255, 255, .55);
+  animation: sample-rotate 14s linear infinite;
+}
+
+@keyframes sample-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sample-btn__txt {
+  position: relative;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sample-btn__ring {
+    animation: none;
+  }
+}
+
+/* 모바일 메뉴가 열려 있는 동안 숨김 */
+html.is-menu-lock .sample-btn {
+  display: none;
+}
+
+@media (max-width:768px) {
+  .sample-btn {
+    right: 16px;
+    bottom: 20px;
+    width: 84px;
+    height: 84px;
+  }
+
+  .sample-btn__ring {
+    font-size: 0.8125rem;
+  }
+
+  .sample-btn__txt {
+    font-size: 0.9375rem;
+  }
+}
+
+/* =========================================================
+   레이어
+========================================================= */
+
 html.is-modal-lock,
 html.is-modal-lock body {
   overflow: hidden;
@@ -306,7 +383,7 @@ html.is-modal-lock body {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid #95bdb4;
   border-radius: 3px;
   background: var(--white) url("../img/common/ico-check.png") center / 13.6px no-repeat;
   background-size: 0;

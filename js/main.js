@@ -226,6 +226,22 @@
 
     function open(trigger) {
       opener = trigger;
+
+      /* 헤더 메뉴(Sample Request)에서 연 경우 : 메뉴를 닫고, 닫힐 때 포커스는 메뉴 버튼(모바일) · 로고(PC) 로 */
+      const header = trigger.closest(".header");
+
+      if (header) {
+        const menuBtn = header.querySelector(".header__menu-btn");
+
+        if (header.classList.contains("is-menu-open")) {
+          menuBtn.click();
+          opener = menuBtn;
+        } else {
+          header.dispatchEvent(new MouseEvent("mouseleave"));
+          opener = header.querySelector(".header__logo a");
+        }
+      }
+
       modal.hidden = false;
       body.scrollTop = 0;
       document.documentElement.classList.add("is-modal-lock");
