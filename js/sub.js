@@ -184,8 +184,8 @@
 
 
   /* =========================================================
-     프로모션 : 썸네일을 불러오지 못하면 대체 이미지
-     - 썸네일 없는 게시물과 같은 모양 (.promo-card__img--empty + 로고)
+     프로모션 · 특허·인증·수상 : 썸네일을 불러오지 못하면 대체 이미지
+     - 썸네일 없는 게시물과 같은 모양 ({카드}__img--empty + 로고)
   ========================================================= */
 
   function initPromoFallback() {
@@ -193,13 +193,16 @@
 
     function toEmpty(img) {
       const box = img.parentElement;
+      const block = box.classList[0].replace(/__img$/, "");
 
-      box.classList.add("promo-card__img--empty");
-      img.classList.add("promo-card__logo");
+      box.classList.add(block + "__img--empty");
+      img.classList.add(block + "__logo");
       img.src = logo;
     }
 
-    document.querySelectorAll(".promo-card__img:not(.promo-card__img--empty) img").forEach(function (img) {
+    document.querySelectorAll(
+      ".promo-card__img:not(.promo-card__img--empty) img, .award-card__img:not(.award-card__img--empty) img"
+    ).forEach(function (img) {
       if (!img.getAttribute("src")) {
         toEmpty(img);
         return;

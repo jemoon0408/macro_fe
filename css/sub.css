@@ -1309,6 +1309,94 @@
   color: var(--white);
 }
 
+/* =========================================================
+   회사소개 : 특허·인증·수상
+========================================================= */
+.award {
+  padding-bottom: 88px;
+}
+
+.award__panel .inner {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 66px;
+}
+
+.award-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.award-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 297 / 440;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #ededed;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 2px 4px 13px 3px rgba(0, 0, 0, .08);
+}
+
+.award-card__img {
+  position: absolute;
+  inset: 0;
+}
+
+.award-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* 이미지가 없거나 불러오지 못한 경우 : 회색 박스 + 로고 */
+.award-card__img--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30%;
+  background: var(--soft);
+}
+
+.award-card__img .award-card__logo {
+  width: 220px;
+  max-width: 74%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.award-card__info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: 115px;
+  padding: 10px 20px;
+  border: 4px solid rgba(255, 255, 255, .01);
+  border-radius: 12px;
+  background: rgba(15, 42, 42, .45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  line-height: 1.5;
+  color: var(--white);
+}
+
+.award-card__cat {
+  font-size: 0.9375rem;
+}
+
+.award-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
 .location__panel .inner {
   display: flex;
   flex-direction: column;
@@ -1969,6 +2057,11 @@
 
   .sub-visual__inner {
     gap: 28px;
+  }
+
+  .award-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
   }
 
   .sub-visual__title {
@@ -2825,6 +2918,41 @@
     font-size: 0.9375rem;
   }
 
+  .award {
+    padding-bottom: 56px;
+  }
+
+  .award__panel .inner {
+    gap: 24px;
+    padding-top: 32px;
+  }
+
+  .award-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .award-card {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .award-card__info {
+    gap: 4px;
+    min-height: 0;
+    padding: 8px 12px;
+    border-width: 2px;
+    border-radius: 9px;
+  }
+
+  .award-card__cat {
+    font-size: 0.8125rem;
+  }
+
+  .award-card__title {
+    font-size: 0.9375rem;
+  }
+
   .location__panel .inner {
     gap: 48px;
     padding-top: 40px;
@@ -3049,6 +3177,26 @@
 
   .ingredient-card__name {
     font-size: 1.375rem;
+  }
+
+  .award-list {
+    gap: 10px;
+  }
+
+  .award-card {
+    padding: 6px;
+  }
+
+  .award-card__info {
+    padding: 6px 10px;
+  }
+
+  .award-card__cat {
+    font-size: 0.75rem;
+  }
+
+  .award-card__title {
+    font-size: 0.8125rem;
   }
 }
 
