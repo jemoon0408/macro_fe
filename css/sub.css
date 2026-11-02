@@ -3836,38 +3836,70 @@ html.kbd-nav .award-card__link:focus-visible {
     height: 22px;
   }
 
-  /* 목록 : 번호·작성자·조회 숨기고 제목 + 작성일 */
-  .board-list .board-list__num,
-  .board-list .board-list__writer,
-  .board-list .board-list__hit {
-    display: none;
+  /* 목록 : 번호만 숨기고 행을 카드형으로 → 제목 한 줄 + 작성자 | 작성일 | 조회 */
+  .board-list,
+  .board-list tbody,
+  .board-list tr,
+  .board-list td {
+    display: block;
   }
 
-  .board-list thead th {
-    padding: 12px 10px;
-    font-size: 0.9375rem;
-  }
-
-  .board-list thead th.board-list__title {
-    border-radius: 12px 0 0 12px;
-  }
-
-  .board-list__date {
-    width: 104px;
+  .board-list thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
     white-space: nowrap;
   }
 
-  .board-list thead th.board-list__title::before {
-    display: none;
+  .board-list tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 16px 4px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .board-list tbody tr:first-child {
+    border-top: 1px solid var(--ink);
   }
 
   .board-list td {
-    padding: 16px 10px;
-    font-size: 0.875rem;
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .board-list .board-list__num {
+    display: none;
   }
 
   .board-list td.board-list__title {
-    text-align: left;
+    flex: 0 0 100%;
+    margin-bottom: 8px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* 작성자 | 작성일 | 조회 구분선 */
+  .board-list td.board-list__writer::after,
+  .board-list td.board-list__date::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 0 10px;
+    background: #ccc;
+    vertical-align: middle;
+  }
+
+  .board-list td.board-list__hit::before {
+    content: "조회 ";
   }
 
   .promo-list {
