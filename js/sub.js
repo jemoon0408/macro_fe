@@ -426,8 +426,89 @@
   }
 
 
+  /* =========================================================
+     원료 상세 : 상세내용 바로가기
+     - 스크롤 위치에 맞는 목차 강조 (is-active)
+     - 태블릿·모바일 가로 목차는 강조된 항목이 보이도록 가로 스크롤
+  ========================================================= */
+
+  function initDetailToc() {
+    const wrap = document.querySelector("[data-detail-toc]");
+
+    if (!wrap) {
+      return;
+    }
+
+    const list = wrap.querySelector(".pd-toc__list");
+    const links = Array.from(list.querySelectorAll("a")).filter(function (link) {
+      return document.querySelector(link.getAttribute("href"));
+    });
+    let current = null;
+
+    function setActive(link) {
+      if (link === current) {
+        return;
+      }
+
+      current = link;
+      list.querySelectorAll("a").forEach(function (item) {
+        const active = item === link;
+
+        item.classList.toggle("is-active", active);
+
+        if (active) {
+          item.setAttribute("aria-current", "true");
+        } else {
+          item.removeAttribute("aria-current");
+        }
+      });
+
+      if (list.scrollWidth > list.clientWidth) {
+        list.scrollTo({
+          left: link.offsetLeft - list.offsetLeft,
+          behavior: reduceMotion ? "auto" : "smooth"
+        });
+      }
+    }
+
+    function update() {
+      /* 화면 상단 35% 지점을 지난 마지막 영역 */
+      const line = window.innerHeight * .35;
+      let active = links[0];
+
+      links.forEach(function (link) {
+        if (document.querySelector(link.getAttribute("href")).getBoundingClientRect().top <= line) {
+          active = link;
+        }
+      });
+
+      /* 페이지 끝까지 내리면 마지막 영역 */
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        active = links[links.length - 1];
+      }
+
+      setActive(active);
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        const target = document.querySelector(link.getAttribute("href"));
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+        history.replaceState(null, "", link.getAttribute("href"));
+      });
+    });
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
+
   initMission();
   initAccordion();
+  initDetailToc();
   initPromoFallback();
   initAuthRequired();
   initIdentity();
