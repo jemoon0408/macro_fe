@@ -16,7 +16,7 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: url("../img/common/sample-bg.png") center / cover no-repeat;
+  background: url("../img/common/sample-bg.webp") center / cover no-repeat;
   box-shadow: 0 10px 24px rgba(0, 127, 118, .25);
 }
 
@@ -145,7 +145,7 @@ html.is-modal-lock body {
 .sample-modal__close {
   width: 22px;
   height: 22px;
-  background: url("../img/common/ico-modal-close.png") center / contain no-repeat;
+  background: url("../img/common/ico-modal-close.webp") center / contain no-repeat;
 }
 
 .sample-modal__body {
@@ -383,7 +383,7 @@ html.kbd-nav .sample-form__file:focus-within {
   height: 20px;
   border: 1.5px solid #95bdb4;
   border-radius: 3px;
-  background: var(--white) url("../img/common/ico-check.png") center / 13.6px no-repeat;
+  background: var(--white) url("../img/common/ico-check.webp") center / 13.6px no-repeat;
   background-size: 0;
   transition: background-color .15s, border-color .15s;
 }

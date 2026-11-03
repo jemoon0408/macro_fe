@@ -12,21 +12,6 @@
         <h2 class="sample-form__title" id="sample-modal-title">샘플 요청</h2>
 
         <div class="sample-form__fields">
-          <div class="sample-form__field sample-form__field--full">
-            <label class="sample-form__label is-required" for="sr-material">요청 원료 <b aria-hidden="true">*</b></label>
-            <input type="text" id="sr-material" name="material" class="sample-form__input" required placeholder="원료명을 입력해 주세요. (예: V2G, MC-Glucan)">
-          </div>
-
-          <div class="sample-form__field">
-            <label class="sample-form__label is-required" for="sr-quantity">수량 <b aria-hidden="true">*</b></label>
-            <input type="text" id="sr-quantity" name="quantity" class="sample-form__input" required placeholder="예: 100g">
-          </div>
-
-          <div class="sample-form__field">
-            <label class="sample-form__label is-required" for="sr-purpose">사용 목적 <b aria-hidden="true">*</b></label>
-            <input type="text" id="sr-purpose" name="purpose" class="sample-form__input" required placeholder="예: 신제품 처방 테스트">
-          </div>
-
           <div class="sample-form__field">
             <label class="sample-form__label is-required" for="sr-company">회사명 <b aria-hidden="true">*</b></label>
             <input type="text" id="sr-company" name="company" class="sample-form__input" required autocomplete="organization">
@@ -35,11 +20,6 @@
           <div class="sample-form__field">
             <label class="sample-form__label is-required" for="sr-name">담당자 이름 <b aria-hidden="true">*</b></label>
             <input type="text" id="sr-name" name="name" class="sample-form__input" required autocomplete="name">
-          </div>
-
-          <div class="sample-form__field">
-            <label class="sample-form__label" for="sr-tel">전화</label>
-            <input type="tel" id="sr-tel" name="tel" class="sample-form__input" autocomplete="tel">
           </div>
 
           <div class="sample-form__field">
@@ -52,22 +32,37 @@
             <input type="email" id="sr-email" name="email" class="sample-form__input" required autocomplete="email">
           </div>
 
+          <div class="sample-form__field sample-form__field--full">
+            <label class="sample-form__label" for="sr-material">요청원료</label>
+            <input type="text" id="sr-material" name="material" class="sample-form__input" placeholder="원하시는 원료를 입력해주세요.">
+          </div>
+
           <div class="sample-form__field">
-            <label class="sample-form__label" for="sr-file">파일첨부</label>
-            <div class="sample-form__file">
-              <input type="file" id="sr-file" name="file" class="sample-form__file-input">
-              <span class="sample-form__file-name" aria-hidden="true"></span>
-            </div>
+            <label class="sample-form__label" for="sr-quantity">수량</label>
+            <input type="text" id="sr-quantity" name="quantity" class="sample-form__input">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label" for="sr-purpose">사용 목적</label>
+            <input type="text" id="sr-purpose" name="purpose" class="sample-form__input">
           </div>
 
           <div class="sample-form__field sample-form__field--full">
-            <label class="sample-form__label is-required" for="sr-address">받을 주소 <b aria-hidden="true">*</b></label>
-            <input type="text" id="sr-address" name="address" class="sample-form__input" required autocomplete="street-address" placeholder="샘플을 받으실 주소를 입력해 주세요.">
+            <label class="sample-form__label" for="sr-address">받을 주소</label>
+            <input type="text" id="sr-address" name="address" class="sample-form__input" autocomplete="street-address" placeholder="주소를 입력해주세요.">
           </div>
 
           <div class="sample-form__field sample-form__field--full">
             <label class="sample-form__label is-required" for="sr-message">문의내용 <b aria-hidden="true">*</b></label>
             <textarea id="sr-message" name="message" class="sample-form__input sample-form__textarea" required></textarea>
+          </div>
+
+          <div class="sample-form__field sample-form__field--full">
+            <label class="sample-form__label" for="sr-file">파일첨부</label>
+            <div class="sample-form__file">
+              <input type="file" id="sr-file" name="file" class="sample-form__file-input">
+              <span class="sample-form__file-name" aria-hidden="true"></span>
+            </div>
           </div>
         </div>
 

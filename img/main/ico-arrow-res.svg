@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="30.4827" height="30.4827" viewBox="0 0 30.4827 30.4827" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="arrow_outward">
+<g id="arrow_outward_2">
+<use xlink:href="#stroke0_0_4" fill="#007F76"/>
+<use xlink:href="#stroke0_0_4" fill="#00665E"/>
+<mask id="stroke1_0_4" maskUnits="userSpaceOnUse" x="-0.717292" y="-0.8" width="32" height="32" fill="black">
+<rect fill="white" x="-0.717292" y="-0.8" width="32" height="32"/>
+<path d="M2.03484 30.2L0.282708 28.4479L25.9367 2.74485H2.28932V0.2H30.2827V28.1934H27.7379V4.54597L2.03484 30.2Z"/>
+</mask>
+<path d="M2.03484 30.2L0.282708 28.4479L25.9367 2.74485H2.28932V0.2H30.2827V28.1934H27.7379V4.54597L2.03484 30.2Z" stroke-width="0.4" stroke="#007F76" mask="url(#stroke1_0_4)"/>
+<path d="M2.03484 30.2L0.282708 28.4479L25.9367 2.74485H2.28932V0.2H30.2827V28.1934H27.7379V4.54597L2.03484 30.2Z" stroke-width="0.4" stroke="#00665E" mask="url(#stroke1_0_4)"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_4" d="M2.03484 30.2L0.282708 28.4479L25.9367 2.74485H2.28932V0.2H30.2827V28.1934H27.7379V4.54597L2.03484 30.2Z"/>
+</defs>
+</svg>

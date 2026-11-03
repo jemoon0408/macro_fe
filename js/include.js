@@ -35,6 +35,92 @@
   });
 
 
+  /* =========================================================
+     WebP 미지원 브라우저 : 같은 이름의 PNG 로 대체
+     - 이미지는 WebP 로 사용하고, 같은 폴더에 같은 이름의 PNG 원본을 함께 둠
+     - 지원 여부를 1px WebP 로 확인 → 미지원이면 html.no-webp 추가 후
+       img(src · srcset) · 인라인 style(--bg 등) · CSS 파일 안의 .webp 를 모두 .png 로 교체
+     - 공통 영역(헤더 · 푸터 등)은 나중에 삽입되므로 includeHTML 후에도 다시 적용
+  ========================================================= */
+
+  const WEBP_RE = /\.webp(?=["')?\s,]|$)/g;
+  let noWebp = false;
+
+  function toPng(value) {
+    return value.replace(WEBP_RE, ".png");
+  }
+
+  function swapImages(scope) {
+    if (!noWebp) {
+      return;
+    }
+
+    (scope || document).querySelectorAll("img, source").forEach(function (el) {
+      ["src", "srcset"].forEach(function (attr) {
+        const value = el.getAttribute(attr);
+
+        if (value && value.indexOf(".webp") > -1) {
+          el.setAttribute(attr, toPng(value));
+        }
+      });
+    });
+
+    (scope || document).querySelectorAll("[style*='.webp']").forEach(function (el) {
+      el.setAttribute("style", toPng(el.getAttribute("style")));
+    });
+
+    /* 스크립트가 나중에 이미지로 쓰는 경로 (메인 효능 배경 등) */
+    (scope || document).querySelectorAll("[data-bg*='.webp']").forEach(function (el) {
+      el.setAttribute("data-bg", toPng(el.getAttribute("data-bg")));
+    });
+  }
+
+  function swapStyleSheets(sheets) {
+    Array.from(sheets).forEach(function (sheet) {
+      let rules;
+
+      try {
+        rules = sheet.cssRules;
+      } catch (error) {
+        return; /* 다른 도메인 CSS 는 건너뜀 */
+      }
+
+      Array.from(rules || []).forEach(function (rule) {
+        if (rule.styleSheet) {
+          swapStyleSheets([rule.styleSheet]);
+        } else if (rule.cssRules) {
+          swapStyleSheets([rule]);
+        }
+
+        /* 규칙 전체 문자열로 교체 (var() 가 섞인 단축 속성은 개별 속성 값이 비어 있어서) */
+        if (rule.style && rule.style.cssText.indexOf(".webp") > -1) {
+          rule.style.cssText = toPng(rule.style.cssText);
+        }
+      });
+    });
+  }
+
+  const webpTest = new Image();
+
+  webpTest.onload = webpTest.onerror = function () {
+    if (webpTest.width === 1) {
+      return;
+    }
+
+    noWebp = true;
+    document.documentElement.classList.add("no-webp");
+    swapStyleSheets(document.styleSheets);
+    swapImages();
+
+    /* @import 로 불러오는 CSS 는 늦게 준비되므로 페이지 로드 후 한 번 더 */
+    window.addEventListener("load", function () {
+      swapStyleSheets(document.styleSheets);
+      swapImages();
+    });
+  };
+  webpTest.src = "data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==";
+
+
   const includeScript = document.currentScript;
 
   const ROOT_URL = includeScript
@@ -101,11 +187,11 @@
      INCLUDE 된 HTML 내부 상대경로 보정
 
      예)
-     img/icons/logo.png
+     img/icons/logo.webp
 
      ↓
 
-     프로젝트루트/img/icons/logo.png
+     프로젝트루트/img/icons/logo.webp
 
      현재 페이지가 루트이든
      info-disclosure 폴더 안이든 동일하게 작동
@@ -235,6 +321,9 @@
       등의 상대경로를 프로젝트 루트 기준으로 변경
     */
     resolveIncludedPaths(target);
+
+    /* WebP 미지원 : 새로 삽입된 공통 영역 이미지도 PNG 로 */
+    swapImages(target);
   }
 
 

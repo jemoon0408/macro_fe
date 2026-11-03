@@ -26,7 +26,7 @@
   height: 100%;
   padding: 0 calc(var(--select-px) + 22px) 0 var(--select-px);
   border-radius: var(--select-radius);
-  background: var(--select-bg) url("../img/sub/news/ico-chevron.png") right calc(var(--select-px) - 4px) center / 19px no-repeat;
+  background: var(--select-bg) url("../img/sub/news/ico-chevron.webp") right calc(var(--select-px) - 4px) center / 19px no-repeat;
   font-size: var(--select-fs);
   color: var(--select-color);
   cursor: pointer;
@@ -70,7 +70,7 @@
   flex-shrink: 0;
   width: 19px;
   height: 19px;
-  background: url("../img/sub/news/ico-chevron.png") center / contain no-repeat;
+  background: url("../img/sub/news/ico-chevron.webp") center / contain no-repeat;
   transition: transform .25s;
 }
 

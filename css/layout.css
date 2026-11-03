@@ -24,8 +24,18 @@ main {
 /* =========================================================
    HEADER (PC)
 ========================================================= */
+/* 헤더는 모든 페이지에서 화면 위에 고정
+   - 감싸는 영역(#include-header)이 헤더 높이만큼 자리를 유지해 본문이 가려지지 않음
+   - 실제 높이는 include.js 가 --header-h 로 넘겨줌 (화면에 붙는 요소들의 top 기준) */
+#include-header {
+  height: 100px;
+}
+
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: var(--white);
 }
@@ -282,6 +292,10 @@ main {
    - PC 와 같은 마크업을 사용, 1depth 클릭 시 2depth 펼침 (header.js)
 ========================================================= */
 @media (max-width: 1200px) {
+  #include-header {
+    height: 60px;
+  }
+
   .header {
     height: 60px;
   }
@@ -326,7 +340,7 @@ main {
     grid-area: 1 / 2;
     width: 44px;
     height: 44px;
-    background: url("../img/common/ico-menu.png") center / 24px no-repeat;
+    background: url("../img/common/ico-menu.webp") center / 24px no-repeat;
   }
 
   /* ----- 메뉴 열림 ----- */
@@ -339,7 +353,7 @@ main {
   }
 
   .header.is-menu-open .header__menu-btn {
-    background-image: url("../img/common/ico-close.png");
+    background-image: url("../img/common/ico-close.webp");
   }
 
   /* 언어 / YouTube */
@@ -400,7 +414,7 @@ main {
     position: static;
     width: 24px;
     height: 24px;
-    background: url("../img/common/ico-plus.png") center / contain no-repeat;
+    background: url("../img/common/ico-plus.webp") center / contain no-repeat;
     transform: none;
     transition: none;
   }
@@ -415,7 +429,7 @@ main {
   }
 
   .gnb__item.is-open .gnb__link::after {
-    background-image: url("../img/common/ico-minus.png");
+    background-image: url("../img/common/ico-minus.webp");
   }
 
   /* 2depth */

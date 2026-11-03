@@ -273,7 +273,8 @@
   ========================================================= */
 
   function initPromoFallback() {
-    const logo = new URL("img/common/logo.png", ROOT_URL).href;
+    /* WebP 미지원(include.js 의 html.no-webp)이면 PNG */
+    const logo = new URL("img/common/logo." + (document.documentElement.classList.contains("no-webp") ? "png" : "webp"), ROOT_URL).href;
 
     function toEmpty(img) {
       const box = img.parentElement;

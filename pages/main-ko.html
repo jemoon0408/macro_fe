@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/common.css">
 </head>
 
-<body>
+<body class="is-home">
 
   <!-- 공통 HEADER -->
   <div id="include-header"></div>
@@ -16,9 +16,362 @@
   <!-- 공통 QUICK MENU -->
   <div id="include-quick-menu"></div>
 
-  <main id="main-content" tabindex="-1">
+  <main id="main-content" class="home" tabindex="-1">
 
     <h1 class="sr-only">마크로케어</h1>
+
+    <!-- B01 : 메인 비주얼 (hucord.com/kr 메인 상단과 같은 방식 : home.js initVisual)
+         - 진입 : 제목 두 줄이 아래에서 차오르듯 등장(textClip), 이미지 속 문구는 단어별 블러 등장(textBlur)
+         - 스크롤 : 영역 고정(pin) 상태에서 이미지가 위로 올라오며 양옆 19% 잘린 상태 → 시안 크기(양옆 여백 유지)까지 넓어짐,
+                    제목은 좌우로 밀려나며 사라짐 -->
+    <section class="mv" aria-label="메인 비주얼">
+      <div class="mv__pin">
+        <div class="mv__title" aria-hidden="true">
+          <p class="mv__title-top"><span class="mv__clip">Bio Ingredient</span></p>
+          <p class="mv__title-bottom"><span class="mv__clip"><strong>Research</strong><span>&amp;</span><span>Technology</span></span></p>
+        </div>
+        <p class="sr-only">Bio Ingredient Research &amp; Technology</p>
+
+        <div class="mv__visual">
+          <div class="mv__media">
+            <img src="../img/main/hero.webp" alt="" fetchpriority="high">
+          </div>
+          <div class="mv__txt">
+            <h2 class="mv__heading" data-blur-words>
+              <span>끊임없는 연구와 바이오 기술로</span>
+              <strong>원료의 가능성을 넓히다</strong>
+            </h2>
+            <p class="mv__desc">세계가 먼저 찾는 한국의 원료 기업</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B02 : 주요 지표 (숫자 증가) -->
+    <section class="m-facts" aria-labelledby="m-facts-title">
+      <div class="inner">
+        <h2 id="m-facts-title" class="m-facts__title" data-reveal>연구 중심의 혁신 기업</h2>
+        <ul class="m-facts__list">
+          <li>
+            <p class="m-facts__num"><span data-count="2002" data-count-from="1900">2002</span></p>
+            <p class="m-facts__en">FOUNDED</p>
+            <p class="m-facts__desc">창사 이후 단 한 번도 적자 없음</p>
+          </li>
+          <li>
+            <p class="m-facts__num"><span data-count="70">70</span>%</p>
+            <p class="m-facts__en">EXPORT RATIO</p>
+            <p class="m-facts__desc">매출 대부분이 해외에서 발생</p>
+          </li>
+          <li>
+            <p class="m-facts__num"><span data-count="35">35</span>+</p>
+            <p class="m-facts__en">PATENTS</p>
+            <p class="m-facts__desc">독자 기술 기반 등록 특허</p>
+          </li>
+          <li>
+            <p class="m-facts__num"><span data-count="30">30</span>%</p>
+            <p class="m-facts__en">R&amp;D RATIO</p>
+            <p class="m-facts__desc">전체 인력 중 연구인력 비중</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- B03 : 지속가능성
+         - 왼쪽 목차(고정) : 오른쪽 이미지를 스크롤하면 해당 문구가 흰색으로 강조 (biospectrum.com Scrolling Tabs 방식, 막대 없음 · home.js initGreen) -->
+    <section class="m-green" aria-labelledby="m-green-title" data-green>
+      <h2 id="m-green-title" class="sr-only">지속가능한 원료 기술</h2>
+      <div class="inner m-green__inner">
+        <nav class="m-green__nav" aria-label="지속가능성 목차" data-reveal>
+          <ol class="m-green__nav-list">
+            <li><a href="#m-green-1" class="is-active" aria-current="true">그린 케미스트리로 여는<br> 지속가능한 미래</a></li>
+            <li><a href="#m-green-2">자연 유래 원료로 넓히는<br> 기술의 가능성</a></li>
+          </ol>
+        </nav>
+        <div class="m-green__list">
+          <article id="m-green-1" class="m-green__item" data-reveal>
+            <div class="m-green__img"><img src="../img/main/green.webp" alt="" loading="lazy" decoding="async"></div>
+            <h3 class="m-green__item-title">친환경은 선택이 아닌 필수다.</h3>
+            <p class="m-green__item-desc">유기 합성을 바이오 합성으로 전환.<br>그린 케미스트리를 사업 혁신의 축으로.</p>
+          </article>
+          <article id="m-green-2" class="m-green__item m-green__item--sm" data-reveal>
+            <div class="m-green__img"><img src="../img/main/nature.webp" alt="" loading="lazy" decoding="async"></div>
+            <h3 class="m-green__item-title">자연의 가능성을 원료의 기술로 연결합니다.</h3>
+            <p class="m-green__item-desc">국내 고유 자생식물 및 해외 다양한 열대식물 등으로부터 추출</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- B04 : 핵심 원료 -->
+    <section class="m-core" aria-labelledby="m-core-title">
+      <div class="inner">
+        <div class="m-head" data-reveal>
+          <h2 id="m-core-title" class="m-head__title"><span>세계가 인정한</span> <strong>핵심 원료</strong></h2>
+          <p class="m-head__en">Ingredient Solution</p>
+        </div>
+
+        <div class="m-core__swiper swiper" data-reveal style="--d: 1">
+          <ul class="swiper-wrapper">
+            <li class="swiper-slide m-core__item">
+              <a href="product/v2g.html">
+                <span class="m-core__num">01</span>
+                <strong class="m-core__name">V2G</strong>
+                <span class="m-core__desc">주름개선 효과 · 미백 효과</span>
+                <span class="m-core__img"><img src="../img/main/core-v2g.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="m-core__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="swiper-slide m-core__item">
+              <a href="product/vitagen.html">
+                <span class="m-core__num">02</span>
+                <strong class="m-core__name">Vitagen</strong>
+                <span class="m-core__desc">주름개선 효과 · 미백 효과</span>
+                <span class="m-core__img"><img src="../img/main/core-vitagen.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="m-core__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="swiper-slide m-core__item">
+              <a href="product/ceramide-pc-102.html">
+                <span class="m-core__num">03</span>
+                <strong class="m-core__name">Pseudo Ceramides</strong>
+                <span class="m-core__desc">보습 효과 · 피부보호 효과</span>
+                <span class="m-core__img"><img src="../img/main/core-ceramides.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="m-core__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="swiper-slide m-core__item">
+              <a href="product/mc-glucan.html">
+                <span class="m-core__num">04</span>
+                <strong class="m-core__name">MC-Glucan</strong>
+                <span class="m-core__desc">자극완화 효과 · 일광화상치유 효과</span>
+                <span class="m-core__img"><img src="../img/main/core-glucan.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="m-core__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="swiper-slide m-core__item">
+              <a href="product/mc-salicare.html">
+                <span class="m-core__num">05</span>
+                <strong class="m-core__name">MC-Salicare+</strong>
+                <span class="m-core__desc">미백 효과 · 항염 효과 · 여드름개선 효과</span>
+                <span class="m-core__img"><img src="../img/main/core-salicare.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="m-core__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- B05 : 5대 기술 (탭 선택 → 가운데 카드 크게) -->
+    <section class="m-tech" aria-labelledby="m-tech-title" data-tech>
+      <div class="inner">
+        <div class="m-head" data-reveal>
+          <h2 id="m-tech-title" class="m-head__title"><span>원료를 만드는</span> <strong>5대 기술</strong></h2>
+          <p class="m-head__en">Technology Overiew</p>
+        </div>
+
+        <div class="m-tech__body" data-reveal style="--d: 1">
+          <ul class="m-tech__tabs" role="tablist" aria-label="5대 기술">
+            <li role="presentation"><button type="button" role="tab" id="m-tech-tab-1" aria-controls="m-tech-panel-1" aria-selected="false" tabindex="-1">Bio Technology</button></li>
+            <li role="presentation"><button type="button" role="tab" id="m-tech-tab-2" aria-controls="m-tech-panel-2" aria-selected="true" class="is-active">Natural Extracts</button></li>
+            <li role="presentation"><button type="button" role="tab" id="m-tech-tab-3" aria-controls="m-tech-panel-3" aria-selected="false" tabindex="-1">Chemical Synthesis</button></li>
+            <li role="presentation"><button type="button" role="tab" id="m-tech-tab-4" aria-controls="m-tech-panel-4" aria-selected="false" tabindex="-1">Advanced Delivery System</button></li>
+            <li role="presentation"><button type="button" role="tab" id="m-tech-tab-5" aria-controls="m-tech-panel-5" aria-selected="false" tabindex="-1">Bio Conversion</button></li>
+          </ul>
+
+          <!-- 기술 카드 : 선택(hover · 클릭)한 카드가 크게 펼쳐지고, 양옆 카드는 작게 (Natural Extracts 외 이미지는 임시) -->
+          <div class="m-tech__panel">
+            <ul class="m-tech__track">
+                <li class="m-tech__card" id="m-tech-panel-1" role="tabpanel" aria-labelledby="m-tech-tab-1">
+                  <img class="m-tech__img" src="../img/main/green.webp" alt="" loading="lazy" decoding="async">
+                  <span class="m-tech__num">01</span>
+                  <div class="m-tech__txt">
+                    <strong class="m-tech__name">Bio Technology</strong>
+                    <span class="m-tech__desc">천연물 미생물 배양 등을 통한 고분자 응용기술, 액상 발효 기술 등</span>
+                  </div>
+                  <a href="tech/biotechnology.html" class="m-tech__btn" tabindex="-1">원료 상세 · TDS<i aria-hidden="true">↗</i></a>
+                </li>
+                <li class="m-tech__card is-active" id="m-tech-panel-2" role="tabpanel" aria-labelledby="m-tech-tab-2">
+                  <img class="m-tech__img" src="../img/main/tech-natural.webp" alt="" loading="lazy" decoding="async">
+                  <span class="m-tech__num">02</span>
+                  <div class="m-tech__txt">
+                    <strong class="m-tech__name">Natural Extracts</strong>
+                    <span class="m-tech__desc">국내 고유 자생식물 및 해외 다양한 열대식물 등으로부터 추출</span>
+                  </div>
+                  <a href="tech/natural-extracts.html" class="m-tech__btn">원료 상세 · TDS<i aria-hidden="true">↗</i></a>
+                </li>
+                <li class="m-tech__card" id="m-tech-panel-3" role="tabpanel" aria-labelledby="m-tech-tab-3">
+                  <img class="m-tech__img" src="../img/main/core-ceramides.webp" alt="" loading="lazy" decoding="async">
+                  <span class="m-tech__num">03</span>
+                  <div class="m-tech__txt">
+                    <strong class="m-tech__name">Chemical Synthesis</strong>
+                    <span class="m-tech__desc">천연 세라마이드와 효능과 안정성이 동등한 유사 세라마이드 및 무기기능 소재</span>
+                  </div>
+                  <a href="tech/chemical-synthesis.html" class="m-tech__btn" tabindex="-1">원료 상세 · TDS<i aria-hidden="true">↗</i></a>
+                </li>
+                <li class="m-tech__card" id="m-tech-panel-4" role="tabpanel" aria-labelledby="m-tech-tab-4">
+                  <img class="m-tech__img" src="../img/main/core-v2g.webp" alt="" loading="lazy" decoding="async">
+                  <span class="m-tech__num">04</span>
+                  <div class="m-tech__txt">
+                    <strong class="m-tech__name">Advanced Delivery System</strong>
+                    <span class="m-tech__desc">물질의 구조, 특성 및 용도에 따라 맞춤형 안정화 기술을 개발</span>
+                  </div>
+                  <a href="tech/delivery-system.html" class="m-tech__btn" tabindex="-1">원료 상세 · TDS<i aria-hidden="true">↗</i></a>
+                </li>
+                <li class="m-tech__card" id="m-tech-panel-5" role="tabpanel" aria-labelledby="m-tech-tab-5">
+                  <img class="m-tech__img" src="../img/main/core-vitagen.webp" alt="" loading="lazy" decoding="async">
+                  <span class="m-tech__num">05</span>
+                  <div class="m-tech__txt">
+                    <strong class="m-tech__name">Bio Conversion</strong>
+                    <span class="m-tech__desc">효소와 미생물 같은 생체 촉매로 원료의 기능성을 높이는 친환경 기술</span>
+                  </div>
+                  <a href="tech/bioconversion.html" class="m-tech__btn" tabindex="-1">원료 상세 · TDS<i aria-hidden="true">↗</i></a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B06 : 효능별 원료 탐색 -->
+    <section class="m-effect" aria-labelledby="m-effect-title">
+      <!-- 배경 : 카드에 마우스를 올리면 해당 효능 이미지로 전환 (보습 외 이미지는 임시) -->
+      <div class="m-effect__bg" aria-hidden="true"><img src="../img/main/resources-bg.webp" alt="" class="is-on" loading="lazy" decoding="async"></div>
+      <div class="inner">
+        <div class="m-head m-head--white" data-reveal>
+          <h2 id="m-effect-title" class="m-head__title"><span>필요한 효능에서,</span> <strong>원하는 원료로</strong></h2>
+          <p class="m-head__en">Research Resources</p>
+        </div>
+
+        <ul class="m-effect__list">
+          <li data-reveal style="--d: 1"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/core-vitagen.webp"><strong>미백</strong><span>Whitening</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+          <li data-reveal style="--d: 2"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/hero.webp"><strong>항노화</strong><span>Anti-aging</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+          <li data-reveal style="--d: 3"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/resources-bg.webp"><strong>보습</strong><span>protective<br>moisturizing</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+          <li data-reveal style="--d: 1"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/nature.webp"><strong>항염</strong><span>anti inflammation</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+          <li data-reveal style="--d: 2"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/core-ceramides.webp"><strong>안정화</strong><span>stabilization</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+          <li data-reveal style="--d: 3"><a href="product/cosmetic.html" class="m-effect__card" data-bg="../img/main/green.webp"><strong>방부제</strong><span>Stabilization<br>preservatives</span><img src="../img/main/ico-arrow-res.svg" alt="" loading="lazy" decoding="async"></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- B07 : 글로벌 파트너 (로고 무한 흐름) -->
+    <section class="m-partner" aria-labelledby="m-partner-title">
+      <div class="m-partner__bg" aria-hidden="true"><img src="../img/main/globe.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="inner">
+        <div class="m-head" data-reveal>
+          <h2 id="m-partner-title" class="m-head__title"><span>세계가 먼저 찾는</span> <strong>한국 원료회사</strong></h2>
+          <p class="m-head__en">Global Partnership</p>
+        </div>
+      </div>
+
+      <div class="m-partner__marquee">
+        <ul class="m-partner__track" data-marquee>
+          <li><img src="../img/main/logo-loreal.webp" alt="L’Oréal" style="--w: 161px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-estee.webp" alt="Estée Lauder" style="--w: 223px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-amore.webp" alt="AMOREPACIFIC" style="--w: 230px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-lg.webp" alt="LG생활건강" style="--w: 168px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-dongsuh.webp" alt="동서식품" style="--w: 158px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-donga.webp" alt="동아제약" style="--w: 144px" loading="lazy" decoding="async"></li>
+          <li><img src="../img/main/logo-cj.webp" alt="CJ" style="--w: 130px" loading="lazy" decoding="async"></li>
+        </ul>
+      </div>
+
+      <div class="inner">
+        <p class="m-partner__cert" data-reveal>EcoVadis ESG GOLD · ISO 9001 · ISO 14001 · EFfCI GMP · FSSC 22000</p>
+      </div>
+    </section>
+
+    <!-- B08 : 유튜브 + 특허·인증·수상 (DNA 배경으로 하나로 이어짐) -->
+    <div class="m-dna">
+      <div class="m-dna__bg" aria-hidden="true"></div>
+
+      <section class="m-youtube" aria-labelledby="m-youtube-title">
+        <div class="inner">
+          <div class="m-head" data-reveal>
+            <h2 id="m-youtube-title" class="m-head__title"><span>영상으로 만나는</span> <strong>마크로케어</strong></h2>
+            <p class="m-head__en">Macrocare On Youtube</p>
+          </div>
+
+          <div class="m-youtube__body">
+            <div class="m-youtube__intro" data-reveal>
+              <p class="m-youtube__title">원료의 가능성,<br>연구의 이야기.</p>
+              <p class="m-youtube__desc">마크로케어의 이야기를<br>공식 유튜브 채널에서 만나보세요.</p>
+              <a href="https://www.youtube.com/channel/UCJMSUPdG3NGmMJS_qoExEmg" class="m-youtube__btn" target="_blank" rel="noopener" title="새 창 열림">유튜브 채널 보기<i aria-hidden="true">↗</i></a>
+            </div>
+
+            <div class="m-youtube__swiper swiper" data-reveal style="--d: 1">
+              <ul class="swiper-wrapper">
+                <li class="swiper-slide">
+                  <a href="https://www.youtube.com/channel/UCJMSUPdG3NGmMJS_qoExEmg" class="m-youtube__card" target="_blank" rel="noopener" title="새 창 열림">
+                    <img src="../img/main/youtube-01.webp" alt="" loading="lazy" decoding="async">
+                    <span class="m-youtube__play" aria-hidden="true"></span>
+                    <span class="m-youtube__name">[Macrocare] Introduction video of Vitagen</span>
+                  </a>
+                </li>
+                <li class="swiper-slide">
+                  <a href="https://www.youtube.com/channel/UCJMSUPdG3NGmMJS_qoExEmg" class="m-youtube__card" target="_blank" rel="noopener" title="새 창 열림">
+                    <img src="../img/main/youtube-02.webp" alt="" loading="lazy" decoding="async">
+                    <span class="m-youtube__play" aria-hidden="true"></span>
+                    <span class="m-youtube__name">[Macrocare] Introduction video of Ceramide</span>
+                  </a>
+                </li>
+                <li class="swiper-slide">
+                  <a href="https://www.youtube.com/channel/UCJMSUPdG3NGmMJS_qoExEmg" class="m-youtube__card" target="_blank" rel="noopener" title="새 창 열림">
+                    <img src="../img/main/youtube-03.webp" alt="" loading="lazy" decoding="async">
+                    <span class="m-youtube__play" aria-hidden="true"></span>
+                    <span class="m-youtube__name">[Macrocare] Introduction video of Company</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-cred" aria-labelledby="m-cred-title">
+        <div class="inner">
+          <div class="m-head" data-reveal>
+            <h2 id="m-cred-title" class="m-head__title"><span>마크로케어의</span> <strong>특허·인증·수상</strong></h2>
+            <p class="m-head__en">Our Credentials</p>
+          </div>
+
+          <div class="m-cred__swiper swiper">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide m-cred__item">
+                <a href="about/patent.html" class="m-cred__link">
+                  <span class="m-cred__img"><img src="../img/main/cert-patent.webp" alt="" loading="lazy" decoding="async"></span>
+                  <span class="m-cred__label">
+                    <strong>특허</strong>
+                    <span>제10-1823466호</span>
+                    <img src="../img/main/ico-arrow-white.svg" alt="" loading="lazy" decoding="async">
+                  </span>
+                </a>
+              </li>
+              <li class="swiper-slide m-cred__item m-cred__item--up">
+                <a href="about/patent.html" class="m-cred__link">
+                  <span class="m-cred__img"><img src="../img/main/cert-cert.webp" alt="" loading="lazy" decoding="async"></span>
+                  <span class="m-cred__label">
+                    <strong>인증</strong>
+                    <span>소재,부품,장비 100+강소기업</span>
+                    <img src="../img/main/ico-arrow-white.svg" alt="" loading="lazy" decoding="async">
+                  </span>
+                </a>
+              </li>
+              <li class="swiper-slide m-cred__item">
+                <a href="about/patent.html" class="m-cred__link">
+                  <span class="m-cred__img"><img src="../img/main/cert-award.webp" alt="" loading="lazy" decoding="async"></span>
+                  <span class="m-cred__label">
+                    <strong>수상</strong>
+                    <span>수출의 탑 수상확인증(오백만불)</span>
+                    <img src="../img/main/ico-arrow-white.svg" alt="" loading="lazy" decoding="async">
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
 
   </main>
 
@@ -27,6 +380,10 @@
 
   <script src="../js/include.js" defer></script>
   <script src="../vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../vendor/gsap/gsap.min.js"></script>
+  <script src="../vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="../js/sub.js" defer></script>
+  <script src="../js/home.js" defer></script>
 </body>
 
 </html>

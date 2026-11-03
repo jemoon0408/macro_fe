@@ -87,10 +87,11 @@
 
 .sub-visual__box {
   /* 배경은 ::before 에 그림 → 사진만 따로 확대·축소 애니메이션 */
+  /* 기본 : 회사소개 (시안 515:3822) */
   --sv-bg:
-    linear-gradient(90deg, rgba(0, 127, 118, .41) 4.92%, rgba(0, 127, 118, 0) 68.09%),
-    linear-gradient(rgba(15, 42, 42, .71), rgba(15, 42, 42, .71)),
-    url("../img/sub/sub-visual.png") center / cover no-repeat;
+    linear-gradient(90deg, rgba(0, 127, 118, .41) 5.59%, rgba(0, 127, 118, 0) 100%),
+    linear-gradient(270deg, rgba(15, 42, 42, 0) 5.7%, rgba(15, 42, 42, .74) 87.39%),
+    url("../img/sub/sub-visual-about.webp") center / cover no-repeat;
   position: relative;
   isolation: isolate;
   display: flex;
@@ -375,7 +376,8 @@
 
 .ov-identity__wrap {
   position: sticky;
-  top: max(0px, calc((100vh - var(--wrap-h)) / 4));
+  /* 고정 헤더 아래 공간 기준 */
+  top: calc(var(--header-h, 0px) + max(0px, calc((100vh - var(--header-h, 0px) - var(--wrap-h)) / 4)));
   height: var(--wrap-h);
   overflow: hidden;
 }
@@ -719,7 +721,7 @@
 }
 
 .ov-expertise::before {
-  background: url("../img/sub/about/expertise-bg.png") center / cover no-repeat;
+  background: url("../img/sub/about/expertise-bg.webp") center / cover no-repeat;
   mix-blend-mode: soft-light;
   opacity: .42;
 }
@@ -850,7 +852,7 @@
    비전 : 01 비전 선언 + 미션
 ========================================================= */
 .vs-wrap {
-  background: url("../img/sub/vision/bg-circle.png") no-repeat center 69px / 1920px auto;
+  background: url("../img/sub/vision/bg-circle.webp") no-repeat center 69px / 1920px auto;
 }
 
 .vs-intro {
@@ -1273,12 +1275,35 @@
 /* =========================================================
    연혁
 ========================================================= */
+/* DNA 배경 : 끝까지 이어진 원본 이미지를 가운데 기준으로 배치 (넓은 화면에서도 끊기지 않음)
+   - 시안(1920) 기준 섹션 위에서 996px, 왼쪽 끝 705px (= 가운데 - 255px), 원본 크기 1592px
+   - 위 · 아래 · 왼쪽(텍스트 쪽)은 흰색으로 자연스럽게 사라짐 */
 .history {
+  position: relative;
   padding: 80px 0 88px;
-  background: url("../img/sub/history/bg-dna.png") no-repeat center 356px / 1920px auto;
+  /* hidden 은 연대 이미지 고정(sticky)을 막으므로 clip 사용 */
+  overflow: clip;
+}
+
+.history::before {
+  content: "";
+  position: absolute;
+  top: 996px;
+  left: 0;
+  right: 0;
+  height: 2264px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--white) 35px, rgba(255, 255, 255, 0) 534px),
+    linear-gradient(rgba(255, 255, 255, 0) 1609px, var(--white) 2178px),
+    linear-gradient(90deg, var(--white) calc(50% - 288px), rgba(255, 255, 255, 0) calc(50% + 346px)),
+    url("../img/common/bg-dna.webp") calc(50% + 541px) 0 / 1592px auto no-repeat;
 }
 
 .history .inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 90px;
@@ -1316,26 +1341,66 @@
   color: transparent;
 }
 
+/* 연대 : 상단 배너(연대 · 한 줄 소개) → 아래 이미지(연도 범위) + 연표 */
+.history__list {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
 .history__decade {
   --tl-pad: 78px;
   --tl-x: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.history__banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 350px;
+  padding: 20px 40px;
+  border-radius: 20px;
+  background:
+    linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
+    var(--bg) center / cover no-repeat;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.history__banner-en {
+  font-size: 1.5rem;
+}
+
+.history__banner-title {
+  font-size: 2.8125rem;
+  font-weight: 700;
+}
+
+.history__row {
   display: flex;
   align-items: flex-start;
   gap: 60px;
 }
 
-/* 단계 고정 : 연대 이미지는 해당 연대 연표를 보는 동안 화면 위 40px 자리에 고정
+/* 단계 고정 : 연대 이미지는 해당 연대 연표를 보는 동안 고정 헤더 아래 40px 자리에 고정
    → 연표 끝에서 --release 만큼 먼저 풀려 올라가고, 그만큼 여백을 두고 다음 연대 이미지가 고정 */
 .history__visual {
-  --release: 160px;
+  /* --release: 160px; */
   position: sticky;
-  top: 40px;
+  top: calc(var(--header-h, 0px) + 40px);
   display: flex;
-  flex: 0 0 600px;
+  flex: 0 0 550px;
   margin-bottom: var(--release);
   flex-direction: column;
   gap: 12px;
-  height: 355px;
+  height: 330px;
   padding: 20px 40px;
   border-radius: 20px;
   overflow: hidden;
@@ -1346,14 +1411,10 @@
   color: var(--white);
 }
 
-.history__visual h3 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
+/* 연도 범위 */
 .history__visual p {
-  font-size: 1.75rem;
+  font-size: 2.375rem;
+  font-weight: 700;
   line-height: 1.5;
 }
 
@@ -1378,7 +1439,7 @@
   bottom: 0;
   left: var(--tl-x);
   width: 1px;
-  background: #e1e8e7;
+  background: #ddd;
 }
 
 .history__timeline li {
@@ -1395,13 +1456,14 @@
   width: var(--dot);
   height: var(--dot);
   border-radius: 50%;
-  background: #d3dddb;
+  background: #ddd;
 }
 
+/* 첫 항목 : 연한 원(18px) 안에 진한 점(9px) */
 .history__timeline li:first-child::before {
-  --dot: 13px;
+  --dot: 9px;
   background: var(--brand);
-  box-shadow: 0 0 0 5px rgba(0, 127, 118, .15);
+  box-shadow: 0 0 0 4.5px rgba(0, 127, 118, .22);
 }
 
 .history__timeline strong {
@@ -2373,24 +2435,36 @@ html.kbd-nav .award-card__link:focus-visible {
     font-size: 2.5rem;
   }
 
+  .history__list,
+  .history__decade {
+    gap: 72px;
+  }
+
   .history__decade {
     --tl-pad: 50px;
+  }
+
+  .history__row {
     gap: 32px;
+  }
+
+  .history__banner {
+    height: 280px;
+  }
+
+  .history__banner-title {
+    font-size: 2.125rem;
   }
 
   .history__visual {
     --release: 120px;
     flex-basis: 42%;
-    height: 300px;
+    height: 280px;
     padding: 20px 28px;
   }
 
-  .history__visual h3 {
-    font-size: 2rem;
-  }
-
   .history__visual p {
-    font-size: 1.3125rem;
+    font-size: 2rem;
   }
 
   .history__timeline {
@@ -3006,8 +3080,16 @@ html.kbd-nav .award-card__link:focus-visible {
   /* 연혁 */
   .history {
     padding: 56px 0 64px;
-    background-position: 30% 300px;
-    background-size: 900px auto;
+  }
+
+  .history::before {
+    top: 300px;
+    height: 1280px;
+    background:
+      linear-gradient(var(--white) 20px, rgba(255, 255, 255, 0) 300px),
+      linear-gradient(rgba(255, 255, 255, 0) 900px, var(--white) 1230px),
+      url("../img/common/bg-dna.webp") calc(50% + 260px) 0 / 900px auto no-repeat;
+    opacity: .8;
   }
 
   .history .inner {
@@ -3036,7 +3118,26 @@ html.kbd-nav .award-card__link:focus-visible {
   .history__decade {
     --tl-pad: 28px;
     --tl-x: 5px;
-    display: flex;
+    gap: 28px;
+  }
+
+  .history__banner {
+    gap: 4px;
+    height: 160px;
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+
+  .history__banner-en {
+    font-size: .9375rem;
+  }
+
+  .history__banner-title {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .history__row {
     flex-direction: column;
     align-items: stretch;
     gap: 28px;
@@ -3051,12 +3152,8 @@ html.kbd-nav .award-card__link:focus-visible {
     border-radius: 16px;
   }
 
-  .history__visual h3 {
-    font-size: 1.625rem;
-  }
-
   .history__visual p {
-    font-size: 1rem;
+    font-size: 1.625rem;
   }
 
   .history__timeline {
@@ -3079,8 +3176,8 @@ html.kbd-nav .award-card__link:focus-visible {
   }
 
   .history__timeline li:first-child::before {
-    --dot: 11px;
-    box-shadow: 0 0 0 4px rgba(0, 127, 118, .15);
+    --dot: 8px;
+    box-shadow: 0 0 0 4px rgba(0, 127, 118, .22);
   }
 
   /* 오시는 길 */
@@ -4300,7 +4397,7 @@ html.kbd-nav .award-card__link:focus-visible {
   min-height: 410px;
   border-radius: 32px;
   /* --hero : 원료별 비주얼 (HTML 인라인, 경로는 이 CSS 기준) */
-  background: var(--white) var(--hero, url("../img/sub/product/detail/v2g-visual.png")) center / cover no-repeat;
+  background: var(--white) var(--hero, url("../img/sub/product/detail/v2g-visual.webp")) center / cover no-repeat;
   overflow: hidden;
 }
 
@@ -4393,7 +4490,7 @@ html.kbd-nav .award-card__link:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 26px;
-  scroll-margin-top: 40px;
+  scroll-margin-top: calc(var(--header-h, 0px) + 40px);
 }
 
 .pd-sec .sec-head {
@@ -4535,7 +4632,7 @@ html.kbd-nav .award-card__link:focus-visible {
   content: "";
   width: 12px;
   height: 14px;
-  background: url("../img/sub/product/detail/ico-doc.png") center / contain no-repeat;
+  background: url("../img/sub/product/detail/ico-doc.webp") center / contain no-repeat;
 }
 
 .pd-spec__btn i {
@@ -4586,7 +4683,7 @@ html.kbd-nav .award-card__link:focus-visible {
 /* ----- 우측 고정 레일 ----- */
 .pd-rail {
   position: sticky;
-  top: 40px;
+  top: calc(var(--header-h, 0px) + 40px);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -4680,7 +4777,7 @@ html.kbd-nav .award-card__link:focus-visible {
   top: -49.85%;
   bottom: auto;
   height: 409.09%;
-  background: url("../img/sub/product/detail/sample-bg.png") 0 0 / 100% 100% no-repeat;
+  background: url("../img/sub/product/detail/sample-bg.webp") 0 0 / 100% 100% no-repeat;
   opacity: .83;
 }
 
@@ -4697,7 +4794,7 @@ html.kbd-nav .award-card__link:focus-visible {
 }
 
 .pd-quick__btn--tds::before {
-  background: url("../img/sub/product/detail/tds-bg.png") center / cover no-repeat;
+  background: url("../img/sub/product/detail/tds-bg.webp") center / cover no-repeat;
   opacity: .23;
 }
 
@@ -5127,11 +5224,20 @@ html.kbd-nav .award-card__link:focus-visible {
    - 복잡한 도식은 PC·태블릿에서 컨테이너 너비 기준(cqw)으로 시안 비율 그대로 축소,
      768px 이하에서는 세로 흐름으로 재배치
 ========================================================= */
+/* 보유기술 서브 비주얼 (시안 515:3835) */
 .sub-visual--tech .sub-visual__box {
   --sv-bg:
-    linear-gradient(90deg, rgba(0, 127, 118, .41) 5.59%, rgba(0, 127, 118, 0) 100%),
-    linear-gradient(270deg, rgba(15, 42, 42, 0) 5.7%, rgba(15, 42, 42, .74) 87.39%),
-    url("../img/sub/sub-visual.png") center / cover no-repeat;
+    linear-gradient(90deg, rgba(0, 127, 118, .4) 5.59%, rgba(0, 127, 118, 0) 54.62%),
+    linear-gradient(270deg, rgba(15, 42, 42, 0) 21.68%, rgba(15, 42, 42, .47) 86.64%),
+    url("../img/sub/sub-visual-tech.webp") center / cover no-repeat;
+}
+
+/* 소식/홍보 서브 비주얼 (시안 515:3845) */
+.sub-visual--news .sub-visual__box {
+  --sv-bg:
+    linear-gradient(90deg, rgba(0, 127, 118, .4) 5.59%, rgba(0, 127, 118, 0) 96.41%),
+    linear-gradient(270deg, rgba(15, 42, 42, 0) 25.44%, rgba(15, 42, 42, .74) 87.39%),
+    url("../img/sub/sub-visual-news.webp") center / cover no-repeat;
 }
 
 /* 탭 5개가 1260 안에 들어가도록 시안 글자 크기(19px) 적용 */
@@ -5314,7 +5420,7 @@ html.kbd-nav .award-card__link:focus-visible {
   right: -26px;
   width: 20px;
   height: 20px;
-  background: url("../img/sub/tech/bio-step-arrow.png") center / contain no-repeat;
+  background: url("../img/sub/tech/bio-step-arrow.webp") center / contain no-repeat;
 }
 
 .tc-steps__badge {
@@ -5452,7 +5558,7 @@ html.kbd-nav .award-card__link:focus-visible {
   justify-content: center;
   width: var(--gap);
   height: 24px;
-  background: url("../img/sub/tech/nat-link.png") center / 100% 100% no-repeat;
+  background: url("../img/sub/tech/nat-link.webp") center / 100% 100% no-repeat;
   transform: translateY(-50%);
 }
 
@@ -5617,7 +5723,7 @@ html.kbd-nav .award-card__link:focus-visible {
   left: 50%;
   width: 2px;
   height: 30px;
-  background: url("../img/sub/tech/chem-card-line.png") center / 100% 100% no-repeat;
+  background: url("../img/sub/tech/chem-card-line.webp") center / 100% 100% no-repeat;
   transform: translateX(-50%);
 }
 
@@ -5674,7 +5780,7 @@ html.kbd-nav .award-card__link:focus-visible {
 .tc-molecule__arrow {
   flex: 0 0 50px;
   height: 454px;
-  background: url("../img/sub/tech/chem-arrow.png") center / contain no-repeat;
+  background: url("../img/sub/tech/chem-arrow.webp") center / contain no-repeat;
 }
 
 /* 단계 등장 : 섹션 진입 시 01 카드 → 구조식·설명 → 화살표 → 02 카드 → 구조식·설명 을 빠르게 한 번
@@ -5814,7 +5920,7 @@ html.kbd-nav .award-card__link:focus-visible {
   line-height: 1.2;
   text-align: center;
   color: var(--white);
-  background: linear-gradient(rgba(0, 127, 118, .63), rgba(0, 127, 118, .63)), url("../img/sub/tech/chem-silicate.png") center / cover no-repeat;
+  background: linear-gradient(rgba(0, 127, 118, .63), rgba(0, 127, 118, .63)), url("../img/sub/tech/chem-silicate.webp") center / cover no-repeat;
   transform: translateX(-50%);
 }
 
@@ -5969,7 +6075,7 @@ html.kbd-nav .award-card__link:focus-visible {
   width: calc(236 * var(--u));
   height: calc(236 * var(--u));
   padding: calc(6 * var(--u));
-  background: url("../img/sub/tech/ads-ring.png") center / 100% 100% no-repeat;
+  background: url("../img/sub/tech/ads-ring.webp") center / 100% 100% no-repeat;
 }
 
 .tc-lipo__bubble--1 {
@@ -7050,4 +7156,366 @@ html.kbd-nav .swiper a:focus-visible,
 html.kbd-nav .swiper button:focus-visible,
 html.kbd-nav .pd-toc__list a:focus-visible {
   outline-offset: -3px;
+}
+
+/* =========================================================
+   원료 상세 : 기타 데이터 · 적용 및 활용사례 · 인증 · 특허 (V2G)
+========================================================= */
+
+/* ----- 03 기타 데이터 ----- */
+.pd-data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.pd-data__card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--white);
+}
+
+.pd-data__title {
+  font-size: 1.4375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pd-data__title sup {
+  font-size: .6em;
+}
+
+.pd-data__card img {
+  width: 100%;
+  height: 265px;
+  object-fit: contain;
+}
+
+.pd-data__desc {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pd-release {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 28px;
+  border-radius: 28px;
+  background: var(--soft);
+}
+
+.pd-release__img {
+  overflow: hidden;
+  flex: 0 0 360px;
+  height: 238px;
+  border-radius: 16px;
+  background: var(--white);
+}
+
+.pd-release__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pd-release__txt {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  word-break: keep-all;
+}
+
+.pd-release__en {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.05;
+  color: var(--brand);
+}
+
+.pd-release__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.pd-release__desc {
+  font-size: 1.125rem;
+}
+
+/* ----- 04 적용 및 활용사례 ----- */
+.pd-case {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+}
+
+.pd-case__card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 24px;
+  background: var(--white);
+  box-shadow: 2px 4px 13px 3px rgba(0, 0, 0, .08);
+}
+
+.pd-case__img {
+  overflow: hidden;
+  height: 190px;
+}
+
+.pd-case__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2, .7, .3, 1);
+}
+
+.pd-case__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  padding: 24px;
+  word-break: keep-all;
+}
+
+.pd-case__cat,
+.pd-case__more {
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.pd-case__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.pd-case__desc {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pd-case__more {
+  display: flex;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.pd-case__more i {
+  font-style: normal;
+}
+
+.pd-case__card:hover .pd-case__img img {
+  transform: scale(1.05);
+}
+
+/* ----- 05 인증 · 특허 ----- */
+.pd-cert {
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: var(--brand);
+}
+
+.pd-cert__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.pd-cert__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  color: var(--white);
+}
+
+.pd-cert__cat {
+  padding: 5px 16px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, .14);
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.pd-cert__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 240px;
+  margin-top: 13px;
+  border-radius: 10px;
+  background: #f5f7f2;
+}
+
+.pd-cert__img img {
+  width: 146px;
+  height: 216px;
+  object-fit: contain;
+  transition: transform .4s cubic-bezier(.2, .7, .3, 1);
+}
+
+.pd-cert__name {
+  flex: 1;
+  min-height: 57px;
+  margin-top: 18px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.pd-cert__more {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+  font-size: .9375rem;
+  line-height: 1.5;
+}
+
+.pd-cert__more i {
+  font-size: 1rem;
+  font-style: normal;
+  transition: transform .3s;
+}
+
+.pd-cert__card:hover .pd-cert__img img {
+  transform: scale(1.04);
+}
+
+.pd-cert__card:hover .pd-cert__more i {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .pd-release {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pd-release__img {
+    flex-basis: auto;
+    height: auto;
+    aspect-ratio: 360 / 238;
+  }
+
+  .pd-case {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pd-cert__list {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pd-data {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pd-data__card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .pd-data__title {
+    font-size: 1.125rem;
+  }
+
+  .pd-data__card img {
+    height: auto;
+    aspect-ratio: 414 / 265;
+  }
+
+  .pd-data__desc {
+    font-size: .875rem;
+  }
+
+  .pd-release {
+    gap: 20px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .pd-release__en {
+    font-size: 1.125rem;
+  }
+
+  .pd-release__title {
+    font-size: 1.125rem;
+  }
+
+  .pd-release__desc {
+    font-size: .9375rem;
+  }
+
+  .pd-case {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pd-case__img {
+    height: 170px;
+  }
+
+  .pd-case__body {
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .pd-case__title {
+    font-size: 1.25rem;
+  }
+
+  .pd-case__desc {
+    font-size: .9375rem;
+  }
+
+  .pd-cert {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .pd-cert__list {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .pd-cert__img {
+    height: 200px;
+  }
+
+  .pd-cert__img img {
+    width: 120px;
+    height: 178px;
+  }
+
+  .pd-cert__name {
+    min-height: 0;
+    margin-top: 14px;
+    font-size: 1.125rem;
+  }
+
+  .pd-cert__more {
+    margin-top: 16px;
+  }
 }
