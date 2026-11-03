@@ -140,7 +140,6 @@ html.is-modal-lock body {
   height: 66px;
   padding: 0 20px 0 25px;
   background: var(--line);
-  box-shadow: 0 5px 7.5px rgba(80, 132, 188, .2);
 }
 
 .sample-modal__close {
@@ -184,7 +183,6 @@ html.is-modal-lock body {
 }
 
 .sample-form__title {
-  font-family: var(--font-en);
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.2;
@@ -234,8 +232,8 @@ html.is-modal-lock body {
   transition: border-color .2s, background-color .2s;
 }
 
-.sample-form__input:focus,
-.sample-form__file:focus-within {
+html.kbd-nav .sample-form__input:focus,
+html.kbd-nav .sample-form__file:focus-within {
   border-color: var(--brand);
   background: var(--white);
 }
@@ -577,4 +575,10 @@ html.kbd-nav .sample-form__check input:focus-visible + .sample-form__check-box {
     width: 100%;
     max-width: 280px;
   }
+}
+
+/* 입력 안내 문구 */
+.sample-form__input::placeholder {
+  color: var(--muted);
+  opacity: .7;
 }

@@ -11,7 +11,9 @@
 
   /* =========================================================
      회사개요 : 인증 로고 무한 흐름
-     - 트랙을 한 번 복제해 -50% 이동 시 끊김 없이 반복
+     - 화면 너비보다 길어지도록 로고 묶음을 반복한 뒤, 그 전체를 한 번 더 복제해
+       -50% 이동 시 끊김 없이 반복 (넓은 모니터에서도 빈 구간 없음)
+     - 반복한 묶음 수만큼 재생 시간을 늘려 흐르는 속도는 그대로 유지
   ========================================================= */
 
   function initCertMarquee() {
@@ -21,15 +23,27 @@
       return;
     }
 
-    Array.from(track.children).forEach(function (item) {
-      const clone = item.cloneNode(true);
+    const items = Array.from(track.children);
+    const setWidth = track.scrollWidth;
+    const repeat = Math.max(1, Math.ceil(Math.max(window.innerWidth, window.screen.width) / setWidth));
 
-      clone.setAttribute("aria-hidden", "true");
-      clone.querySelectorAll("img").forEach(function (img) {
-        img.alt = "";
+    function appendClones() {
+      items.forEach(function (item) {
+        const clone = item.cloneNode(true);
+
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("img").forEach(function (img) {
+          img.alt = "";
+        });
+        track.appendChild(clone);
       });
-      track.appendChild(clone);
-    });
+    }
+
+    for (let i = 0; i < repeat * 2 - 1; i++) {
+      appendClones();
+    }
+
+    track.style.animationDuration = 40 * repeat + "s";
   }
 
 
@@ -161,13 +175,53 @@
     document.querySelectorAll("[data-accordion]").forEach(function (list) {
       const items = list.querySelectorAll(".faq__item");
 
+      /* 답변 : 높이·안쪽 여백·위 간격을 0 ↔ 원래 값으로 0.5초 슬라이드 (열기·닫기 모두) */
+      function slide(panel, open) {
+        if (panel.slideAnim) {
+          panel.slideAnim.cancel();
+        }
+
+        if (open) {
+          panel.hidden = false;
+        }
+
+        if (reduceMotion || !panel.animate) {
+          panel.hidden = !open;
+          return;
+        }
+
+        const style = getComputedStyle(panel);
+        const full = {
+          height: panel.offsetHeight + "px",
+          paddingTop: style.paddingTop,
+          paddingBottom: style.paddingBottom,
+          marginTop: style.marginTop
+        };
+        const zero = { height: "0px", paddingTop: "0px", paddingBottom: "0px", marginTop: "0px" };
+
+        panel.style.overflow = "hidden";
+        panel.slideAnim = panel.animate(open ? [zero, full] : [full, zero], {
+          duration: 500,
+          easing: "ease-in-out"
+        });
+        panel.slideAnim.onfinish = function () {
+          panel.style.overflow = "";
+          panel.hidden = !open;
+          panel.slideAnim = null;
+        };
+      }
+
       function setOpen(item, open) {
         const button = item.querySelector(".faq__q");
         const panel = document.getElementById(button.getAttribute("aria-controls"));
 
+        if (item.classList.contains("is-open") === open) {
+          return;
+        }
+
         item.classList.toggle("is-open", open);
         button.setAttribute("aria-expanded", String(open));
-        panel.hidden = !open;
+        slide(panel, open);
       }
 
       items.forEach(function (item) {
@@ -180,6 +234,36 @@
         });
       });
     });
+  }
+
+
+  /* =========================================================
+     FAQ : 섹션 등장
+     - 섹션 상단이 화면 위에서 700px 지점(화면이 더 작으면 화면 하단)에 닿으면 .is-on
+     - 다시 그 위로 올라가면 해제 → 내려올 때마다 재생
+  ========================================================= */
+
+  function initFaqMotion() {
+    const section = document.querySelector(".faq");
+
+    if (!section || reduceMotion) {
+      return;
+    }
+
+    document.documentElement.classList.add("js-faq-motion");
+
+    function update() {
+      const start = Math.min(700, window.innerHeight);
+
+      section.classList.toggle("is-on", section.getBoundingClientRect().top < start);
+    }
+
+    /* 첫 화면에서도 처음 위치 → 떠오르는 동작이 보이도록 한 프레임 뒤 판단 */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(update);
+    });
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
   }
 
 
@@ -349,34 +433,108 @@
     }
 
     const buttons = wrap.querySelectorAll("[data-filter-btn]");
-    const cards = wrap.querySelectorAll("[data-cat]");
+    const cards = Array.from(wrap.querySelectorAll("[data-cat]"));
+    const list = cards.length ? cards[0].parentElement : null;
     const empty = wrap.querySelector(".ingredient-empty");
+    const pager = wrap.querySelector("[data-pagination]");
+    const pageSize = Number(wrap.dataset.pageSize) || cards.length;
+    let matched = cards;
+
+    /* 페이지 : 걸러진 카드 중 pageSize 개씩 노출, 1페이지뿐이면 페이지 탐색 숨김 */
+    function showPage(page) {
+      const total = Math.max(1, Math.ceil(matched.length / pageSize));
+      const current = Math.min(Math.max(1, page), total);
+
+      cards.forEach(function (card) {
+        card.hidden = true;
+      });
+      matched.slice((current - 1) * pageSize, current * pageSize).forEach(function (card) {
+        card.hidden = false;
+      });
+
+      if (!pager) {
+        return;
+      }
+
+      pager.hidden = total < 2;
+      pager.querySelector(".pagination__list").innerHTML = Array.from({ length: total }, function (_, index) {
+        const number = index + 1;
+
+        return number === current
+          ? '<li><a href="#" class="is-active" aria-current="page" data-page="' + number + '">' + number + "</a></li>"
+          : '<li><a href="#" data-page="' + number + '">' + number + "</a></li>";
+      }).join("");
+      pager.querySelector("[data-page-prev]").dataset.page = String(current - 1);
+      pager.querySelector("[data-page-next]").dataset.page = String(current + 1);
+    }
+
+    function applyFilter(button) {
+      const value = button.dataset.filterBtn;
+
+      buttons.forEach(function (item) {
+        const active = item === button;
+
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+
+      /* 분류별 노출 순서 : data-rank (없으면 마크업 순서), 전체는 마크업 순서 */
+      matched = cards.filter(function (card) {
+        return value === "all" || card.dataset.cat === value;
+      });
+
+      if (value !== "all") {
+        matched.sort(function (a, b) {
+          return (Number(a.dataset.rank) || cards.indexOf(a) + 100) - (Number(b.dataset.rank) || cards.indexOf(b) + 100);
+        });
+      }
+
+      matched.concat(cards.filter(function (card) {
+        return matched.indexOf(card) < 0;
+      })).forEach(function (card) {
+        list.appendChild(card);
+      });
+
+      if (empty) {
+        empty.hidden = matched.length > 0;
+      }
+
+      showPage(1);
+    }
 
     buttons.forEach(function (button) {
       button.addEventListener("click", function () {
-        const value = button.dataset.filterBtn;
-        let count = 0;
-
-        buttons.forEach(function (item) {
-          const active = item === button;
-
-          item.classList.toggle("is-active", active);
-          item.setAttribute("aria-pressed", String(active));
-        });
-
-        cards.forEach(function (card) {
-          const show = value === "all" || card.dataset.cat === value;
-
-          card.hidden = !show;
-          count += show ? 1 : 0;
-        });
-
-        if (empty) {
-          empty.hidden = count > 0;
-        }
+        applyFilter(button);
       });
     });
+
+    if (pager) {
+      pager.addEventListener("click", function (event) {
+        const link = event.target.closest("[data-page]");
+
+        if (!link) {
+          return;
+        }
+
+        event.preventDefault();
+        showPage(Number(link.dataset.page));
+        wrap.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      });
+    }
+
+    /* 처음 분류 : 주소 ?cat=분류명 → 마크업의 .is-active → 전체 */
+    const query = new URLSearchParams(window.location.search).get("cat");
+    const initialButton = (query && Array.from(buttons).find(function (button) {
+      return button.dataset.filterBtn === query;
+    }))
+      || wrap.querySelector("[data-filter-btn].is-active")
+      || wrap.querySelector('[data-filter-btn="all"]');
+
+    if (initialButton) {
+      applyFilter(initialButton);
+    }
   }
+
 
 
   /* =========================================================
@@ -506,8 +664,101 @@
   }
 
 
+  /* =========================================================
+     보유기술 : 스크롤 등장
+     - [data-reveal] 요소가 화면에 들어오면 한 번만 아래에서 떠오름
+     - 순서 지연은 style="--d: n" (sub.css)
+     - data-reveal="steps" : 박스는 그대로 두고 안쪽 단계 애니메이션만,
+       화면 위·아래 35% 를 뺀 영역에 들어왔을 때(실제로 보는 위치) 시작
+       → 화면 밖으로 완전히 나가면 초기화되어, 위로 다시 올라올 때도 매번 재생
+  ========================================================= */
+
+  function initReveal() {
+    const items = document.querySelectorAll("[data-reveal]");
+
+    if (!items.length || reduceMotion || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    document.documentElement.classList.add("js-reveal");
+
+    function createObserver(rootMargin) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: rootMargin });
+
+      return observer;
+    }
+
+    const fadeObserver = createObserver("0px 0px -10% 0px");
+
+    /* 단계 : 진입 시 재생 (해제하지 않고 계속 감시) */
+    const stepObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+        }
+      });
+    }, { rootMargin: "-35% 0px -35% 0px" });
+
+    /* 단계 : 화면 밖으로 완전히 나가면 초기화 */
+    const stepResetObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          entry.target.classList.remove("is-revealed");
+        }
+      });
+    });
+
+    items.forEach(function (item) {
+      if (item.dataset.reveal === "steps") {
+        stepObserver.observe(item);
+        stepResetObserver.observe(item);
+      } else {
+        fadeObserver.observe(item);
+      }
+    });
+  }
+
+
+  /* =========================================================
+     서브 탭 : 가로 스크롤될 때 활성 탭이 잘리지 않도록 목록 안에서 가운데로 이동
+     - 페이지 세로 위치는 건드리지 않도록 scrollLeft 만 조정
+  ========================================================= */
+
+  function initSubTab() {
+    const lists = document.querySelectorAll(".sub-tab__list");
+
+    function center() {
+      lists.forEach(function (list) {
+        const active = list.querySelector(".is-active");
+
+        if (!active || list.scrollWidth <= list.clientWidth) {
+          return;
+        }
+
+        const listRect = list.getBoundingClientRect();
+        const activeRect = active.getBoundingClientRect();
+
+        list.scrollLeft += activeRect.left - listRect.left - (list.clientWidth - activeRect.width) / 2;
+      });
+    }
+
+    center();
+    window.addEventListener("load", center);
+  }
+
+
+  initSubTab();
+  initReveal();
   initMission();
   initAccordion();
+  initFaqMotion();
   initDetailToc();
   initPromoFallback();
   initAuthRequired();

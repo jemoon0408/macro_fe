@@ -9,27 +9,22 @@
 
     <div class="sample-modal__body">
       <form class="sample-form" action="#" method="post" enctype="multipart/form-data" novalidate>
-        <h2 class="sample-form__title" id="sample-modal-title">Sample Request</h2>
+        <h2 class="sample-form__title" id="sample-modal-title">샘플 요청</h2>
 
         <div class="sample-form__fields">
           <div class="sample-form__field sample-form__field--full">
-            <span class="sample-form__label" aria-hidden="true">원료 선택</span>
-            <div class="c-select sample-form__select" data-select>
-              <select name="material" aria-label="원료 선택">
-                <option value="">선택해주세요.</option>
-                <option value="V2G">V2G</option>
-                <option value="Actigen">Actigen</option>
-                <option value="Whitegen">Whitegen</option>
-                <option value="Vitagen">Vitagen</option>
-                <option value="Tocomide">Tocomide</option>
-                <option value="Biopeptide Cu">Biopeptide Cu</option>
-                <option value="Psuedo Ceramides">Psuedo Ceramides</option>
-                <option value="MC-Glucan">MC-Glucan</option>
-                <option value="MC-Salicare">MC-Salicare</option>
-                <option value="Macrocide-OL">Macrocide-OL</option>
-                <option value="SteviLite">SteviLite</option>
-              </select>
-            </div>
+            <label class="sample-form__label is-required" for="sr-material">요청 원료 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-material" name="material" class="sample-form__input" required placeholder="원료명을 입력해 주세요. (예: V2G, MC-Glucan)">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-quantity">수량 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-quantity" name="quantity" class="sample-form__input" required placeholder="예: 100g">
+          </div>
+
+          <div class="sample-form__field">
+            <label class="sample-form__label is-required" for="sr-purpose">사용 목적 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-purpose" name="purpose" class="sample-form__input" required placeholder="예: 신제품 처방 테스트">
           </div>
 
           <div class="sample-form__field">
@@ -66,6 +61,11 @@
           </div>
 
           <div class="sample-form__field sample-form__field--full">
+            <label class="sample-form__label is-required" for="sr-address">받을 주소 <b aria-hidden="true">*</b></label>
+            <input type="text" id="sr-address" name="address" class="sample-form__input" required autocomplete="street-address" placeholder="샘플을 받으실 주소를 입력해 주세요.">
+          </div>
+
+          <div class="sample-form__field sample-form__field--full">
             <label class="sample-form__label is-required" for="sr-message">문의내용 <b aria-hidden="true">*</b></label>
             <textarea id="sr-message" name="message" class="sample-form__input sample-form__textarea" required></textarea>
           </div>
@@ -78,7 +78,7 @@
             <div class="sample-privacy__item">
               <h4 class="sample-privacy__label">수집하는 개인정보 항목</h4>
               <ul class="sample-privacy__list">
-                <li>수집항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 문의내용 등</li>
+                <li>수집항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 주소, 문의내용 등</li>
                 <li>개인정보 수집방법 : 홈페이지(macro.coreit.co.kr)</li>
               </ul>
               <p class="sample-privacy__note">※ 회사는 회원가입, 상담, Contact Us, 서비스 신청 등등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
@@ -95,7 +95,7 @@
             <div class="sample-privacy__item">
               <h4 class="sample-privacy__label">개인정보의 보유 및 이용기간</h4>
               <ul class="sample-privacy__list">
-                <li>보존 항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 문의내용 등</li>
+                <li>보존 항목 : 이름, 직책, 이메일, 단체/회사명, 연락처, 주소, 문의내용 등</li>
                 <li>보존 근거 : 사이트 운영 기간내 내용 확인을 위한 보존</li>
                 <li>보존 기간 : 본사이트 운영기간내</li>
               </ul>

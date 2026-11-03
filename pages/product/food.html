@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>식품 첨가물 | 마크로케어</title>
+  <link rel="stylesheet" href="../../css/common.css">
+</head>
+
+<body>
+
+  <!-- 공통 HEADER -->
+  <div id="include-header"></div>
+
+  <main id="main-content" class="sub" tabindex="-1">
+
+    <!-- 원료 소개 -->
+    <section class="pd-visual">
+      <div class="inner">
+        <ol class="breadcrumb breadcrumb--gray">
+          <li><img src="../../img/sub/ico-home-gray.png" alt="">HOME</li>
+          <li>원료소개</li>
+          <li aria-current="page">식품 첨가물</li>
+        </ol>
+        <div class="pd-visual__body">
+          <div class="pd-visual__txt">
+            <p class="pd-visual__en">Product</p>
+            <h1 class="pd-visual__title">식품 첨가물</h1>
+            <p class="pd-visual__desc">다양한 기능의 식품첨가물을 한눈에 살펴보고<br>각 원료의 특성과 정보를 확인할 수 있습니다.</p>
+          </div>
+          <div class="pd-visual__img"><img src="../../img/sub/product/visual-food.png" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 원료 카테고리 -->
+    <nav class="sub-tab" aria-label="원료소개 메뉴">
+      <ul class="sub-tab__list">
+        <li><a href="cosmetic.html">화장품원료</a></li>
+        <li><a href="food.html" class="is-active" aria-current="page">식품 첨가물</a></li>
+      </ul>
+    </nav>
+
+    <!-- 원료 목록 -->
+    <section class="pd-list" data-filter data-page-size="6">
+      <div class="inner">
+        <div class="sec-head">
+          <p class="sec-head__en">Find your ingredient</p>
+          <h2 class="sec-head__title">전체 식품 첨가물</h2>
+        </div>
+
+        <ul class="chip-list chip-list--fill" aria-label="분류별 탐색">
+          <li><button type="button" class="chip is-active" data-filter-btn="all" aria-pressed="true">전체</button></li>
+          <li><button type="button" class="chip" data-filter-btn="스테비아 천연 감미료" aria-pressed="false">스테비아 천연 감미료</button></li>
+          <li><button type="button" class="chip" data-filter-btn="감초 추출물" aria-pressed="false">감초 추출물</button></li>
+        </ul>
+
+        <ul class="ingredient-list">
+          <li class="ingredient-card" data-cat="스테비아 천연 감미료" style="--bg: url('../img/sub/product/list/stevilite.png')">
+            <p class="ingredient-card__cat">스테비아 천연 감미료</p>
+            <h3 class="ingredient-card__name">SteviLite Prime</h3>
+            <a href="stevilite-prime.html" class="ingredient-card__btn">상세 보기<i aria-hidden="true">↗</i><span class="sr-only">SteviLite Prime</span></a>
+          </li>
+          <li class="ingredient-card" data-cat="스테비아 천연 감미료" style="--bg: url('../img/sub/product/list/stevilite.png')">
+            <p class="ingredient-card__cat">스테비아 천연 감미료</p>
+            <h3 class="ingredient-card__name">SteviLite 80G</h3>
+            <a href="stevilite-80g.html" class="ingredient-card__btn">상세 보기<i aria-hidden="true">↗</i><span class="sr-only">SteviLite 80G</span></a>
+          </li>
+          <li class="ingredient-card" data-cat="스테비아 천연 감미료" style="--bg: url('../img/sub/product/list/stevilite-n.png')">
+            <p class="ingredient-card__cat">스테비아 천연 감미료</p>
+            <h3 class="ingredient-card__name">SteviLite N</h3>
+            <a href="stevilite-n.html" class="ingredient-card__btn">상세 보기<i aria-hidden="true">↗</i><span class="sr-only">SteviLite N</span></a>
+          </li>
+          <li class="ingredient-card" data-cat="감초 추출물" style="--bg: url('../img/sub/product/list/licolite.png')">
+            <p class="ingredient-card__cat">감초 추출물</p>
+            <h3 class="ingredient-card__name">리코라이트</h3>
+            <a href="licolite.html" class="ingredient-card__btn">상세 보기<i aria-hidden="true">↗</i><span class="sr-only">리코라이트</span></a>
+          </li>
+        </ul>
+        <p class="ingredient-empty" hidden>해당 분류의 원료가 없습니다.</p>
+
+        <nav class="pagination" aria-label="페이지 이동" data-pagination>
+          <a href="#" class="pagination__arrow" aria-label="이전 페이지" data-page-prev>←</a>
+          <ol class="pagination__list"></ol>
+          <a href="#" class="pagination__arrow" aria-label="다음 페이지" data-page-next>→</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 주요제품 -->
+    <section class="pd-feature">
+      <div class="inner">
+        <div class="sec-head">
+          <p class="sec-head__en">Ingredient highlights</p>
+          <h2 class="sec-head__title">주요제품</h2>
+        </div>
+
+        <div class="swiper pd-feature__swiper">
+          <ul class="swiper-wrapper">
+            <li class="swiper-slide feature-card" style="--bg: url('../img/sub/product/ingredient-01.png')">
+              <span class="feature-card__badge">화장품원료</span>
+              <div class="feature-card__body">
+                <div>
+                  <h3 class="feature-card__name">V2G</h3>
+                  <p class="feature-card__desc">미백 · 주름 개선 · 항산화 효과</p>
+                </div>
+                <ul class="feature-card__links">
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=91&amp;cate=00000006" target="_blank" rel="noopener" title="새 창 열림">제품 정보 보기<i aria-hidden="true">↗</i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="swiper-slide feature-card" style="--bg: url('../img/sub/product/ingredient-02.png')">
+              <span class="feature-card__badge">화장품원료</span>
+              <div class="feature-card__body">
+                <div>
+                  <h3 class="feature-card__name">Vitagen</h3>
+                  <p class="feature-card__desc">주름개선 효과 · 미백 효과</p>
+                </div>
+                <ul class="feature-card__links">
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=91&amp;cate=00000006" target="_blank" rel="noopener" title="새 창 열림">제품 정보 보기<i aria-hidden="true">↗</i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="swiper-slide feature-card" style="--bg: url('../img/sub/product/ingredient-03.png')">
+              <span class="feature-card__badge">화장품원료</span>
+              <div class="feature-card__body">
+                <div>
+                  <h3 class="feature-card__name">Pseudo Ceramides</h3>
+                  <p class="feature-card__desc">보습 효과 · 피부보호 효과</p>
+                </div>
+                <ul class="feature-card__links feature-card__links--en">
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=116&amp;cate=00000008" target="_blank" rel="noopener" title="새 창 열림">Ceramide PC-102<i aria-hidden="true">↗</i></a></li>
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=114&amp;cate=00000008" target="_blank" rel="noopener" title="새 창 열림">Ceramide PC-104<i aria-hidden="true">↗</i></a></li>
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=113&amp;cate=00000008" target="_blank" rel="noopener" title="새 창 열림">Ceramide PC-108<i aria-hidden="true">↗</i></a></li>
+                  <li><a href="http://www.macrocare.net/home/sub.php?menukey=73&amp;mod=view&amp;no=112&amp;cate=00000008" target="_blank" rel="noopener" title="새 창 열림">Ceramide LC-S-20<i aria-hidden="true">↗</i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pd-feature__nav">
+          <p class="pd-feature__count" aria-live="polite"><span data-current>01</span> — <span data-total>07</span></p>
+          <div class="pd-feature__btns">
+            <button type="button" class="circle-btn" data-prev aria-label="이전 제품">←</button>
+            <button type="button" class="circle-btn" data-next aria-label="다음 제품">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 공통 FOOTER -->
+  <div id="include-footer"></div>
+
+  <script src="../../vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../js/include.js" defer></script>
+  <script src="../../js/sub.js" defer></script>
+</body>
+
+</html>

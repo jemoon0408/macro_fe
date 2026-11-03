@@ -18,6 +18,23 @@
      어디에서 실행하든 동일하게 프로젝트 루트를 찾음
   ========================================================= */
 
+  /* =========================================================
+     키보드 포커스 모드 (전 페이지 공통)
+     - Tab 으로 이동하면 html.kbd-nav → 포커스 테두리 표시
+     - 마우스 · 터치로 누르면 해제 → 클릭한 입력창 · 버튼에는 테두리 없음
+  ========================================================= */
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      document.documentElement.classList.add("kbd-nav");
+    }
+  });
+
+  document.addEventListener("pointerdown", function () {
+    document.documentElement.classList.remove("kbd-nav");
+  });
+
+
   const includeScript = document.currentScript;
 
   const ROOT_URL = includeScript
