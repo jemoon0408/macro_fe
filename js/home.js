@@ -740,43 +740,65 @@
 
     const bg = section.querySelector(".m-effect__bg");
     const base = bg.querySelector("img");
-    const layers = { [base.getAttribute("src")]: base };
+    const cards = Array.from(section.querySelectorAll("[data-bg]"));
+    const layers = [];
+    /* 기본 선택 : 배경 기본 이미지와 같은 카드 (보습) */
+    const defaultIndex = Math.max(0, cards.findIndex(function (card) {
+      return card.dataset.bg === base.getAttribute("src");
+    }));
 
-    section.querySelectorAll("[data-bg]").forEach(function (card) {
+    cards.forEach(function (card) {
       const src = card.dataset.bg;
+      let img = layers.find(function (layer) {
+        return layer.getAttribute("src") === src;
+      });
 
-      if (!layers[src]) {
-        const img = document.createElement("img");
+      if (!img && src === base.getAttribute("src")) {
+        img = base;
+      }
 
+      if (!img) {
+        img = document.createElement("img");
         img.src = src;
         img.alt = "";
+        img.decoding = "async";
         bg.appendChild(img);
-        layers[src] = img;
       }
 
-      function show() {
-        Object.keys(layers).forEach(function (key) {
-          layers[key].classList.toggle("is-on", key === src);
-        });
-      }
-
-      card.addEventListener("mouseenter", show);
-      card.addEventListener("focus", show);
+      layers.push(img);
     });
 
-    function reset() {
-      Object.keys(layers).forEach(function (key) {
-        layers[key].classList.toggle("is-on", layers[key] === base);
+    function activate(index) {
+      cards.forEach(function (card, i) {
+        card.classList.toggle("is-active", i === index);
+      });
+
+      bg.querySelectorAll("img").forEach(function (img) {
+        img.classList.toggle("is-on", img === layers[index]);
       });
     }
 
-    section.querySelector(".m-effect__list").addEventListener("mouseleave", reset);
+    cards.forEach(function (card, index) {
+      card.addEventListener("mouseenter", function () {
+        activate(index);
+      });
+      card.addEventListener("focus", function () {
+        activate(index);
+      });
+    });
+
+    section.querySelector(".m-effect__list").addEventListener("mouseleave", function () {
+      activate(defaultIndex);
+    });
     section.addEventListener("focusout", function (event) {
       if (!section.contains(event.relatedTarget)) {
-        reset();
+        activate(defaultIndex);
       }
     });
+
+    activate(defaultIndex);
   }
+
 
 
   /* =========================================================

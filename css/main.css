@@ -716,16 +716,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(9px);
-  transform: scale(1.12);
   opacity: 0;
   transition: opacity .6s ease;
-  /* 블러 이미지를 별도 레이어로 올려 전환할 때 블러를 다시 그리지 않도록 */
   will-change: opacity;
 }
 
 .m-effect__bg img.is-on {
   opacity: 1;
+}
+
+/* 보습 외 임시 배경 : 모서리 여백이 보이지 않도록 살짝 확대 (시안 배경 이미지는 원본 그대로) */
+.m-effect__bg img:not(:first-child) {
+  transform: scale(1.12);
 }
 
 .m-effect .inner {
@@ -748,6 +750,7 @@
   margin-left: 90px;
 }
 
+/* 카드 : 반투명 흰색 + 뒤 배경 블러(8px), 테두리는 흰색 → 투명 그라데이션 (시안 4px) */
 .m-effect__card {
   position: relative;
   display: flex;
@@ -755,12 +758,25 @@
   gap: 10px;
   height: 220px;
   padding: 40px 45px;
-  border: 4px solid var(--white);
   border-radius: 20px;
-  /* 뒤 배경이 이미 블러 처리돼 있어 카드 자체 블러(backdrop-filter)는 생략 → hover 이동 시 매 프레임 블러 재계산 없음 */
   background: rgba(255, 255, 255, .46);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   line-height: 1.45;
-  transition: background .35s, transform .35s cubic-bezier(.2, .7, .3, 1);
+  transition: background .35s, transform .45s cubic-bezier(.2, .7, .3, 1), box-shadow .45s;
+}
+
+.m-effect__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 4px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .59), rgba(255, 255, 255, 0));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
 }
 
 .m-effect__card strong {
@@ -784,10 +800,12 @@
   height: 30px;
 }
 
-.m-effect__card:hover,
-.m-effect__card:focus-visible {
+/* 선택(초기 : 보습) · hover : 흰색 카드로 바뀌며 살짝 떠오름
+   - 위아래 카드 간격(26px) 안에서만 움직이도록 12px 만 올리고, 그림자로 떠 있는 느낌 */
+.m-effect__card.is-active {
   background: var(--white);
-  transform: translateY(-25px);
+  transform: translateY(-12px);
+  box-shadow: 0 18px 36px rgba(15, 42, 42, .18);
 }
 
 /* =========================================================
@@ -913,12 +931,14 @@
 }
 
 /* 텍스트 쪽(왼쪽) · 위 · 아래로 자연스럽게 사라짐 */
+/* 페이드는 DNA 이미지보다 위, 콘텐츠보다 아래 */
 .m-dna::before,
 .m-dna::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -937,7 +957,7 @@
 .m-youtube,
 .m-cred {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* 유튜브 */
@@ -1131,15 +1151,42 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  isolation: isolate;
   width: 310px;
   padding: 28px 36px;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(116, 222, 208, .82), rgba(0, 166, 148, .72));
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  /* 시안 : 질감 이미지(50%) 위에 브랜드색 25% + 뒤 배경 블러 8px, 테두리 투명 → 흰색 그라데이션 4px */
+  background: rgba(0, 127, 118, .25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   line-height: 1.5;
   color: var(--white);
   transition: background .3s;
+}
+
+.m-cred__label::before,
+.m-cred__label::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* 질감 이미지 */
+.m-cred__label::before {
+  z-index: -1;
+  background: url("../img/main/cred-label.webp") 0 16% / 100% 409% no-repeat;
+  opacity: .5;
+}
+
+/* 그라데이션 테두리 */
+.m-cred__label::after {
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0), var(--white));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
 }
 
 .m-cred__label strong {
@@ -1161,7 +1208,7 @@
 
 .m-cred__link:hover .m-cred__label,
 .m-cred__link:focus-visible .m-cred__label {
-  background: linear-gradient(135deg, rgba(0, 166, 148, .92), rgba(0, 110, 102, .92));
+  background: rgba(0, 110, 102, .62);
 }
 
 /* =========================================================
@@ -1794,9 +1841,9 @@
     height: 20px;
   }
 
-  .m-effect__card:hover,
-  .m-effect__card:focus-visible {
+  .m-effect__card.is-active {
     transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(15, 42, 42, .16);
   }
 
   /* 글로벌 파트너 */
