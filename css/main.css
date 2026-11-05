@@ -835,17 +835,47 @@
 .m-partner__bg {
   position: absolute;
   inset: 0;
-  opacity: .76;
+  opacity: .36; /* 시안 화면과 같은 밝기 (원본 사진이 시안보다 진하게 보여 맞춤) */
+  container-type: size;
 }
 
-.m-partner__bg img {
+/* 지구 : 원본 비율(2000×1125) 상자 — 예전 cover(위쪽 기준, 높이 152.33%)와 같은 크기 · 위치
+   떠오르는 움직임은 home.js(initGlobe) */
+.m-partner__globe {
+  --gw: 100%;
   position: absolute;
   top: 10.42%;
-  left: 0;
+  left: calc(50% - var(--gw) / 2);
+  width: var(--gw);
+  aspect-ratio: 2000 / 1125;
+  will-change: transform, opacity;
+}
+
+@supports (width: 1cqw) {
+  .m-partner__globe {
+    --gw: max(100cqw, 270.81cqh);
+  }
+}
+
+/* 지구 자전 : 원본 사진을 지구 원의 중심(50.5% · 100.4%)을 축으로 천천히 돌림
+   (사진이 지구 윗부분만 담고 있어 한 방향으로 계속 돌면 잘린 아랫면이 드러나므로, 좌우로 아주 느리게 오감) */
+.m-partner__globe img {
+  position: relative;
+  display: block;
   width: 100%;
-  height: 152.33%;
-  object-fit: cover;
-  object-position: top;
+  height: 100%;
+  transform-origin: 50.5% 100.4%;
+  animation: m-globe-spin 36s ease-in-out infinite alternate;
+}
+
+@keyframes m-globe-spin {
+  from {
+    rotate: -9deg;
+  }
+
+  to {
+    rotate: 9deg;
+  }
 }
 
 .m-partner__bg::after {
@@ -2034,7 +2064,8 @@
     animation: none;
   }
 
-  .m-partner__track {
+  .m-partner__track,
+  .m-partner__globe img {
     animation: none;
   }
 

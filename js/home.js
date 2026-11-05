@@ -413,8 +413,29 @@
     const youtube = document.querySelector(".m-youtube__swiper");
     const cred = document.querySelector(".m-cred__swiper");
 
+    /* 화면 오른쪽 끝까지 이어지는 스와이퍼 : 마지막 슬라이드 뒤 여백 = 본문 왼쪽 여백(.inner 시작점)
+       → 끝까지 넘겼을 때 왼쪽과 같은 오른쪽 여백 */
+    const edgeGap = {
+      slidesOffsetAfter: 0,
+      on: {
+        beforeInit: function (swiper) {
+          swiper.params.slidesOffsetAfter = gutterOf(swiper.el);
+        },
+        beforeResize: function (swiper) {
+          swiper.params.slidesOffsetAfter = gutterOf(swiper.el);
+        }
+      }
+    };
+
+    /* 스와이퍼 오른쪽 끝(화면 밖까지 늘어난 부분 포함) ~ 본문 오른쪽 끝 = 마지막 슬라이드 뒤에 둘 여백 */
+    function gutterOf(el) {
+      const inner = el.closest(".inner");
+
+      return inner ? Math.round(el.getBoundingClientRect().right - inner.getBoundingClientRect().right) : 0;
+    }
+
     if (core) {
-      new Swiper(core, {
+      new Swiper(core, Object.assign({}, edgeGap, {
         slidesPerView: "auto",
         spaceBetween: 24,
         speed: 600,
@@ -423,12 +444,12 @@
           0: { spaceBetween: 16 },
           769: { spaceBetween: 24 }
         }
-      });
+      }));
     }
 
     /* 유튜브 : 드래그 · 트랙패드/휠 가로 스크롤로 좌우 이동 (세로 휠은 페이지 스크롤 그대로) */
     if (youtube) {
-      new Swiper(youtube, {
+      new Swiper(youtube, Object.assign({}, edgeGap, {
         slidesPerView: "auto",
         spaceBetween: 20,
         speed: 600,
@@ -439,7 +460,7 @@
           0: { spaceBetween: 12 },
           769: { spaceBetween: 20 }
         }
-      });
+      }));
     }
 
     if (cred) {
@@ -857,6 +878,40 @@
   }
 
 
+  /* =========================================================
+     B07 : 지구가 떠오르는 장면 (GSAP + ScrollTrigger, scrub)
+     - 영역이 화면 아래에서 들어오며 지구가 지평선 아래에서 크게 → 제자리로 떠오름
+       (아래쪽 먼 지점을 축으로 살짝 돌아 올라와 행성이 도는 느낌)
+     - 동작 줄이기 / GSAP 없음 : 지구는 제자리
+  ========================================================= */
+
+  function initGlobe() {
+    const section = document.querySelector(".m-partner");
+    const globe = section && section.querySelector("[data-globe]");
+
+    if (!globe || reduceMotion || !hasGsap) {
+      return;
+    }
+
+    gsap.fromTo(globe,
+      { yPercent: 34, scale: 1.22, rotation: -9, opacity: 0, transformOrigin: "50% 170%" },
+      {
+        yPercent: 0,
+        scale: 1,
+        rotation: 0,
+        opacity: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "top 10%",
+          scrub: 1.2
+        }
+      }
+    );
+  }
+
+
   initVisual();
   initCount();
   initGreen();
@@ -864,4 +919,5 @@
   initTech();
   initEffect();
   initMarquee();
+  initGlobe();
 })();
