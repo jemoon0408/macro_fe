@@ -243,6 +243,58 @@
      - 다시 그 위로 올라가면 해제 → 내려올 때마다 재생
   ========================================================= */
 
+  /* =========================================================
+     원료 상세 : 기술 자료 아코디언 ([data-spec-acc])
+     - 제목 줄 버튼으로 열고 닫음, 규격 표는 높이를 0 ↔ 원래 높이로 0.45초 슬라이드
+  ========================================================= */
+
+  function initSpecAccordion() {
+    document.querySelectorAll("[data-spec-acc]").forEach(function (item) {
+      const toggle = item.querySelector(".pd-spec__toggle");
+      const body = item.querySelector(".pd-spec__body");
+
+      if (!toggle || !body) {
+        return;
+      }
+
+      toggle.addEventListener("click", function () {
+        const open = !item.classList.contains("is-open");
+
+        if (body.slideAnim) {
+          body.slideAnim.cancel();
+        }
+
+        item.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+
+        if (open) {
+          body.hidden = false;
+        }
+
+        if (reduceMotion || !body.animate) {
+          body.hidden = !open;
+          return;
+        }
+
+        const style = getComputedStyle(body);
+        const full = { height: body.offsetHeight + "px", paddingTop: style.paddingTop, opacity: 1 };
+        const zero = { height: "0px", paddingTop: "0px", opacity: 0 };
+
+        body.style.overflow = "hidden";
+        body.slideAnim = body.animate(open ? [zero, full] : [full, zero], {
+          duration: 450,
+          easing: "ease-in-out"
+        });
+        body.slideAnim.onfinish = function () {
+          body.style.overflow = "";
+          body.hidden = !open;
+          body.slideAnim = null;
+        };
+      });
+    });
+  }
+
+
   function initFaqMotion() {
     const section = document.querySelector(".faq");
 
@@ -759,6 +811,7 @@
   initReveal();
   initMission();
   initAccordion();
+  initSpecAccordion();
   initFaqMotion();
   initDetailToc();
   initPromoFallback();

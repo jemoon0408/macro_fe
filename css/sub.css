@@ -7519,3 +7519,105 @@ html.kbd-nav .pd-toc__list a:focus-visible {
     margin-top: 16px;
   }
 }
+
+/* =========================================================
+   원료 상세 : 기술 자료 아코디언 (V2G · sub.js initSpecAccordion)
+   - 제목 줄 전체를 누르면 열고 닫힘 (PDF 버튼은 그대로 다운로드)
+   - 닫힌 상태 : 제품명 + 아래 화살표만 / 열린 상태 : 안내 문구 · PDF 버튼 · 규격 표 + 위 화살표
+========================================================= */
+.pd-spec--acc {
+  gap: 0;
+}
+
+.pd-spec--acc .pd-spec__head {
+  position: relative;
+  align-items: center;
+  gap: 25px;
+}
+
+.pd-spec--acc .pd-spec__txt {
+  flex: 1;
+  min-width: 0;
+}
+
+.pd-spec__toggle {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 제목 줄 전체를 누를 수 있도록 버튼 영역 확장 */
+.pd-spec__toggle::after {
+  content: "";
+  position: absolute;
+  inset: -28px -28px -24px;
+  border-radius: 28px;
+}
+
+.pd-spec--acc .pd-spec__btn {
+  position: relative;
+  z-index: 1;
+  width: 171px;
+}
+
+.pd-spec__chev {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: url("../img/sub/product/detail/ico-chevron.svg") center / contain no-repeat;
+  transform: rotate(-90deg);
+  transition: transform .4s ease;
+}
+
+.pd-spec--acc.is-open .pd-spec__chev {
+  transform: rotate(90deg);
+}
+
+/* 닫힌 상태 : 안내 문구 · PDF 버튼 숨김 */
+.pd-spec--acc:not(.is-open) .pd-spec__sub,
+.pd-spec--acc:not(.is-open) .pd-spec__btn {
+  display: none;
+}
+
+.pd-spec__body {
+  padding-top: 24px;
+}
+
+@media (max-width: 768px) {
+  /* 모바일 : 제목 + 화살표 한 줄 → 안내 문구 → PDF 버튼(꽉 찬 너비) → 규격 표 */
+  .pd-spec--acc {
+    gap: 0;
+  }
+
+  .pd-spec--acc .pd-spec__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 14px 12px;
+  }
+
+  .pd-spec--acc .pd-spec__txt {
+    flex: 1 1 0;
+  }
+
+  .pd-spec--acc .pd-spec__chev {
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+  }
+
+  .pd-spec--acc .pd-spec__btn {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .pd-spec__toggle::after {
+    inset: -18px -18px -14px;
+  }
+
+  .pd-spec__body {
+    padding-top: 14px;
+  }
+}

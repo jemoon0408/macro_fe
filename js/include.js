@@ -517,6 +517,9 @@
       /* header.js / main.js 실행 */
       loadCommonScript();
 
+      /* 공통 영역(헤더 등) 삽입 완료 알림 : 헤더 높이에 맞춰 위치를 다시 계산하는 스크립트용 (home.js) */
+      document.dispatchEvent(new CustomEvent("include:ready"));
+
     } catch (error) {
 
       console.error(

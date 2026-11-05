@@ -82,6 +82,12 @@
       const txt = visual.querySelector(".mv__txt");
       /* 고정되는 스크롤 길이(pin-spacer 추가 높이) : 화면 높이의 절반, 최대 400px */
       const PIN_MAX = 400;
+      /* [세로 화면] 세로로 긴 화면(세로 > 가로) : 이미지(mv__visual) 높이 700px 고정*/
+      const TALL_H = 500;
+  /*세로 화면 때문에 추가 넓이보다 클 때 함수 추가 간단 비교용 */
+      function isTall() {
+        return window.innerHeight > window.innerWidth;
+      }
 
       function radius() {
         return parseFloat(getComputedStyle(visual).getPropertyValue("--radius")) || 0;
@@ -119,7 +125,7 @@
 
         const avail = window.innerHeight - headerH();
         const designH = visual.offsetWidth * 780 / 1808;
-        const fullH = Math.max(designH, avail - pad * 2);
+        const fullH = isTall() ? TALL_H : Math.max(designH, avail - pad * 2);
         const startH = Math.min(fullH, Math.max(designH, avail - visual.offsetTop - pad));
 
         visual.style.height = fullH + "px";
@@ -137,8 +143,12 @@
           start: function () {
             return "top " + headerH() + "px";
           },
+          /* [가로 화면] 고정 길이(pin-spacer 추가 높이) : 가로 화면은 화면 절반 · 최대 400px,
+             세로로 긴 화면은 이미지가 움직이는 거리(제목 높이 + 아래 잘림)만큼만 · 최대 400px */
           end: function () {
-            return "+=" + Math.min(window.innerHeight * .5, PIN_MAX);
+            const move = isTall() ? lift() + size() : window.innerHeight * .5;
+
+            return "+=" + Math.min(Math.max(move, 200), PIN_MAX);
           },
           scrub: 1.5,
           pin: true,
@@ -197,6 +207,11 @@
     });
 
     window.addEventListener("load", function () {
+      ScrollTrigger.refresh();
+    });
+
+    /* 고정 헤더가 늦게 삽입되면 그 높이를 반영해 다시 계산 */
+    document.addEventListener("include:ready", function () {
       ScrollTrigger.refresh();
     });
   }

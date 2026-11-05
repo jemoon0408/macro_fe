@@ -71,47 +71,57 @@
             </div>
           </section>
 
-          <!-- 02 기술 자료 -->
+          <!-- 02 기술 자료 (규격별 아코디언 : 제목 줄을 누르면 열고 닫힘, 첫 규격은 열린 상태 · sub.js initSpecAccordion) -->
           <section id="pd-tech" class="pd-sec" aria-labelledby="pd-tech-title">
             <div class="sec-head">
               <p class="sec-head__en">02 / Technical Information</p>
               <h2 id="pd-tech-title" class="sec-head__title">기술 자료</h2>
             </div>
 
-            <div class="pd-spec">
+            <div class="pd-spec pd-spec--acc is-open" data-spec-acc>
               <div class="pd-spec__head">
                 <div class="pd-spec__txt">
-                  <h3 class="pd-spec__name">Product Name : V2G</h3>
+                  <h3 class="pd-spec__name">
+                    <button type="button" class="pd-spec__toggle" aria-expanded="true" aria-controls="pd-spec-body-1">Product Name : V2G</button>
+                  </h3>
                   <p class="pd-spec__sub">원료 기본 규격 및 제품 카탈로그</p>
                 </div>
                 <a href="../../files/catalog/macrocare-v2g.pdf" class="pd-spec__btn" download>PDF 다운로드<i aria-hidden="true">↓</i><span class="sr-only">V2G (새 창)</span></a>
+                <span class="pd-spec__chev" aria-hidden="true"></span>
               </div>
-              <dl class="pd-spec__list">
-                <div><dt>INCI Name</dt><dd>Ascorbyl Glucoside</dd></div>
-                <div><dt>CAS No.</dt><dd>12499-78-1</dd></div>
-                <div><dt>M.O.Q.</dt><dd>5KG</dd></div>
-                <div><dt>Pack Size</dt><dd>5KG</dd></div>
-                <div><dt>Appearance</dt><dd>Powder</dd></div>
-                <div><dt>Dosage</dt><dd>2%</dd></div>
-              </dl>
+              <div class="pd-spec__body" id="pd-spec-body-1">
+                <dl class="pd-spec__list">
+                  <div><dt>INCI Name</dt><dd>Ascorbyl Glucoside</dd></div>
+                  <div><dt>CAS No.</dt><dd>12499-78-1</dd></div>
+                  <div><dt>M.O.Q.</dt><dd>5KG</dd></div>
+                  <div><dt>Pack Size</dt><dd>5KG</dd></div>
+                  <div><dt>Appearance</dt><dd>Powder</dd></div>
+                  <div><dt>Dosage</dt><dd>2%</dd></div>
+                </dl>
+              </div>
             </div>
 
-            <div class="pd-spec">
+            <div class="pd-spec pd-spec--acc" data-spec-acc>
               <div class="pd-spec__head">
                 <div class="pd-spec__txt">
-                  <h3 class="pd-spec__name">Product Name : Gen90S</h3>
+                  <h3 class="pd-spec__name">
+                    <button type="button" class="pd-spec__toggle" aria-expanded="false" aria-controls="pd-spec-body-2">Product Name : Gen90S</button>
+                  </h3>
                   <p class="pd-spec__sub">원료 기본 규격 및 제품 카탈로그</p>
                 </div>
                 <a href="../../files/catalog/macrocare-v2g.pdf" class="pd-spec__btn" download>PDF 다운로드<i aria-hidden="true">↓</i><span class="sr-only">Gen90S (새 창)</span></a>
+                <span class="pd-spec__chev" aria-hidden="true"></span>
               </div>
-              <dl class="pd-spec__list">
-                <div><dt>INCI Name</dt><dd>Ascorbyl Glucoside</dd></div>
-                <div><dt>CAS No.</dt><dd>12499-78-1</dd></div>
-                <div><dt>M.O.Q.</dt><dd>5KG</dd></div>
-                <div><dt>Pack Size</dt><dd>5KG</dd></div>
-                <div><dt>Appearance</dt><dd>Powder</dd></div>
-                <div><dt>Dosage</dt><dd>2%</dd></div>
-              </dl>
+              <div class="pd-spec__body" id="pd-spec-body-2" hidden>
+                <dl class="pd-spec__list">
+                  <div><dt>INCI Name</dt><dd>Ascorbyl Glucoside</dd></div>
+                  <div><dt>CAS No.</dt><dd>12499-78-1</dd></div>
+                  <div><dt>M.O.Q.</dt><dd>5KG</dd></div>
+                  <div><dt>Pack Size</dt><dd>5KG</dd></div>
+                  <div><dt>Appearance</dt><dd>Powder</dd></div>
+                  <div><dt>Dosage</dt><dd>2%</dd></div>
+                </dl>
+              </div>
             </div>
 
             <p class="pd-sec__note">※ CAS No.는 제공된 V2G 카탈로그 기준입니다. 사용량과 포장 단위는 운영 사이트 정보를 반영했습니다.</p>
