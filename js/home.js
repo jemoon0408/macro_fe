@@ -102,13 +102,18 @@
         return header && getComputedStyle(header).position === "fixed" ? header.offsetHeight : 0;
       }
 
+      const GROW_MAX = 700;
+      const PIN_MAX = 700;
+
       function size() {
         const pad = parseFloat(getComputedStyle(section.querySelector(".mv__pin")).paddingTop);
         /* 높이를 직접 주면 aspect-ratio 때문에 너비가 높이에 맞춰 늘어나므로 비율 고정 해제 후 너비 기준 계산 */
         visual.style.aspectRatio = "auto";
 
         const designH = visual.offsetWidth * 780 / 1808;
-        const fullH = Math.max(designH, window.innerHeight - headerH() - pad * 2);
+        /* 펼친 높이 : 화면(헤더 · 위아래 여백 제외)을 꽉 채우되, 시안 높이보다 최대 700px 까지만 커짐
+           → 1920×1080 같은 보통 화면은 꽉 차고, 세로로 긴 화면에서는 이미지 아래 빈 공간이 커지지 않음 */
+        const fullH = Math.max(designH, Math.min(window.innerHeight - headerH() - pad * 2, designH + GROW_MAX));
 
         visual.style.height = fullH + "px";
         next.style.marginTop = -lift() + "px";
@@ -126,7 +131,8 @@
             return "top " + headerH() + "px";
           },
           end: function () {
-            return "+=" + window.innerHeight * 1.5;
+            /* 고정(pin) 길이 : 화면 높이의 1.5배, 최대 700px (세로로 긴 화면에서 pin-spacer 가 과하게 길어지지 않도록) */
+            return "+=" + Math.min(window.innerHeight * 1.5, PIN_MAX);
           },
           scrub: 2,
           pin: true,
