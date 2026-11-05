@@ -257,6 +257,15 @@
         return;
       }
 
+      /* 제목 줄 어디를 눌러도(화살표 아이콘 포함) 열고 닫힘 — PDF 다운로드 링크는 제외 */
+      item.querySelector(".pd-spec__head").addEventListener("click", function (event) {
+        if (event.target.closest("a, .pd-spec__toggle")) {
+          return;
+        }
+
+        toggle.click();
+      });
+
       toggle.addEventListener("click", function () {
         const open = !item.classList.contains("is-open");
 

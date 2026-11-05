@@ -7533,6 +7533,7 @@ html.kbd-nav .pd-toc__list a:focus-visible {
   position: relative;
   align-items: center;
   gap: 25px;
+  cursor: pointer;
 }
 
 .pd-spec--acc .pd-spec__txt {
