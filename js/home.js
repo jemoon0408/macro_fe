@@ -13,7 +13,7 @@
      B01 : 메인 비주얼 (hucord.com/kr 메인 상단과 같은 구성)
      - 라이브러리 : GSAP + ScrollTrigger (pin · scrub 타임라인), 글자 등장은 CSS keyframes (main.css)
      - 진입 : 제목 textClip(0.3s · 1.3s), 이미지 속 문구는 단어별 textBlur(0.15s 간격) → 설명 textClip
-     - 스크롤(PC) : 영역 고정(pin)
+     - 스크롤(PC) : 영역 고정(pin, 추가 높이 화면 절반 · 최대 400px)
          · 이미지 : 양옆 19% 잘린 상태(clip) → 좌우 여백만 남기고 화면 높이까지 꽉 차게 펼쳐지며 제목 자리로 올라옴
          · 제목 : 윗줄은 오른쪽, 아랫줄은 왼쪽으로 밀려나며 사라짐
      - 스크롤(모바일) : 이미지는 시안 그대로, 제목만 밀려남 (고정 없음)
@@ -71,13 +71,18 @@
        - 이미지 실제 높이는 처음부터 "화면 높이 - 위아래 여백" 으로 두고, 아래쪽을 잘라(clip) 시안 비율로 보이게 시작
        - 스크롤하면 양옆 · 아래 잘림이 풀리며 제목 자리까지 올라와 화면을 채움 → 고정 구간에 빈 여백 없음
        - 다음 섹션은 올라간 만큼 당겨 고정이 풀리는 순간 바로 이어짐 */
+    /* PC : 고정(pin) + 이미지가 화면 높이까지 꽉 차게 확장
+       - 이미지 실제 높이는 처음부터 "화면 높이 - 위아래 여백" 으로 두고, 아래쪽을 잘라(clip) 시작
+       - 스크롤하면 양옆 · 아래 잘림이 풀리며 제목 자리까지 올라와 화면을 채움 → 고정 구간에 빈 여백 없음
+       - 다음 섹션은 올라간 만큼 당겨 고정이 풀리는 순간 바로 이어짐
+       - 매 프레임 레이아웃이 다시 계산되지 않도록 이미지는 clip-path, 문구 · 제목 · 이미지 위치는 transform 으로만 움직임 */
     mm.add("(min-width: 769px)", function () {
       const next = section.nextElementSibling;
       const media = visual.querySelector(".mv__media");
       const txt = visual.querySelector(".mv__txt");
+      /* 고정되는 스크롤 길이(pin-spacer 추가 높이) : 화면 높이의 절반, 최대 400px */
+      const PIN_MAX = 400;
 
-      /* 부드럽게 : 매 프레임 레이아웃이 다시 계산되는 속성(여백 · 크기 · CSS 변수)은 쓰지 않고
-         이미지는 clip-path(잘라내기), 문구 · 제목 · 이미지 위치는 transform 으로만 움직임 */
       function radius() {
         return parseFloat(getComputedStyle(visual).getPropertyValue("--radius")) || 0;
       }
@@ -86,7 +91,7 @@
         return visual.offsetWidth * .19;
       }
 
-      /* 처음 문구 위치 : 잘린 이미지 안쪽(잘린 폭 + 56px)에 오도록 오른쪽으로, 아래 잘린 만큼 위로 */
+      /* 처음 문구 위치 : 잘린 이미지 안쪽(잘린 폭 + 56px)에 오도록 오른쪽으로 */
       function txtShift() {
         return Math.max(0, insetX() + 56 - parseFloat(getComputedStyle(txt).paddingLeft));
       }
@@ -102,23 +107,25 @@
         return header && getComputedStyle(header).position === "fixed" ? header.offsetHeight : 0;
       }
 
-      const GROW_MAX = 700;
-      const PIN_MAX = 700;
-
+      /* 크기 계산
+         - 펼친 높이(fullH) : 헤더 아래 화면을 위아래 여백만 남기고 꽉 채움
+         - 처음 보이는 높이 : 시안 비율 높이, 단 세로로 긴 화면에서는 제목 아래 남은 화면 끝까지
+           → 처음 · 고정 중 · 끝 어느 때도 이미지 아래에 빈 공간이 생기지 않음
+         - 반환값 : 처음에 아래쪽을 잘라 두는 높이 */
       function size() {
         const pad = parseFloat(getComputedStyle(section.querySelector(".mv__pin")).paddingTop);
         /* 높이를 직접 주면 aspect-ratio 때문에 너비가 높이에 맞춰 늘어나므로 비율 고정 해제 후 너비 기준 계산 */
         visual.style.aspectRatio = "auto";
 
+        const avail = window.innerHeight - headerH();
         const designH = visual.offsetWidth * 780 / 1808;
-        /* 펼친 높이 : 화면(헤더 · 위아래 여백 제외)을 꽉 채우되, 시안 높이보다 최대 700px 까지만 커짐
-           → 1920×1080 같은 보통 화면은 꽉 차고, 세로로 긴 화면에서는 이미지 아래 빈 공간이 커지지 않음 */
-        const fullH = Math.max(designH, Math.min(window.innerHeight - headerH() - pad * 2, designH + GROW_MAX));
+        const fullH = Math.max(designH, avail - pad * 2);
+        const startH = Math.min(fullH, Math.max(designH, avail - visual.offsetTop - pad));
 
         visual.style.height = fullH + "px";
         next.style.marginTop = -lift() + "px";
 
-        return fullH - designH;
+        return fullH - startH;
       }
 
       size();
@@ -131,10 +138,9 @@
             return "top " + headerH() + "px";
           },
           end: function () {
-            /* 고정(pin) 길이 : 화면 높이의 1.5배, 최대 700px (세로로 긴 화면에서 pin-spacer 가 과하게 길어지지 않도록) */
-            return "+=" + Math.min(window.innerHeight * 1.5, PIN_MAX);
+            return "+=" + Math.min(window.innerHeight * .5, PIN_MAX);
           },
-          scrub: 2,
+          scrub: 1.5,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true
@@ -163,7 +169,7 @@
         .to(top, { xPercent: 100, opacity: 0, ease: "none", duration: 1 }, 0)
         .to(bottom, { xPercent: -100, opacity: 0, ease: "none", duration: 1 }, 0)
         /* 다 펼쳐진 상태로 잠깐 유지 */
-        .to({}, { duration: .5 });
+        .to({}, { duration: .3 });
 
       return function () {
         ScrollTrigger.removeEventListener("refreshInit", size);
