@@ -27,8 +27,10 @@ main {
 /* 헤더는 모든 페이지에서 화면 위에 고정
    - 감싸는 영역(#include-header)이 헤더 높이만큼 자리를 유지해 본문이 가려지지 않음
    - 실제 높이는 include.js 가 --header-h 로 넘겨줌 (화면에 붙는 요소들의 top 기준) */
+/* 실제 헤더 높이(--header-h)만큼 자리 확보 → 서브 비주얼 등 본문 윗부분이 헤더에 가려지지 않음
+   (스크립트 실행 전에는 기본값 100px / 1200 이하 60px) */
 #include-header {
-  height: 100px;
+  height: var(--header-h, 100px);
 }
 
 .header {
@@ -293,7 +295,7 @@ main {
 ========================================================= */
 @media (max-width: 1200px) {
   #include-header {
-    height: 60px;
+    height: var(--header-h, 60px);
   }
 
   .header {
