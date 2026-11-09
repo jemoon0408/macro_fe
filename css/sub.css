@@ -7117,6 +7117,17 @@ html.kbd-nav .award-card__link:focus-visible {
   object-fit: contain;
 }
 
+/* 원본 비율 그대로 (잘림 없음) */
+.pd-feature__img--fit {
+  aspect-ratio: auto;
+}
+
+.pd-feature__img--fit img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
 /* 규격 탭 (같은 계열 원료) */
 .pd-spec-tabs {
   display: flex;
@@ -7620,5 +7631,671 @@ html.kbd-nav .pd-toc__list a:focus-visible {
 
   .pd-spec__body {
     padding-top: 14px;
+  }
+}
+
+/* =========================================================
+   원료 상세 : 기타 데이터 공통 블록 (원료별 카탈로그 PDF 내용)
+   - 모든 원료 상세 페이지가 같은 순서 · 같은 마크업을 사용
+     원료 소개 → 효능 데이터 → 작용 원리 → 적용 분야 → 제품 라인업 → 상세 규격
+   - 기존 UI 재사용 : pd-data(그래프 카드) · pd-release(도식 + 설명) · pd-spec__list(규격)
+   - 공통 추가 UI : pd-block(내용 묶음) · pd-point(핵심 내용) · pd-ba(사용 전후)
+                    pd-flow(공정 단계) · pd-use(적용 · 효능 태그) · pd-table(표)
+                    pd-lineup(제품 라인업) · pd-ref(적용 제품 예)
+========================================================= */
+
+/* ----- 내용 묶음 ----- */
+.pd-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pd-block + .pd-block,
+.pd-block + .pd-spec--acc {
+  margin-top: 22px;
+}
+
+.pd-block__desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  word-break: keep-all;
+}
+
+/* ----- 핵심 내용 : 번호 카드 (홀수 개면 마지막 카드 한 줄 전체) ----- */
+.pd-point {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  counter-reset: pd-point;
+}
+
+.pd-point li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 26px;
+  border-radius: 20px;
+  background: var(--soft);
+  counter-increment: pd-point;
+  word-break: keep-all;
+}
+
+.pd-point li::before {
+  content: counter(pd-point, decimal-leading-zero);
+  font-family: var(--font-en);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.pd-point li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.pd-point__title {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pd-point__desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ----- 그래프 카드 보조 (기존 pd-data) ----- */
+.pd-data__card--wide {
+  grid-column: 1 / -1;
+}
+
+.pd-data__card--wide > img {
+  height: 330px;
+}
+
+/* ----- 도식 + 설명 보조 (기존 pd-release) : 도표 · 분자식은 잘리지 않게 ----- */
+.pd-release--contain .pd-release__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.pd-release--contain .pd-release__img img {
+  object-fit: contain;
+}
+
+/* 점 목록 (도식 설명 · 카드 안) */
+.pd-bullet {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pd-bullet li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.pd-bullet li::before {
+  content: "";
+  position: absolute;
+  top: .7em;
+  left: 2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+/* ----- 사용 전후 비교 (pd-data 카드 안) ----- */
+.pd-ba {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pd-ba__item {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.pd-data__card .pd-ba__item img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  border-radius: 14px;
+  background: var(--soft);
+  object-fit: cover;
+}
+
+.pd-ba__label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 2px 12px;
+  border-radius: 20px;
+  background: rgba(15, 42, 42, .72);
+  font-family: var(--font-en);
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+.pd-ba__item--after .pd-ba__label {
+  background: var(--brand);
+}
+
+.pd-ba__arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--brand);
+  text-align: center;
+}
+
+.pd-ba__arrow i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--brand);
+  font-size: 1rem;
+  font-style: normal;
+  color: var(--white);
+}
+
+/* ----- 공정 단계 ----- */
+.pd-flow {
+  display: flex;
+  gap: 40px;
+  counter-reset: pd-flow;
+}
+
+.pd-flow li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--white);
+  counter-increment: pd-flow;
+  word-break: keep-all;
+}
+
+.pd-flow li::before {
+  content: "STEP " counter(pd-flow, decimal-leading-zero);
+  font-family: var(--font-en);
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+/* 단계 사이 화살표 */
+.pd-flow li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--brand);
+  font-size: .8125rem;
+  color: var(--white);
+  transform: translateY(-50%);
+}
+
+.pd-flow__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pd-flow__en {
+  font-family: var(--font-en);
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pd-flow__desc {
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* 결과물 단계 강조 */
+.pd-flow li.is-result {
+  border-color: var(--brand);
+  background: var(--brand);
+}
+
+.pd-flow li.is-result::before,
+.pd-flow li.is-result .pd-flow__title,
+.pd-flow li.is-result .pd-flow__en,
+.pd-flow li.is-result .pd-flow__desc {
+  color: var(--white);
+}
+
+/* ----- 적용 · 효능 태그 묶음 ----- */
+.pd-use {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.pd-use__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--white);
+}
+
+.pd-use__title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-family: var(--font-en);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.pd-use__title span {
+  font-size: .9375rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.pd-use__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pd-use__list li {
+  padding: 6px 14px;
+  border-radius: 30px;
+  background: rgba(0, 127, 118, .08);
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  word-break: keep-all;
+}
+
+/* ----- 표 : 좁은 화면은 가로 스크롤 ----- */
+.pd-table {
+  overflow-x: auto;
+  border-top: 2px solid var(--brand);
+}
+
+.pd-table table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+.pd-table th,
+.pd-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  text-align: center;
+  vertical-align: middle;
+  word-break: keep-all;
+}
+
+.pd-table thead th {
+  background: var(--soft);
+  font-weight: 700;
+}
+
+.pd-table tbody th {
+  font-weight: 700;
+  color: var(--muted);
+  text-align: left;
+}
+
+.pd-table th small {
+  display: block;
+  font-family: var(--font-en);
+  font-size: .8125rem;
+  font-weight: 400;
+}
+
+/* 해당 원료 열 강조 */
+.pd-table .is-hl {
+  background: rgba(0, 127, 118, .07);
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.pd-table thead th.is-hl {
+  background: var(--brand);
+  color: var(--white);
+}
+
+/* ----- 제품 라인업 ----- */
+.pd-lineup {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pd-lineup__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--white);
+  word-break: keep-all;
+  transition: border-color .2s;
+}
+
+a.pd-lineup__item:hover {
+  border-color: var(--brand);
+}
+
+.pd-lineup__name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-family: var(--font-en);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pd-lineup__badge {
+  padding: 1px 10px;
+  border-radius: 20px;
+  background: var(--brand);
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+.pd-lineup__inci {
+  font-family: var(--font-en);
+  font-size: .9375rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pd-lineup__desc {
+  font-size: .9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pd-lineup__more {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.pd-lineup__more i {
+  margin-left: 6px;
+  font-style: normal;
+}
+
+.pd-lineup__item.is-current {
+  border-color: var(--brand);
+  background: rgba(0, 127, 118, .05);
+}
+
+/* ----- 적용 제품 예 ----- */
+.pd-ref {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.pd-ref__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  word-break: keep-all;
+}
+
+.pd-ref__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--white);
+}
+
+.pd-ref__img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pd-ref__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pd-ref__cat {
+  font-family: var(--font-en);
+  font-size: .8125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--brand);
+}
+
+.pd-ref__name {
+  font-family: var(--font-en);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.pd-ref__brand {
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* 1200px 이하 : 공정 단계 두 개씩 */
+@media (max-width: 1200px) {
+  .pd-flow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 40px;
+  }
+
+  /* 줄 끝(짝수 번째) 단계의 화살표는 숨김 */
+  .pd-flow li:nth-child(2n)::after {
+    display: none;
+  }
+}
+
+/* 480px 이하 : 공정 단계 하나씩 */
+@media (max-width: 480px) {
+  .pd-flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .pd-flow li:not(:last-child)::after {
+    display: flex;
+    content: "↓";
+    top: auto;
+    right: auto;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .pd-block {
+    gap: 16px;
+  }
+
+  .pd-block + .pd-block,
+  .pd-block + .pd-spec--acc {
+    margin-top: 14px;
+  }
+
+
+
+  .pd-block__desc {
+    font-size: .9375rem;
+  }
+
+  .pd-point {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pd-point li {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .pd-point__title {
+    font-size: 1.0625rem;
+  }
+
+  .pd-point__desc {
+    font-size: .9375rem;
+  }
+
+  .pd-data__card--wide > img {
+    height: auto;
+    aspect-ratio: 414 / 265;
+  }
+
+  .pd-bullet li {
+    font-size: .9375rem;
+  }
+
+  .pd-ba {
+    gap: 8px;
+  }
+
+  .pd-data__card .pd-ba__item img {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+  }
+
+  .pd-ba__label {
+    top: 6px;
+    left: 6px;
+    padding: 1px 8px;
+    font-size: .6875rem;
+  }
+
+  .pd-ba__arrow {
+    font-size: .6875rem;
+  }
+
+  .pd-ba__arrow i {
+    width: 26px;
+    height: 26px;
+    font-size: .8125rem;
+  }
+
+  .pd-flow li {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .pd-use {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pd-use__item {
+    gap: 12px;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .pd-use__list li {
+    padding: 5px 12px;
+    font-size: .875rem;
+  }
+
+  .pd-table th,
+  .pd-table td {
+    padding: 12px;
+    font-size: .875rem;
+  }
+
+  .pd-lineup {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pd-lineup__item {
+    padding: 18px 20px;
+    border-radius: 18px;
+  }
+
+  .pd-lineup__name {
+    font-size: 1.125rem;
+  }
+
+  .pd-ref {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .pd-ref__img {
+    height: 130px;
+    border-radius: 14px;
   }
 }

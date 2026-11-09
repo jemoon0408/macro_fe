@@ -16,7 +16,7 @@
      - 스크롤(PC) : 영역 고정(pin, 추가 높이 화면 절반 · 최대 400px)
          · 이미지 : 양옆 19% 잘린 상태(clip) → 좌우 여백만 남기고 화면 높이까지 꽉 차게 펼쳐지며 제목 자리로 올라옴
          · 제목 : 윗줄은 오른쪽, 아랫줄은 왼쪽으로 밀려나며 사라짐
-     - 스크롤(모바일) : 이미지는 시안 그대로, 제목만 밀려남 (고정 없음)
+     - 스크롤(모바일) : PC와 같이 고정 후 이미지가 헤더 아래 화면을 꽉 채우며 제목을 덮음
   ========================================================= */
 
   function initVisual() {
@@ -190,20 +190,96 @@
       };
     });
 
-    /* 모바일 : 이미지는 시안 그대로(양옆 잘림 없음 → 문구 여백 20px 유지),
-       고정 없이(빈 여백 없음) 지나가는 동안 제목만 좌우로 밀려남 */
+    /* 모바일 : PC와 같은 흐름 — 영역 고정(pin) 후 이미지가 헤더 아래 화면을 가로 · 세로 꽉 채우며
+       제목 자리까지 올라와 제목을 덮고, 제목은 좌우로 밀려나 사라짐
+       - 이미지 상자는 처음부터 화면 가로 끝까지(좌우 여백만큼 바깥으로) · 높이는 화면 꽉 찬 높이로 두고,
+         양옆 20px · 아래쪽을 잘라(clip) 시안 크기로 보이게 시작 → 펼쳐질 때 줄바꿈 · 레이아웃 변화 없음
+       - 문구는 처음엔 잘린 이미지 안쪽 20px, 다 펼쳐지면 화면 끝에서 20px */
     mm.add("(max-width: 768px)", function () {
+      const next = section.nextElementSibling;
+      const pin = section.querySelector(".mv__pin");
+      const media = visual.querySelector(".mv__media");
+      const txt = visual.querySelector(".mv__txt");
+      let cut = 0;
+
+      function gutter() {
+        return parseFloat(getComputedStyle(pin).paddingLeft) || 0;
+      }
+
+      function radius() {
+        return parseFloat(getComputedStyle(visual).getPropertyValue("--radius")) || 0;
+      }
+
+      function headerH() {
+        const header = document.querySelector(".header");
+
+        return header && getComputedStyle(header).position === "fixed" ? header.offsetHeight : 0;
+      }
+
+      /* 이미지가 올라갈 거리 : 영역 맨 위(= 고정 시 헤더 바로 아래)까지 */
+      function lift() {
+        return visual.offsetTop;
+      }
+
+      function size() {
+        const g = gutter();
+
+        visual.style.height = "";
+        visual.style.marginInline = -g + "px";
+        txt.style.paddingInline = g * 2 + "px";
+
+        const startH = visual.offsetHeight;
+        const fullH = Math.max(startH, document.documentElement.clientHeight - headerH());
+
+        visual.style.height = fullH + "px";
+        next.style.marginTop = -lift() + "px";
+        cut = fullH - startH;
+
+        return cut;
+      }
+
+      size();
+      ScrollTrigger.addEventListener("refreshInit", size);
+
       gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top top",
-          end: "bottom top",
+          start: function () {
+            return "top " + headerH() + "px";
+          },
+          end: function () {
+            return "+=" + Math.min(Math.max(lift() + cut, 200), 500);
+          },
           scrub: 1,
+          pin: true,
+          anticipatePin: 1,
           invalidateOnRefresh: true
         }
       })
-        .to(top, { xPercent: 60, opacity: 0, ease: "none" }, 0)
-        .to(bottom, { xPercent: -60, opacity: 0, ease: "none" }, 0);
+        .fromTo(media,
+          {
+            clipPath: function () {
+              return "inset(0px " + gutter() + "px " + cut + "px " + gutter() + "px round " + radius() + "px)";
+            }
+          },
+          { clipPath: "inset(0px 0px 0px 0px round 0px)", ease: "none", duration: 1 }, 0)
+        .fromTo(txt,
+          { x: 0, y: function () { return -cut; } },
+          { x: function () { return -gutter(); }, y: 0, ease: "none", duration: 1 }, 0)
+        .to(visual, { y: function () { return -lift(); }, ease: "none", duration: 1 }, 0)
+        .to(top, { xPercent: 60, opacity: 0, ease: "none", duration: 1 }, 0)
+        .to(bottom, { xPercent: -60, opacity: 0, ease: "none", duration: 1 }, 0)
+        /* 다 펼쳐진 상태로 잠깐 유지 */
+        .to({}, { duration: .3 });
+
+      return function () {
+        ScrollTrigger.removeEventListener("refreshInit", size);
+        next.style.marginTop = "";
+        visual.style.height = "";
+        visual.style.marginInline = "";
+        txt.style.paddingInline = "";
+        gsap.set([media, txt], { clearProps: "all" });
+      };
     });
 
     window.addEventListener("load", function () {

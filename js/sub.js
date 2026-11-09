@@ -501,11 +501,41 @@
     const pager = wrap.querySelector("[data-pagination]");
     const pageSize = Number(wrap.dataset.pageSize) || cards.length;
     let matched = cards;
+    let currentCat = "all";
+
+    /* 현재 분류·페이지를 주소(?cat=&page=)에 남기고, 상세 페이지의 '원료 목록으로'가 돌아올 주소로 저장 */
+    function saveState(page) {
+      const params = new URLSearchParams(window.location.search);
+
+      if (currentCat === "all") {
+        params.delete("cat");
+      } else {
+        params.set("cat", currentCat);
+      }
+
+      if (page > 1) {
+        params.set("page", String(page));
+      } else {
+        params.delete("page");
+      }
+
+      const search = params.toString();
+
+      history.replaceState(null, "", window.location.pathname + (search ? "?" + search : ""));
+
+      try {
+        sessionStorage.setItem(LIST_KEY + listFileName(window.location.pathname), window.location.href);
+      } catch (error) {
+        /* 저장 불가 환경은 무시 */
+      }
+    }
 
     /* 페이지 : 걸러진 카드 중 pageSize 개씩 노출, 1페이지뿐이면 페이지 탐색 숨김 */
     function showPage(page) {
       const total = Math.max(1, Math.ceil(matched.length / pageSize));
       const current = Math.min(Math.max(1, page), total);
+
+      saveState(current);
 
       cards.forEach(function (card) {
         card.hidden = true;
@@ -530,8 +560,10 @@
       pager.querySelector("[data-page-next]").dataset.page = String(current + 1);
     }
 
-    function applyFilter(button) {
+    function applyFilter(button, page) {
       const value = button.dataset.filterBtn;
+
+      currentCat = value;
 
       buttons.forEach(function (item) {
         const active = item === button;
@@ -561,7 +593,7 @@
         empty.hidden = matched.length > 0;
       }
 
-      showPage(1);
+      showPage(page || 1);
     }
 
     buttons.forEach(function (button) {
@@ -584,8 +616,10 @@
       });
     }
 
-    /* 처음 분류 : 주소 ?cat=분류명 → 마크업의 .is-active → 전체 */
-    const query = new URLSearchParams(window.location.search).get("cat");
+    /* 처음 분류 : 주소 ?cat=분류명 → 마크업의 .is-active → 전체 / 처음 페이지 : 주소 ?page=번호 */
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("cat");
+    const initialPage = Number(params.get("page")) || 1;
     const initialButton = (query && Array.from(buttons).find(function (button) {
       return button.dataset.filterBtn === query;
     }))
@@ -593,8 +627,36 @@
       || wrap.querySelector('[data-filter-btn="all"]');
 
     if (initialButton) {
-      applyFilter(initialButton);
+      applyFilter(initialButton, initialPage);
     }
+  }
+
+
+  /* =========================================================
+     원료 상세 : '원료 목록으로' → 떠나기 전 목록(분류·페이지)으로 복귀
+  ========================================================= */
+
+  const LIST_KEY = "pd-list:";
+
+  function listFileName(path) {
+    return decodeURIComponent(path.split("?")[0].split("#")[0].split("/").pop() || "");
+  }
+
+  function initBackLink() {
+    document.querySelectorAll(".pd-back").forEach(function (link) {
+      const name = listFileName(link.getAttribute("href") || "");
+      let saved = null;
+
+      try {
+        saved = sessionStorage.getItem(LIST_KEY + name);
+      } catch (error) {
+        saved = null;
+      }
+
+      if (saved && listFileName(new URL(saved).pathname) === name) {
+        link.href = saved;
+      }
+    });
   }
 
 
@@ -830,5 +892,6 @@
   initFillText();
   initTabs();
   initFilter();
+  initBackLink();
   initFeatureSwiper();
 })();
