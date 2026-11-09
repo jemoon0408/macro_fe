@@ -1904,6 +1904,7 @@ html.kbd-nav .award-card__link:focus-visible {
   /* --bg : HTML 인라인 지정. url() 은 이 CSS 파일 기준으로 풀리므로 경로는 ../img/... 로 작성 */
   background: var(--white) var(--bg) center / cover no-repeat;
   box-shadow: 2px 4px 10px 3px rgba(0, 0, 0, .06);
+  cursor: pointer;
 }
 
 .ingredient-card::before,

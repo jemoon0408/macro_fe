@@ -602,6 +602,31 @@
       });
     });
 
+    /* 카드 어디를 눌러도 상세 페이지로 (Ctrl·Cmd·가운데 클릭은 새 탭) */
+    function openCard(event) {
+      const card = event.target.closest(".ingredient-card");
+      const link = card && card.querySelector(".ingredient-card__btn");
+
+      if (!link || event.target.closest("a")) {
+        return;
+      }
+
+      if (event.type === "auxclick" && event.button !== 1) {
+        return;
+      }
+
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.button === 1) {
+        window.open(link.href, "_blank");
+      } else {
+        window.location.href = link.href;
+      }
+    }
+
+    if (list) {
+      list.addEventListener("click", openCard);
+      list.addEventListener("auxclick", openCard);
+    }
+
     if (pager) {
       pager.addEventListener("click", function (event) {
         const link = event.target.closest("[data-page]");
