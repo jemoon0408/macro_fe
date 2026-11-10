@@ -1,17 +1,28 @@
-<!-- 샘플 요청 레이어 : [data-sample-open] 버튼으로 열기 (main.js initSampleModal) -->
+<!-- 문의하기 레이어 : [data-sample-open] 버튼으로 열기 (main.js initSampleModal)
+     data-sample-open="sample" 로 열면 문의유형이 샘플요청으로 선택됨 -->
 <div class="sample-modal" hidden>
   <div class="sample-modal__dim" data-sample-close></div>
 
   <div class="sample-modal__layer" role="dialog" aria-modal="true" aria-labelledby="sample-modal-title" tabindex="-1">
     <div class="sample-modal__head">
-      <button type="button" class="sample-modal__close" data-sample-close aria-label="샘플 요청 닫기"></button>
+      <button type="button" class="sample-modal__close" data-sample-close aria-label="문의하기 닫기"></button>
     </div>
 
     <div class="sample-modal__body">
       <form class="sample-form" action="#" method="post" enctype="multipart/form-data" novalidate>
-        <h2 class="sample-form__title" id="sample-modal-title">샘플 요청</h2>
+        <h2 class="sample-form__title" id="sample-modal-title">문의하기</h2>
 
         <div class="sample-form__fields">
+          <div class="sample-form__field sample-form__field--full">
+            <p class="sample-form__label is-required" id="sr-type-label">문의유형 <b aria-hidden="true">*</b></p>
+            <div class="c-select sample-form__select" data-select>
+              <select id="sr-type" name="type" aria-label="문의유형">
+                <option value="general" selected>일반문의</option>
+                <option value="sample">샘플요청</option>
+              </select>
+            </div>
+          </div>
+
           <div class="sample-form__field">
             <label class="sample-form__label is-required" for="sr-company">회사명 <b aria-hidden="true">*</b></label>
             <input type="text" id="sr-company" name="company" class="sample-form__input" required autocomplete="organization">
@@ -32,22 +43,22 @@
             <input type="email" id="sr-email" name="email" class="sample-form__input" required autocomplete="email">
           </div>
 
-          <div class="sample-form__field sample-form__field--full">
+          <div class="sample-form__field sample-form__field--full" data-inquiry-sample hidden>
             <label class="sample-form__label" for="sr-material">요청원료</label>
             <input type="text" id="sr-material" name="material" class="sample-form__input" placeholder="원하시는 원료를 입력해주세요.">
           </div>
 
-          <div class="sample-form__field">
+          <div class="sample-form__field" data-inquiry-sample hidden>
             <label class="sample-form__label" for="sr-quantity">수량</label>
             <input type="text" id="sr-quantity" name="quantity" class="sample-form__input">
           </div>
 
-          <div class="sample-form__field">
+          <div class="sample-form__field" data-inquiry-sample hidden>
             <label class="sample-form__label" for="sr-purpose">사용 목적</label>
             <input type="text" id="sr-purpose" name="purpose" class="sample-form__input">
           </div>
 
-          <div class="sample-form__field sample-form__field--full">
+          <div class="sample-form__field sample-form__field--full" data-inquiry-sample hidden>
             <label class="sample-form__label" for="sr-address">받을 주소</label>
             <input type="text" id="sr-address" name="address" class="sample-form__input" autocomplete="street-address" placeholder="주소를 입력해주세요.">
           </div>
@@ -109,7 +120,7 @@
 
         <div class="sample-form__btns">
           <button type="submit" class="sample-form__submit">
-            <span>샘플 요청하기</span><i aria-hidden="true">→</i>
+            <span>문의하기</span><i aria-hidden="true">→</i>
           </button>
         </div>
       </form>

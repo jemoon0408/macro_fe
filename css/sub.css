@@ -1568,16 +1568,6 @@
   transition: transform .4s;
 }
 
-.award-card__link:hover .award-card__img img:not(.award-card__logo) {
-  transform: scale(1.04);
-}
-
-html.kbd-nav .award-card__link:focus-visible {
-  outline: 2px solid #2a4fd0;
-  outline-offset: -4px;
-  border-radius: 20px;
-}
-
 /* 이미지가 없거나 불러오지 못한 경우 : 회색 박스 + 로고 */
 .award-card__img--empty {
   display: flex;
@@ -4514,6 +4504,13 @@ html.kbd-nav .award-card__link:focus-visible {
   color: var(--muted);
 }
 
+/* 개요 문단이 여러 문장이면 불릿 리스트 : 글자 크기는 문단과 같게 */
+.pd-sec__desc.pd-bullet li {
+  font-size: inherit;
+  line-height: inherit;
+  word-break: keep-all;
+}
+
 /* ----- 개요 : 제품 특장점 ----- */
 .pd-feature {
   display: flex;
@@ -5110,10 +5107,6 @@ html.kbd-nav .award-card__link:focus-visible {
     line-height: 22px;
   }
 
-  .pd-sec__desc br {
-    display: none;
-  }
-
   .pd-sec__note {
     font-size: 0.6875rem;
     line-height: 18px;
@@ -5359,11 +5352,6 @@ html.kbd-nav .award-card__link:focus-visible {
 .tc-matrix__top img {
   width: 56px;
   height: 56px;
-  transition: transform .4s ease;
-}
-
-.tc-matrix__item:hover .tc-matrix__top img {
-  transform: translateY(-4px) scale(1.06);
 }
 
 .tc-matrix__name {
@@ -5401,16 +5389,10 @@ html.kbd-nav .award-card__link:focus-visible {
   border: 1.5px solid var(--line);
   border-radius: 92px;
   background: #e8fafa;
-  transition: transform .4s ease, box-shadow .4s ease;
 }
 
 .tc-steps__item:nth-child(even) {
   background: #ccebea;
-}
-
-.tc-steps__item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 28px rgba(0, 127, 118, .12);
 }
 
 /* 다음 단계 연결 화살표 (간격 32px 중앙) */
@@ -5612,6 +5594,49 @@ html.kbd-nav .award-card__link:focus-visible {
 
 .js-reveal .tc-flow.is-revealed .tc-flow__link i {
   animation: tc-flow-pop .3s cubic-bezier(.3, 1.4, .5, 1) calc(var(--i, 0) * .25s + .2s) both;
+}
+
+/* 보유기술 목록 스크롤 등장 (data-reveal="items")
+   - 고분자 응용 매트릭스 · 발효 공정 · 정제 시스템 · 무기합성 Application · 다섯 가지 안정화 기술
+   - 목록이 화면에 들어오면 항목이 순서대로 아래에서 떠오름 (hover 효과 대신) */
+.tc-matrix__item:nth-child(2), .tc-steps__item:nth-child(2), .tc-techs__item:nth-child(2), .tc-purify__list li:nth-child(2), .tc-app__item:nth-child(2) { --i: 1; }
+.tc-matrix__item:nth-child(3), .tc-steps__item:nth-child(3), .tc-techs__item:nth-child(3), .tc-app__item:nth-child(3) { --i: 2; }
+.tc-matrix__item:nth-child(4), .tc-steps__item:nth-child(4), .tc-techs__item:nth-child(4), .tc-app__item:nth-child(4) { --i: 3; }
+.tc-matrix__item:nth-child(5), .tc-steps__item:nth-child(5), .tc-techs__item:nth-child(5), .tc-app__item:nth-child(5) { --i: 4; }
+.tc-matrix__item:nth-child(6), .tc-steps__item:nth-child(6), .tc-app__item:nth-child(6) { --i: 5; }
+
+.js-reveal .tc-matrix__item,
+.js-reveal .tc-steps__item,
+.js-reveal .tc-techs__item,
+.js-reveal .tc-purify__list li,
+.js-reveal .tc-app__item {
+  opacity: 0;
+}
+
+.js-reveal .tc-matrix.is-revealed .tc-matrix__item,
+.js-reveal .tc-steps__list.is-revealed .tc-steps__item,
+.js-reveal .tc-techs.is-revealed .tc-techs__item,
+.js-reveal .tc-purify__list.is-revealed li {
+  animation: tc-step-up .6s cubic-bezier(.2, .7, .3, 1) calc(var(--i, 0) * .12s) both;
+}
+
+/* 무기합성 Application : 위치 고정(absolute) 항목이라 투명도만, 아이콘은 회전하며 등장 */
+@keyframes tc-app-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tc-app-spin {
+  from { transform: rotate(-30deg) scale(.6); }
+  to { transform: none; }
+}
+
+.js-reveal .tc-app__list.is-revealed .tc-app__item {
+  animation: tc-app-fade .5s ease calc(var(--i, 0) * .12s) both;
+}
+
+.js-reveal .tc-app__list.is-revealed .tc-app__item img {
+  animation: tc-app-spin .6s cubic-bezier(.2, .8, .3, 1.15) calc(var(--i, 0) * .12s) both;
 }
 
 /* 자연 유래 원료와 정제 시스템 */
@@ -5953,11 +5978,6 @@ html.kbd-nav .award-card__link:focus-visible {
 .tc-app__item img {
   width: calc(67 * var(--u));
   height: calc(67 * var(--u));
-  transition: transform .4s ease;
-}
-
-.tc-app__item:hover img {
-  transform: rotate(30deg);
 }
 
 /* 왼쪽 2개 : 글자 → 아이콘 */
@@ -6236,11 +6256,6 @@ html.kbd-nav .award-card__link:focus-visible {
   text-align: center;
   color: var(--ink);
   background: var(--soft);
-  transition: transform .4s ease;
-}
-
-.tc-techs__item:hover {
-  transform: translateY(-8px);
 }
 
 .tc-techs__item--ink {
@@ -6276,11 +6291,6 @@ html.kbd-nav .award-card__link:focus-visible {
   height: fit-content;
   aspect-ratio: 1;
   object-fit: contain;
-  transition: transform .5s ease;
-}
-
-.tc-techs__item:hover img {
-  transform: scale(1.06) rotate(-4deg);
 }
 
 .tc-techs__txt {
@@ -7180,7 +7190,6 @@ html.kbd-nav .pd-toc__list a:focus-visible {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
-
 .pd-data__card {
   display: flex;
   flex-direction: column;
@@ -7653,14 +7662,16 @@ html.kbd-nav .pd-toc__list a:focus-visible {
 }
 
 .pd-block + .pd-block,
-.pd-block + .pd-spec--acc {
+.pd-block + .pd-spec--acc,
+.pd-spec--acc + .pd-block {
   margin-top: 22px;
 }
 
 .pd-block__desc {
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--brand);
   word-break: keep-all;
 }
 
@@ -7728,6 +7739,90 @@ html.kbd-nav .pd-toc__list a:focus-visible {
 
 .pd-release--contain .pd-release__img img {
   object-fit: contain;
+}
+
+/* 설명 없이 도식만 있을 때 : 칸 전체 사용 */
+.pd-release__img:only-child {
+  flex: 1 1 auto;
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .pd-release__img:only-child {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 360 / 238;
+  }
+}
+
+/* ----- Introduction : 왼쪽 글(점 목록) · 오른쪽 그림 ----- */
+.pd-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
+  gap: 32px;
+  align-items: center;
+  padding: 28px;
+  border-radius: 28px;
+  background: var(--soft);
+}
+
+.pd-intro--solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pd-intro__txt {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pd-intro__para {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  word-break: keep-all;
+}
+
+.pd-intro__img {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pd-intro__img > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--white);
+}
+
+.pd-intro__img img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+}
+
+.pd-bullet strong {
+  display: block;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .pd-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .pd-intro__img img {
+    max-height: 180px;
+  }
 }
 
 /* 점 목록 (도식 설명 · 카드 안) */
@@ -7871,6 +7966,44 @@ html.kbd-nav .pd-toc__list a:focus-visible {
   transform: translateY(-50%);
 }
 
+/* 단계 이미지 (원문 사진 · 작은 원본 크기 그대로, 잘림 없음) */
+.pd-flow__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 140px;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.pd-flow__img img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-width: 0;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.pd-flow__img img + .pd-flow__plus + img {
+  max-width: 42%;
+}
+
+.pd-flow__img img:has(+ .pd-flow__plus) {
+  max-width: 45%;
+}
+
+.pd-flow__plus {
+  flex: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
 .pd-flow__title {
   font-size: 1.125rem;
   font-weight: 700;
@@ -7980,6 +8113,16 @@ html.kbd-nav .pd-toc__list a:focus-visible {
   word-break: keep-all;
 }
 
+/* 칸 구분선 : 오른쪽 border, 줄의 마지막 칸은 제외 */
+.pd-table th,
+.pd-table td {
+  border-right: 1px solid var(--line);
+}
+
+.pd-table tr > :last-child {
+  border-right: 0;
+}
+
 .pd-table thead th {
   background: var(--soft);
   font-weight: 700;
@@ -7989,6 +8132,11 @@ html.kbd-nav .pd-toc__list a:focus-visible {
   font-weight: 700;
   color: var(--muted);
   text-align: left;
+}
+
+/* 행 제목도 가운데 정렬 */
+.pd-table--center tbody th {
+  text-align: center;
 }
 
 .pd-table th small {
@@ -8185,7 +8333,8 @@ a.pd-lineup__item:hover {
   }
 
   .pd-block + .pd-block,
-  .pd-block + .pd-spec--acc {
+  .pd-block + .pd-spec--acc,
+  .pd-spec--acc + .pd-block {
     margin-top: 14px;
   }
 

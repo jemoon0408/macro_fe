@@ -205,6 +205,11 @@ html.is-modal-lock body {
   grid-column: 1 / -1;
 }
 
+/* 문의유형이 샘플요청일 때만 보이는 항목 */
+.sample-form__field[hidden] {
+  display: none;
+}
+
 .sample-form__label {
   font-size: 1.25rem;
   line-height: 1.5;
@@ -255,6 +260,7 @@ html.kbd-nav .sample-form__file:focus-within {
   --select-px: 14px;
   --select-bg: var(--soft);
   --select-radius: 6px;
+  --select-color: var(--ink);
 }
 
 .sample-form__select .c-select__btn:hover,

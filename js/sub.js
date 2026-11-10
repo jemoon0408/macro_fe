@@ -368,25 +368,6 @@
 
 
   /* =========================================================
-     보기 권한이 필요한 게시물 링크 ([data-auth-required])
-     - 원본 사이트와 같이 비회원은 상세 보기 불가 → 안내 후 이동 막음
-  ========================================================= */
-
-  function initAuthRequired() {
-    document.addEventListener("click", function (event) {
-      const link = event.target.closest("[data-auth-required]");
-
-      if (!link) {
-        return;
-      }
-
-      event.preventDefault();
-      alert("보기 권한이 없습니다.");
-    });
-  }
-
-
-  /* =========================================================
      연혁 : 스크롤에 따라 제목 글자 채우기
      - 줄 단위로 순서대로 채워짐 (--fill : 0% ~ 100%)
   ========================================================= */
@@ -911,7 +892,6 @@
   initFaqMotion();
   initDetailToc();
   initPromoFallback();
-  initAuthRequired();
   initIdentity();
   initCertMarquee();
   initFillText();

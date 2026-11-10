@@ -53,7 +53,10 @@
               <p class="sec-head__en">01 / Overview &amp; Strengths</p>
               <h2 id="pd-overview-title" class="sec-head__title">개요 &amp; 특장점</h2>
             </div>
-            <p class="pd-sec__desc">효소처리스테비아입니다. 천연감미료 / 설탕 대체제</p>
+            <ul class="pd-sec__desc pd-bullet">
+              <li>효소처리스테비아입니다.</li>
+              <li>천연감미료 / 설탕 대체제</li>
+            </ul>
             <p class="pd-sec__note">※ 자세한 자료는 직접 문의 부탁드립니다.</p>
 
             <div class="pd-feature">
@@ -76,24 +79,28 @@
               <h2 id="pd-tech-title" class="sec-head__title">기술 자료</h2>
             </div>
 
-            <div class="pd-spec">
+            <div class="pd-spec pd-spec--acc is-open" data-spec-acc>
               <div class="pd-spec__head">
                 <div class="pd-spec__txt">
-                  <h3 class="pd-spec__name">Product Name : SteviLite 80G</h3>
+                  <h3 class="pd-spec__name">
+                    <button type="button" class="pd-spec__toggle" aria-expanded="true" aria-controls="pd-spec-body-1">Product Name : SteviLite 80G</button>
+                  </h3>
                   <p class="pd-spec__sub">원료 기본 규격 및 제품 카탈로그</p>
                 </div>
+                <span class="pd-spec__chev" aria-hidden="true"></span>
               </div>
-              <dl class="pd-spec__list">
-                <div><dt>INCI Name</dt><dd>Enzymatically Modified Stevia / Glucosyl Stevia</dd></div>
-                <div><dt>감미 배수</dt><dd>100배</dd></div>
-                <div><dt>M.O.Q.</dt><dd>10KG</dd></div>
-                <div><dt>Pack Size</dt><dd>10KG</dd></div>
-                <div><dt>Appearance</dt><dd>Powder</dd></div>
-                <div><dt>Dosage</dt><dd>0.033%</dd></div>
-              </dl>
+              <div class="pd-spec__body" id="pd-spec-body-1">
+                <dl class="pd-spec__list">
+                  <div><dt>INCI Name</dt><dd>Enzymatically Modified Stevia / Glucosyl Stevia</dd></div>
+                  <div><dt>감미 배수</dt><dd>100배</dd></div>
+                  <div><dt>M.O.Q.</dt><dd>10KG</dd></div>
+                  <div><dt>Pack Size</dt><dd>10KG</dd></div>
+                  <div><dt>Appearance</dt><dd>Powder</dd></div>
+                  <div><dt>Dosage</dt><dd>0.033%</dd></div>
+                </dl>
+              </div>
             </div>
 
-            <p class="pd-sec__note">※ 운영 사이트의 공개 정보를 반영했습니다. 자세한 자료는 직접 문의 부탁드립니다.</p>
           </section>
 
           <a href="food.html" class="pd-back"><i aria-hidden="true">←</i>원료 목록으로</a>
@@ -113,8 +120,8 @@
 
           <!-- 플로팅 퀵메뉴 : PC 우측 카드 / 태블릿·모바일 우측 하단 원형 -->
           <div class="pd-quick">
-            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open aria-haspopup="dialog">
-              <span class="pd-quick__txt"><strong>샘플 요청<span class="pd-quick__pc">하기</span></strong><span class="pd-quick__sub">원료 샘플 신청</span></span>
+            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open="sample" aria-haspopup="dialog">
+              <span class="pd-quick__txt"><strong>문의하기</strong><span class="pd-quick__sub">원료 문의 · 샘플 요청</span></span>
               <img class="pd-quick__ico" src="../../img/sub/product/detail/ico-sample.webp" alt="">
               <i class="pd-quick__arrow" aria-hidden="true">↗</i>
             </button>

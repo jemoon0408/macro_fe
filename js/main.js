@@ -213,7 +213,32 @@
     const msg = form.querySelector(".sample-form__msg");
     const fileInput = form.querySelector(".sample-form__file-input");
     const fileName = form.querySelector(".sample-form__file-name");
+    const typeSelect = form.querySelector("#sr-type");
+    const sampleFields = form.querySelectorAll("[data-inquiry-sample]");
     let opener = null;
+
+    /* 문의유형 : 일반문의는 필수 항목 + 첨부파일만, 샘플요청은 요청원료 · 수량 · 사용목적 · 받을주소 추가 */
+    function syncType() {
+      const isSample = typeSelect.value === "sample";
+
+      sampleFields.forEach(function (field) {
+        field.hidden = !isSample;
+        field.querySelectorAll("input, textarea, select").forEach(function (el) {
+          el.disabled = !isSample;
+        });
+      });
+    }
+
+    function setType(type) {
+      typeSelect.value = type === "sample" ? "sample" : "general";
+      typeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    typeSelect.addEventListener("change", syncType);
+    form.addEventListener("reset", function () {
+      setTimeout(syncType);
+    });
+    syncType();
 
     function getFocusable() {
       return Array.prototype.filter.call(
@@ -241,6 +266,9 @@
           opener = header.querySelector(".header__logo a");
         }
       }
+
+      /* 원료 상세의 샘플 요청 버튼(data-sample-open="sample") 은 샘플요청, 나머지는 일반문의로 열기 */
+      setType(trigger.getAttribute("data-sample-open"));
 
       modal.hidden = false;
       body.scrollTop = 0;
@@ -335,7 +363,7 @@
       }
 
       msg.textContent = "";
-      alert("샘플 요청이 접수되었습니다. 확인 후 담당자가 연락드리겠습니다.");
+      alert((typeSelect.value === "sample" ? "샘플 요청이" : "문의가") + " 접수되었습니다. 확인 후 담당자가 연락드리겠습니다.");
       form.reset();
       fileName.textContent = "";
       close();

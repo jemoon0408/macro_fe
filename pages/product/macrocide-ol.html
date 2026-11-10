@@ -53,7 +53,10 @@
               <p class="sec-head__en">01 / Overview &amp; Strengths</p>
               <h2 id="pd-overview-title" class="sec-head__title">개요 &amp; 특장점</h2>
             </div>
-            <p class="pd-sec__desc">Paraben대체제로 새롭게 부상하는 방부 원료 입니다. 고순도로 정제된 무취의 방부제이며, 박테리아와 진균류, 곰팡이에 효과적으로 작용합니다.</p>
+            <ul class="pd-sec__desc pd-bullet">
+              <li>Paraben대체제로 새롭게 부상하는 방부 원료 입니다.</li>
+              <li>고순도로 정제된 무취의 방부제이며, 박테리아와 진균류, 곰팡이에 효과적으로 작용합니다.</li>
+            </ul>
             <p class="pd-sec__note">※ 자세한 자료는 직접 문의 부탁드립니다.</p>
 
             <div class="pd-feature">
@@ -76,25 +79,29 @@
               <h2 id="pd-tech-title" class="sec-head__title">기술 자료</h2>
             </div>
 
-            <div class="pd-spec">
+            <div class="pd-spec pd-spec--acc is-open" data-spec-acc>
               <div class="pd-spec__head">
                 <div class="pd-spec__txt">
-                  <h3 class="pd-spec__name">Product Name : Macrocide-OL</h3>
+                  <h3 class="pd-spec__name">
+                    <button type="button" class="pd-spec__toggle" aria-expanded="true" aria-controls="pd-spec-body-1">Product Name : Macrocide-OL</button>
+                  </h3>
                   <p class="pd-spec__sub">원료 기본 규격 및 제품 카탈로그</p>
                 </div>
                 <a href="../../files/catalog/macrocare-macrocide-ol.pdf" class="pd-spec__btn" download>PDF 다운로드<i aria-hidden="true">↓</i><span class="sr-only">Macrocide-OL</span></a>
+                <span class="pd-spec__chev" aria-hidden="true"></span>
               </div>
-              <dl class="pd-spec__list">
-                <div><dt>INCI Name</dt><dd>Chlorphenesin</dd></div>
-                <div><dt>CAS No.</dt><dd>104-29-0</dd></div>
-                <div><dt>M.O.Q.</dt><dd>10KG</dd></div>
-                <div><dt>Pack Size</dt><dd>10KG</dd></div>
-                <div><dt>Appearance</dt><dd>Powder</dd></div>
-                <div><dt>Dosage</dt><dd>Max 0.3%</dd></div>
-              </dl>
+              <div class="pd-spec__body" id="pd-spec-body-1">
+                <dl class="pd-spec__list">
+                  <div><dt>INCI Name</dt><dd>Chlorphenesin</dd></div>
+                  <div><dt>CAS No.</dt><dd>104-29-0</dd></div>
+                  <div><dt>M.O.Q.</dt><dd>10KG</dd></div>
+                  <div><dt>Pack Size</dt><dd>10KG</dd></div>
+                  <div><dt>Appearance</dt><dd>Powder</dd></div>
+                  <div><dt>Dosage</dt><dd>Max 0.3%</dd></div>
+                </dl>
+              </div>
             </div>
 
-            <p class="pd-sec__note">※ 운영 사이트의 공개 정보를 반영했습니다. 자세한 자료는 직접 문의 부탁드립니다.</p>
           </section>
 
           <!-- 03 기타 데이터 (카탈로그 PDF 내용 · 공통 블록 : sub.css "기타 데이터 공통 블록") -->
@@ -105,19 +112,21 @@
             </div>
 
             <div class="pd-block">
-              <ol class="pd-point">
-                <li><strong class="pd-point__title">보존 · 항균 성분</strong><p class="pd-point__desc">Chlorphenesin은 세균, 곰팡이, 효모에 작용하는 보존 · 항균 성분입니다. 퍼스널 케어 업계에 새롭게 등장한 보존제 중 하나이며, 제약 업계에서는 오랫동안 쓰여 왔습니다.</p></li>
-                <li><strong class="pd-point__title">무취의 흰색 결정 분말</strong><p class="pd-point__desc">냄새가 없는 흰색 결정 분말이며, 적합한 pH 범위는 3~9입니다.</p></li>
-                <li><strong class="pd-point__title">보존력 시너지</strong><p class="pd-point__desc">다른 보존제와 함께 쓰면 전체 보존력이 높아집니다. 세균 · 곰팡이 증식을 폭넓게 막아 다른 보존 성분과 시너지를 냅니다.</p></li>
-                <li><strong class="pd-point__title">폭넓은 제형 적용</strong><p class="pd-point__desc">크림 · 로션 등 에멀전, 마스크, 젤, 수성 · 알코올 용액, 스프레이, 스틱, 세럼, 토닉, 메이크업(아이라이너, 마스카라 등), 샴푸, 컨디셔너, 폼의 미생물 보존에 적합합니다.</p></li>
-              </ol>
-              <div class="pd-release pd-release--contain">
-                <div class="pd-release__img"><img src="../../img/sub/product/detail/macrocide-ol/structure.webp" alt="Chlorphenesin 분자 구조식 (C9H11ClO3, MW 202.64)"></div>
-                <div class="pd-release__txt">
-                  <p class="pd-release__en">Structure</p>
-                  <h3 class="pd-release__title">Chlorphenesin</h3>
-                  <p class="pd-release__desc">C<sub>9</sub>H<sub>11</sub>ClO<sub>3</sub> · MW 202.64 · CAS No. 104-29-0</p>
-                </div>
+              <div class="pd-intro">
+              <div class="pd-intro__txt">
+                <p class="pd-block__desc">Introduction</p>
+                <p class="pd-intro__para">Chlorphenesin은 보존 · 항균 성분으로, 세균 · 곰팡이 · 효모에 작용합니다. 퍼스널 케어 업계에 새롭게 등장한 보존제 중 하나이며, 제약 업계에서는 오랫동안 널리 쓰여 왔습니다.</p>
+                <p class="pd-block__desc">Characteristics of Chlorphenesin</p>
+                <ul class="pd-bullet">
+                  <li>냄새가 없는 흰색 결정 분말입니다.</li>
+                  <li>적합한 pH 범위는 3 ~ 9입니다.</li>
+                  <li>다른 보존제와 함께 쓰면 전체 보존력이 높아집니다. 세균 · 곰팡이 증식을 폭넓게 막아 다른 보존 성분과 시너지를 냅니다.</li>
+                  <li>크림 · 로션 등 에멀전, 마스크, 젤, 수성 · 알코올 용액, 스프레이, 스틱, 세럼, 토닉, 메이크업(아이라이너, 마스카라 등), 샴푸, 컨디셔너, 폼의 미생물 보존에 적합합니다.</li>
+                </ul>
+              </div>
+              <div class="pd-intro__img">
+                <div><img src="../../img/sub/product/detail/macrocide-ol/structure.webp" alt="Chlorphenesin 분자 구조식 (C9H11ClO3, MW 202.64)"></div>
+              </div>
               </div>
             </div>
 
@@ -139,7 +148,7 @@
 
             <div class="pd-block">
               <p class="pd-block__desc">Solubility of Macrocide-OL — 용매별 용해도</p>
-              <div class="pd-table" role="region" aria-label="Macrocide-OL 용매별 용해도" tabindex="0">
+              <div class="pd-table pd-table--center" role="region" aria-label="Macrocide-OL 용매별 용해도" tabindex="0">
                 <table>
                   <caption class="sr-only">Macrocide-OL 용매별 용해도</caption>
                   <thead>
@@ -188,7 +197,6 @@
               </div>
             </div>
 
-            <p class="pd-sec__note">※ 출처: MacroCare Onepage Catalogue · Chlorphenesin. 그래프 · 사진은 원문 자료를 사용했습니다. 상세 시험 조건은 별도 문의해 주세요.</p>
           </section>
 
           <a href="cosmetic.html" class="pd-back"><i aria-hidden="true">←</i>원료 목록으로</a>
@@ -209,8 +217,8 @@
 
           <!-- 플로팅 퀵메뉴 : PC 우측 카드 / 태블릿·모바일 우측 하단 원형 -->
           <div class="pd-quick">
-            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open aria-haspopup="dialog">
-              <span class="pd-quick__txt"><strong>샘플 요청<span class="pd-quick__pc">하기</span></strong><span class="pd-quick__sub">원료 샘플 신청</span></span>
+            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open="sample" aria-haspopup="dialog">
+              <span class="pd-quick__txt"><strong>문의하기</strong><span class="pd-quick__sub">원료 문의 · 샘플 요청</span></span>
               <img class="pd-quick__ico" src="../../img/sub/product/detail/ico-sample.webp" alt="">
               <i class="pd-quick__arrow" aria-hidden="true">↗</i>
             </button>

@@ -53,7 +53,11 @@
               <p class="sec-head__en">01 / Overview &amp; Strengths</p>
               <h2 id="pd-overview-title" class="sec-head__title">개요 &amp; 특장점</h2>
             </div>
-            <p class="pd-sec__desc">Vitagen은 비타민 C(Ascorbic acid)와 3-APPA(3-aminopropyl dihydrogen phosphate)를 결합시켜 안정화시킨 비타민 C 유도체입니다. 기존 Vitamin C 유도체 대비 강력한 피부 침투력이 장점이며 주름 개선과 미백의 이중 기능성 효과를 가지고 있습니다. 기존 비타민 C 유도체와 달리 0.5%부터 효과를 보실 수 있습니다</p>
+            <ul class="pd-sec__desc pd-bullet">
+              <li>Vitagen은 비타민 C(Ascorbic acid)와 3-APPA(3-aminopropyl dihydrogen phosphate)를 결합시켜 안정화시킨 비타민 C 유도체입니다.</li>
+              <li>기존 Vitamin C 유도체 대비 강력한 피부 침투력이 장점이며 주름 개선과 미백의 이중 기능성 효과를 가지고 있습니다.</li>
+              <li>기존 비타민 C 유도체와 달리 0.5%부터 효과를 보실 수 있습니다</li>
+            </ul>
             <p class="pd-sec__note">※ 자세한 자료는 직접 문의 부탁드립니다.</p>
 
             <div class="pd-feature">
@@ -77,25 +81,29 @@
               <h2 id="pd-tech-title" class="sec-head__title">기술 자료</h2>
             </div>
 
-            <div class="pd-spec">
+            <div class="pd-spec pd-spec--acc is-open" data-spec-acc>
               <div class="pd-spec__head">
                 <div class="pd-spec__txt">
-                  <h3 class="pd-spec__name">Product Name : Vitagen</h3>
+                  <h3 class="pd-spec__name">
+                    <button type="button" class="pd-spec__toggle" aria-expanded="true" aria-controls="pd-spec-body-1">Product Name : Vitagen</button>
+                  </h3>
                   <p class="pd-spec__sub">원료 기본 규격 및 제품 카탈로그</p>
                 </div>
                 <a href="../../files/catalog/macrocare-vitagen.pdf" class="pd-spec__btn" download>PDF 다운로드<i aria-hidden="true">↓</i><span class="sr-only">Vitagen</span></a>
+                <span class="pd-spec__chev" aria-hidden="true"></span>
               </div>
-              <dl class="pd-spec__list">
-                <div><dt>INCI Name</dt><dd>Aminopropyl Ascorbyl Phosphate</dd></div>
-                <div><dt>CAS No.</dt><dd>220644-17-7</dd></div>
-                <div><dt>M.O.Q.</dt><dd>1KG</dd></div>
-                <div><dt>Pack Size</dt><dd>1KG</dd></div>
-                <div><dt>Appearance</dt><dd>Powder</dd></div>
-                <div><dt>Dosage</dt><dd>0.5~2%</dd></div>
-              </dl>
+              <div class="pd-spec__body" id="pd-spec-body-1">
+                <dl class="pd-spec__list">
+                  <div><dt>INCI Name</dt><dd>Aminopropyl Ascorbyl Phosphate</dd></div>
+                  <div><dt>CAS No.</dt><dd>220644-17-7</dd></div>
+                  <div><dt>M.O.Q.</dt><dd>1KG</dd></div>
+                  <div><dt>Pack Size</dt><dd>1KG</dd></div>
+                  <div><dt>Appearance</dt><dd>Powder</dd></div>
+                  <div><dt>Dosage</dt><dd>0.5~2%</dd></div>
+                </dl>
+              </div>
             </div>
 
-            <p class="pd-sec__note">※ 운영 사이트의 공개 정보를 반영했습니다. 자세한 자료는 직접 문의 부탁드립니다.</p>
           </section>
 
           <!-- 03 기타 데이터 (카탈로그 PDF 내용 · 공통 블록 : sub.css "기타 데이터 공통 블록") -->
@@ -106,23 +114,24 @@
             </div>
 
             <div class="pd-block">
-              <ol class="pd-point">
-                <li><strong class="pd-point__title">안정화된 비타민 C 유도체</strong><p class="pd-point__desc">비타민 C(아스코르브산)와 3-APPA(3-aminopropyl dihydrogen phosphate)를 에스테르화한 안정화된 비타민 C 유도체입니다.</p></li>
-                <li><strong class="pd-point__title">주름 개선 · 미백 이중 효과</strong><p class="pd-point__desc">주름 개선과 미백의 이중 효과를 냅니다.</p></li>
-              </ol>
-              <div class="pd-release pd-release--contain">
-                <div class="pd-release__img"><img src="../../img/sub/product/detail/vitagen/structure.webp" alt="Ascorbyl 3-aminopropyl phosphate 구조식"></div>
-                <div class="pd-release__txt">
-                  <p class="pd-release__en">Structure</p>
-                  <h3 class="pd-release__title">Ascorbyl 3-aminopropyl phosphate</h3>
-                  <p class="pd-release__desc">INCI : Aminopropyl Ascorbyl Phosphate · CAS No. 220644-17-7</p>
-                </div>
+              <div class="pd-intro">
+              <div class="pd-intro__txt">
+                <p class="pd-block__desc">Introduction</p>
+                <ul class="pd-bullet">
+                  <li>안정화된 비타민 C 유도체(Stabilized Vitamin C derivative)입니다.</li>
+                  <li>비타민 C(ascorbic acid)와 3-APPA(3-aminopropyl dihydrogen phosphate)를 에스테르화했습니다.</li>
+                  <li>주름 개선과 미백의 이중 효과(Dual effect of Anti-wrinkle &amp; Whitening)를 냅니다.</li>
+                </ul>
+              </div>
+              <div class="pd-intro__img">
+                <div><img src="../../img/sub/product/detail/vitagen/structure.webp" alt="Ascorbyl 3-aminopropyl phosphate 구조식"></div>
+              </div>
               </div>
             </div>
 
             <div class="pd-block">
               <div class="pd-data">
-                <figure class="pd-data__card">
+                <figure class="pd-data__card pd-data__card--wide">
                   <figcaption class="pd-data__title">임상 1. 미백</figcaption>
                   <div class="pd-ba">
                     <div class="pd-ba__item"><span class="pd-ba__label">Before</span><img src="../../img/sub/product/detail/vitagen/whitening-before.webp" alt="Vitagen 로션 사용 전 얼굴 색소 침착 사진"></div>
@@ -137,7 +146,7 @@
                   <img src="../../img/sub/product/detail/vitagen/graph-pigment.webp" alt="4주, 6주, 8주 사용 후 색소 침착 감소율 막대그래프 : 기간이 길수록 증가">
                   <p class="pd-data__desc">사용 8주 후 색소 침착(노인성 반점)이 유의하게 감소했습니다. (감소율 29~33%)</p>
                 </figure>
-                <figure class="pd-data__card pd-data__card--wide">
+                <figure class="pd-data__card">
                   <figcaption class="pd-data__title">임상 3. 주름 개선</figcaption>
                   <img src="../../img/sub/product/detail/vitagen/graph-wrinkle.webp" alt="4주, 8주 사용 후 주름 개수 감소율 막대그래프 : 8주 후 크게 감소">
                   <p class="pd-data__desc">사용 4주 · 8주 후 전체 주름 개수가 크게 줄었습니다.</p>
@@ -204,7 +213,6 @@
               </div>
             </div>
 
-            <p class="pd-sec__note">※ 출처: MacroCare Onepage Catalogue · Vitamin C derivative (Vitagen). 그래프 · 사진은 원문 자료를 사용했습니다. 상세 시험 조건은 별도 문의해 주세요.</p>
           </section>
 
           <a href="cosmetic.html" class="pd-back"><i aria-hidden="true">←</i>원료 목록으로</a>
@@ -225,8 +233,8 @@
 
           <!-- 플로팅 퀵메뉴 : PC 우측 카드 / 태블릿·모바일 우측 하단 원형 -->
           <div class="pd-quick">
-            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open aria-haspopup="dialog">
-              <span class="pd-quick__txt"><strong>샘플 요청<span class="pd-quick__pc">하기</span></strong><span class="pd-quick__sub">원료 샘플 신청</span></span>
+            <button type="button" class="pd-quick__btn pd-quick__btn--sample" data-sample-open="sample" aria-haspopup="dialog">
+              <span class="pd-quick__txt"><strong>문의하기</strong><span class="pd-quick__sub">원료 문의 · 샘플 요청</span></span>
               <img class="pd-quick__ico" src="../../img/sub/product/detail/ico-sample.webp" alt="">
               <i class="pd-quick__arrow" aria-hidden="true">↗</i>
             </button>
