@@ -884,6 +884,122 @@
   }
 
 
+  /* ==========================================================
+     원료 상세 : 적용 제품 예(.pd-ref) 커스텀 스크롤 막대
+     모바일은 기본 스크롤바가 숨겨지므로 항상 보이는 막대를 붙임 · 드래그/클릭 이동
+     ========================================================== */
+  function initRefScrollbar() {
+    document.querySelectorAll(".pd-ref").forEach(function (list) {
+      var bar = document.createElement("div");
+      bar.className = "pd-ref-bar";
+      bar.setAttribute("aria-hidden", "true");
+      var thumb = document.createElement("span");
+      thumb.className = "pd-ref-bar__thumb";
+      bar.appendChild(thumb);
+      list.insertAdjacentElement("afterend", bar);
+
+      function max() {
+        return list.scrollWidth - list.clientWidth;
+      }
+
+      function update() {
+        var m = max();
+        bar.hidden = m <= 1;
+        list.classList.toggle("is-scrollable", !bar.hidden);
+        if (bar.hidden) return;
+        var trackW = bar.clientWidth;
+        var thumbW = Math.max(trackW * (list.clientWidth / list.scrollWidth), 40);
+        thumb.style.width = thumbW + "px";
+        thumb.style.transform = "translateX(" + (list.scrollLeft / m) * (trackW - thumbW) + "px)";
+      }
+
+      /* 막대 위치(x) → 스크롤 위치 */
+      var grabOffset = 0;
+      function scrollTo(clientX, smooth) {
+        var rect = bar.getBoundingClientRect();
+        var thumbW = thumb.offsetWidth;
+        var ratio = (clientX - rect.left - grabOffset) / (rect.width - thumbW);
+        ratio = Math.min(Math.max(ratio, 0), 1);
+        list.style.scrollSnapType = "none";
+        list.scrollTo({ left: ratio * max(), behavior: smooth ? "smooth" : "auto" });
+      }
+
+      bar.addEventListener("pointerdown", function (e) {
+        var tRect = thumb.getBoundingClientRect();
+        var onThumb = e.clientX >= tRect.left && e.clientX <= tRect.right;
+        grabOffset = onThumb ? e.clientX - tRect.left : thumb.offsetWidth / 2;
+        bar.classList.add("is-drag");
+        bar.setPointerCapture(e.pointerId);
+        scrollTo(e.clientX, !onThumb);
+      });
+      bar.addEventListener("pointermove", function (e) {
+        if (bar.classList.contains("is-drag")) scrollTo(e.clientX, false);
+      });
+      function release() {
+        bar.classList.remove("is-drag");
+        list.style.scrollSnapType = "";
+      }
+      bar.addEventListener("pointerup", release);
+      bar.addEventListener("pointercancel", release);
+
+      /* 카드(이미지 포함)를 마우스로 잡고 좌우로 끌어 스크롤 · 터치는 기본 스크롤 사용 */
+      var drag = null;
+      list.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
+      list.addEventListener("pointerdown", function (e) {
+        if (e.pointerType !== "mouse" || e.button !== 0 || max() <= 1) return;
+        drag = { x: e.clientX, left: list.scrollLeft, moved: false, id: e.pointerId };
+      });
+      list.addEventListener("pointermove", function (e) {
+        if (!drag) return;
+        var dx = e.clientX - drag.x;
+        if (!drag.moved && Math.abs(dx) > 4) {
+          drag.moved = true;
+          list.setPointerCapture(drag.id);
+          list.classList.add("is-drag");
+          list.style.scrollSnapType = "none";
+        }
+        if (drag.moved) list.scrollLeft = drag.left - dx;
+      });
+      function endDrag() {
+        if (!drag) return;
+        var moved = drag.moved;
+        drag = null;
+        list.classList.remove("is-drag");
+        if (!moved) return;
+        /* 놓은 위치에서 가장 가까운 카드로 부드럽게 맞춘 뒤 스냅 복구 */
+        var pad = parseFloat(getComputedStyle(list).paddingLeft) || 0;
+        var target = list.scrollLeft;
+        var best = Infinity;
+        var listLeft = list.getBoundingClientRect().left;
+        Array.prototype.forEach.call(list.children, function (item) {
+          var pos = list.scrollLeft + item.getBoundingClientRect().left - listLeft - pad;
+          pos = Math.min(Math.max(pos, 0), max());
+          if (Math.abs(pos - list.scrollLeft) < best) {
+            best = Math.abs(pos - list.scrollLeft);
+            target = pos;
+          }
+        });
+        list.scrollTo({ left: target, behavior: "smooth" });
+        setTimeout(function () {
+          if (!drag) list.style.scrollSnapType = "";
+        }, 450);
+      }
+      list.addEventListener("pointerup", endDrag);
+      list.addEventListener("pointercancel", endDrag);
+      list.addEventListener("lostpointercapture", endDrag);
+
+      list.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      list.querySelectorAll("img").forEach(function (img) {
+        if (!img.complete) img.addEventListener("load", update);
+      });
+      update();
+    });
+  }
+
+
   initSubTab();
   initReveal();
   initMission();
@@ -899,4 +1015,5 @@
   initFilter();
   initBackLink();
   initFeatureSwiper();
+  initRefScrollbar();
 })();
